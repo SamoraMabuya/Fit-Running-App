@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".create_account_section">
+
+    <ImageView
+        android:id="@+id/mainbackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="-201dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/road_run"
+        tools:ignore="contentDescription"/>
+
+    <ImageView
+        android:id="@+id/backgroundtint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="#8006303F"
+        tools:ignore="contentDescription" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/every_step_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="140dp"
+            android:fontFamily="@font/days_one"
+            android:text="@string/logo"
+            android:textColor="#B3FFF7F7"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/ca_name"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="60dp"
+            android:background="#CCFCF9F9"
+            android:ems="15"
+            android:inputType="textPersonName"
+            android:text="@string/name"
+            android:textColor="#8B8989"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/every_step_logo" />
+
+        <EditText
+            android:id="@+id/ca_email"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:background="#CCFCF9F9"
+            android:ems="15"
+            android:inputType="textEmailAddress"
+            android:text="@string/email"
+            android:textColor="#8B8989"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ca_name" />
+
+        <EditText
+            android:id="@+id/ca_password"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:background="#CCFCF9F9"
+            android:ems="15"
+            android:inputType="textVisiblePassword"
+            android:text="@string/password"
+            android:textColor="#8B8989"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ca_email" />
+
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:background="#CCFCF9F9"
+            android:ems="15"
+            android:inputType="textVisiblePassword"
+            android:text="@string/confirm_password"
+            android:textColor="#8B8989"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ca_password" />
+
+        <Button
+            android:id="@+id/sign_up"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/rounded_button"
+            android:text="@string/create_account"
+            android:textColor="#CCFCF9F9"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirm_password" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>

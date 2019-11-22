@@ -1,15 +1,18 @@
-package Mobile.apps;
+package mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class log_in extends AppCompatActivity {
-    
+import mobile.apps.R;
+
+public class create_account_section extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.log_in_section);
-        
+        setContentView(R.layout.create_account_section);
     }
+
+
 }

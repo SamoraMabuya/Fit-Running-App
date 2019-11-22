@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".create_account_section">
+tools:context="mobile.create_account_section">
 
     <ImageView
         android:id="@+id/mainbackground"
@@ -32,16 +32,16 @@ tools:context=".create_account_section">
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/every_step_logo"
+            android:id="@+id/runora_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="140dp"
-            android:fontFamily="@font/days_one"
-            android:text="@string/logo"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/krona_one"
+            android:text="@string/ca_runora"
             android:textColor="#B3FFF7F7"
-            android:textSize="40sp"
+            android:textSize="50sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +61,7 @@ tools:context=".create_account_section">
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/every_step_logo" />
+            app:layout_constraintTop_toBottomOf="@+id/runora_logo" />
 
         <EditText
             android:id="@+id/ca_email"

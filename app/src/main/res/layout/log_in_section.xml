@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".log_in">
+    tools:context="mobile.log_in">
 
     <ImageView
         android:id="@+id/mainbackground"
@@ -38,8 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="140dp"
-            android:text="Runora"
+            android:layout_marginTop="80dp"
+            android:text="@string/runora"
             android:fontFamily="@font/krona_one"
             android:textColor="#B3FFF7F7"
             android:textSize="50sp"

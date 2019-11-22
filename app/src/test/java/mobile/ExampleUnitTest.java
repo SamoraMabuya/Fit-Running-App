@@ -1,4 +1,4 @@
-package Mobile.apps;
+package mobile;
 
 import org.junit.Test;
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="mobile.MainActivity">
 
     <ImageView
         android:id="@+id/mainbackground"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="370dp"
             android:background="@drawable/rounded_button"
-            android:text="@string/LOG_IN"
+            android:text="Sign In "
             android:textColor="#fff"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,19 +47,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/create_account"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="427dp"
-            android:background="@drawable/rounded_button"
-            android:text="@string/create_account_button"
-            android:textColor="@color/grey50"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <!--<Button-->
+            <!--android:id="@+id/create_account"-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="427dp"-->
+            <!--android:background="@drawable/rounded_button"-->
+            <!--android:text="@string/create_account_button"-->
+            <!--android:textColor="@color/grey50"-->
+            <!--android:textSize="20sp"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="0.502"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
 
         <TextView
             android:id="@+id/every"

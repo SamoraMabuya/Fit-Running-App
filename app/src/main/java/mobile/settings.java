@@ -19,8 +19,6 @@ public class settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        UnitSwitch = (Switch) findViewById(R.id.UnitSwitch);
-
 
     }
 }

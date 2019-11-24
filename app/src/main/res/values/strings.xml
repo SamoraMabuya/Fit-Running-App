@@ -35,5 +35,5 @@
     <string name="curr_spd">Curr Spd</string>
     <string name="Reg">Registering.</string>
     <string name="settings_title">Settings</string>
-    <string name="Distance">Distance(units)</string>
+    <string name="Distance">Distance</string>
 </resources>

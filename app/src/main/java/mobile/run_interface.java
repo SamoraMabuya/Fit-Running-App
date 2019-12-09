@@ -1,6 +1,7 @@
 package mobile;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,14 +11,17 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -29,13 +33,13 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import java.text.DecimalFormat;
+import java.text.Format;
+import java.util.Locale;
 
 import mobile.apps.R;
 
-import static com.google.android.gms.location.LocationServices.FusedLocationApi;
 
-
-public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener {
+public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener{
 
     FusedLocationProviderClient fusionprovider;
     LocationManager locationManager;
@@ -44,15 +48,36 @@ public class run_interface extends AppCompatActivity implements LocationListener
     LocationRequest locationRequest;
     LocationListener locationListener;
     Location start_location, end_location, curr_location, location;
-    private static final int Permission_Request_Code = 103;
+    private static final int Permission_Request_Code = 100;
+    boolean NetworkEnabled = false;
+    boolean GPSEnabled = false;
 
     boolean active;
     long update;
-    TextView distance_counter, curr_speed, avg_speed;
+    TextView distance_counter, SpdInmph, SpdInkmh, countdown_timer;
     Button play_button, pause_button, stop_btn;
     Chronometer timer;
+
+    CountDownTimer countDownTimer;
+    long StartTime = 10000;
+    long MilliesUntilFinish;
+    long MilliesLeft = StartTime;
+    long min;
+    long sec;
+
     double distance = 0;
-    double current_speed = 0;
+    double current_speed;
+    double average_speed = 0;
+    double elapsedtime;
+    double start_time;
+    double end_time;
+    double distanceinmiles;
+    double distanceinmeters;
+
+    RadioButton miles_btn;
+    RadioButton kilometer_btn;
+
+    Boolean isActivated;
 
 
     @Override
@@ -65,15 +90,19 @@ public class run_interface extends AppCompatActivity implements LocationListener
         play_button = (Button) findViewById(R.id.play_button);
         pause_button = (Button) findViewById(R.id.pause_button);
         stop_btn = (Button) findViewById(R.id.stop_btn);
-        curr_speed = (TextView) findViewById(R.id.curr_speed);
-        avg_speed = (TextView) findViewById(R.id.avg_speed);
+        SpdInmph = (TextView) findViewById(R.id.spdInmph);
+        SpdInkmh = (TextView) findViewById(R.id.speedInkmh);
         timer = (Chronometer) findViewById(R.id.timer);
+        miles_btn = (RadioButton) findViewById(R.id.miles_btn);
 
-        final int LocationFinePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
 
-        timer.setBase(SystemClock.elapsedRealtime());
+
+
+        NetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        GPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
 
         timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -84,60 +113,70 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 }
             }
         });
+    }
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        fusionprovider = LocationServices.getFusedLocationProviderClient(run_interface.this);
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        final int LocationFinePermission = ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION);
         play_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    if (LocationFinePermission != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(run_interface.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, Permission_Request_Code);
-                    } else {
-                        if (!active) {
-                            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
-                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 0, run_interface.this);
-                            createLocationRequest();
-                            timer.setBase(SystemClock.elapsedRealtime() - update);
-                            timer.start();
-                            play_button.setVisibility(View.GONE);
-                            active = true;
+        public void onClick(View v) {
+                        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+                        fusionprovider = LocationServices.getFusedLocationProviderClient(run_interface.this);
+                        timer.setBase(SystemClock.elapsedRealtime());
+                        if (LocationFinePermission != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(run_interface.this, new String[]
+                                            {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                                    Permission_Request_Code);
+                            LocationSwitch();
                         } else {
-                            play_button.setVisibility(View.VISIBLE);
-                            pause_button.setVisibility(View.GONE);
-                            active = false;
+                            if (!active) {
+                                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
+                                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 0, run_interface.this);
+                                createLocationRequest();
+                                timer.setBase(SystemClock.elapsedRealtime() - update);
+                                timer.start();
+                                play_button.setVisibility(View.GONE);
+                                active = true;
+                            } else {
+                                play_button.setVisibility(View.VISIBLE);
+                                pause_button.setVisibility(View.GONE);
+                                active = false;
 
-                        }
 
-                        pause_button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (active) {
+                            }
+
+                            pause_button.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (active) {
+                                        timer.stop();
+                                        active = false;
+                                        play_button.setVisibility(View.VISIBLE);
+                                        update = SystemClock.elapsedRealtime() - timer.getBase();
+                                        locationManager.removeUpdates(run_interface.this);
+                                    }
+                                }
+                            });
+
+                            stop_btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
                                     timer.stop();
                                     active = false;
+                                    update = 0;
+                                    timer.setBase(SystemClock.elapsedRealtime());
                                     play_button.setVisibility(View.VISIBLE);
-                                    update = SystemClock.elapsedRealtime() - timer.getBase();
                                     locationManager.removeUpdates(run_interface.this);
+                                    start_location = null;
+                                    end_location = null;
+                                    distance = 0;
+                                    current_speed = 0;
                                 }
-                            }
-                        });
-
-                        stop_btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                timer.stop();
-                                active = false;
-                                update = 0;
-                                timer.setBase(SystemClock.elapsedRealtime());
-                                play_button.setVisibility(View.VISIBLE);
-                                start_location = null;
-                                end_location = null;
-                                distance = 0;
-                            }
-                        });
-
+                            });
+                        }
                     }
+                });
             }
 
             private void createLocationRequest() {
@@ -146,121 +185,142 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 locationRequest.setFastestInterval(5000);
                 locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
             }
-        });
-    }
 
-    @Override
-    public void onLocationChanged(Location location) {
-        curr_location = location;
-        if (start_location == null) {
-            start_location = curr_location;
-            end_location = curr_location;
-        } else
-            end_location = curr_location;
 
-        distanceUI();
-        distance_counter.setText(new DecimalFormat("#.##").format(distance));
+            @Override
+            public void onLocationChanged(Location location) {
+                curr_location = location;
+                if (start_location == null) {
+                    start_location = curr_location;
+                    end_location = curr_location;
+                } else
+                    end_location = curr_location;
 
-        speedUI();
-        curr_speed.setText(new DecimalFormat("#.##").format(current_speed));
+                distanceInMiles();
+                distance_counter.setText(new DecimalFormat("0.00").format(distanceinmiles));
 
-        averagespeed_UI();
-        avg_speed.setText(new DecimalFormat("#.##").format(current_speed));
+                current_speed = location.getSpeed() * 2.236936;
+                SpdInmph.setText(new DecimalFormat("0.00").format(current_speed));
 
-    }
+                current_speed = location.getSpeed() * 3.6;
+                SpdInkmh.setText(new DecimalFormat("0.00").format(current_speed));
 
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
+                {
 
-    }
 
-    @Override
-    public void onProviderEnabled(String provider) {
-            if (provider.equals(LocationManager.GPS_PROVIDER)) {
-            BackToActivity();
+                }
             }
-        }
 
 
-    @Override
-    public void onProviderDisabled(String provider) {
-        if (!provider.equals(LocationManager.NETWORK_PROVIDER)) {
-            onStop();
-            if (!provider.equals(LocationManager.GPS_PROVIDER)) {
-                onStop();
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
 
             }
-        }
-    }
 
-
-    private void distanceUI() {
-        distance = distance + (start_location.distanceTo(end_location) / 1000.00);
-        start_location = end_location;
-
-    }
-
-    private void speedUI() {
-
-
-    }
-
-    private void averagespeed_UI() {
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == Permission_Request_Code) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                EnableGPSAlertBox();
-            } else {
-                Toast.makeText(run_interface.this, "Allow permission & enable GPS. If you've allowed permission, just enable GPS", Toast.LENGTH_LONG).show();
+            @Override
+            public void onProviderEnabled(String provider) {
 
             }
-        }
-    }
 
-    private void EnableGPSAlertBox() {
-        AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
-        dialogbuilder.setMessage(" Enable GPS To Continue")
-                .setPositiveButton("Turn location on", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent call_gps_settings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(call_gps_settings);
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+
+
+            private void distanceInMeters() {
+                distanceinmeters = distance + (start_location.distanceTo(end_location));
+                start_location = end_location;
+
+            }
+
+            private void distanceInMiles() {
+                distanceinmiles = distance + (start_location.distanceTo(end_location) * 0.00062137);
+
+
+            }
+
+            private void distanceInkilometers() {
+                distance = distance + (start_location.distanceTo(end_location) / 1000);
+                start_location = end_location;
+
+
+            }
+
+            private void LocationSwitch() {
+                if (!NetworkEnabled && !GPSEnabled)
+                    EnableGPSAlertBox();
+
+            }
+
+
+            @Override
+            public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                if (requestCode == Permission_Request_Code) {
+                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    } else {
+                        Toast.makeText(this, "Allow permission & enable GPS. If you've allowed permission, just enable GPS", Toast.LENGTH_LONG).show();
 
                     }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                }
+            }
 
-                    }
-                });
-        AlertDialog alertDialog = dialogbuilder.create();
-        alertDialog.show();
 
-    }
+            public void EnableGPSAlertBox() {
+                AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(run_interface.this);
+                dialogbuilder.setMessage(" Enable GPS To Continue")
+                        .setPositiveButton("Turn location on", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent call_gps_settings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                startActivity(call_gps_settings);
 
-    private void BackToActivity() {
-        Intent intent = new Intent(run_interface.this, run_interface.class);
-        startActivity(intent);
-    }
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        timer.stop();
-        active = false;
-        update = 0;
-        timer.setBase(SystemClock.elapsedRealtime());
-        play_button.setVisibility(View.VISIBLE);
-        start_location = null;
-        end_location = null;
-        distance = 0;
-    }
-}
+                            }
+                        });
+                AlertDialog alertDialog = dialogbuilder.create();
+                alertDialog.show();
+
+            }
+
+            public void BackToActivity() {
+                if (NetworkEnabled && GPSEnabled) {
+                    Intent intent = new Intent(run_interface.this, run_interface.class);
+                    startActivity(intent);
+                }
+            }
+
+
+            @Override
+            protected void onStop() {
+                super.onStop();
+                timer.stop();
+                active = false;
+                update = 0;
+                timer.setBase(SystemClock.elapsedRealtime());
+                play_button.setVisibility(View.VISIBLE);
+                start_location = null;
+                end_location = null;
+                distance = 0;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 
 
 

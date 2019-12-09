@@ -30,7 +30,6 @@
         android:id="@+id/SettingsTab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
         android:orientation="horizontal">
 
         <TextView
@@ -51,7 +50,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/go.back.btn"
+            android:id="@+id/go_back_btn"
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_marginEnd="230dp"
@@ -97,55 +96,34 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <RadioGroup
-                android:id="@+id/distance.radio.btns"
+                android:id="@+id/distance_btn_group"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="right"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:gravity="end"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="25dp"
-                    android:orientation="vertical">
 
+                <RadioButton
+                    android:id="@+id/miles_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="buttonCheck"
+                    android:text="Miles"
+                    android:layoutDirection="rtl"
+                    android:gravity="center""/>
 
-                    <RadioButton
-                        android:id="@+id/meters.btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="3dp" />
+<!--                <RadioButton-->
+<!--                    android:id="@+id/kilometer_btn"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:checked="true"-->
+<!--                    android:onClick="buttonCheck"/>-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Meters"
-                        android:textColor="#ffff" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <RadioButton
-                        android:id="@+id/distance.btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="30dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Distance"
-                        android:textColor="#ffff" />
-
-                </LinearLayout>
 
             </RadioGroup>
 
@@ -162,6 +140,7 @@
             app:layout_constraintTop_toBottomOf="@+id/distance.section">
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/next_art_semibold"
@@ -175,47 +154,66 @@
                 app:layout_constraintStart_toStartOf="@+id/on.off.radio.btns"
                 app:layout_constraintTop_toTopOf="@+id/on.off.radio.btns" />
 
+
             <RadioGroup
                 android:id="@+id/on.off.radio.btns"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="right"
+                android:layout_marginTop="5dp"
+                android:gravity="end"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="48dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-                <RadioButton
-                    android:id="@+id/on.btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="ON"/>
-
-
-
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="On"
+                        android:textColor="#ffff" />
 
 
+                </LinearLayout>
 
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Off"
+                        android:textColor="#fff" />
+
+                </LinearLayout>
 
 
+            </RadioGroup>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/feedback.time"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/countdown.section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/white_solid"
@@ -223,20 +221,27 @@
             app:layout_constraintTop_toBottomOf="@+id/audio.feedback">
 
             <TextView
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="180dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/next_art_semibold"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="0dp"
-                android:text="Feedback Time"
+                android:text="Countdown"
                 android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/countdown_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end" />
 
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/incoming.call"
@@ -244,7 +249,7 @@
             android:layout_height="60dp"
             android:background="@drawable/white_solid"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/feedback.time">
+            app:layout_constraintTop_toBottomOf="@+id/countdown.section">
 
             <TextView
                 android:layout_width="200dp"
@@ -262,8 +267,8 @@
 
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/countdown.section"
+        <LinearLayout
+            android:id="@+id/Help"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/white_solid"
@@ -271,20 +276,20 @@
             app:layout_constraintTop_toBottomOf="@+id/incoming.call">
 
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="180dp"
                 android:fontFamily="@font/next_art_semibold"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="0dp"
-                android:text="Countdown"
+                android:text="Help"
                 android:textColor="#ffff"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -306,8 +311,8 @@
             android:id="@+id/profile_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:orientation="vertical">
-
 
             <Button
                 android:id="@+id/profile_btn"
@@ -335,45 +340,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/Settings_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="0dp"
-            android:orientation="vertical">
-
-
-            <Button
-                android:id="@+id/settings_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/invisible_button"
-                android:drawableTop="@drawable/ic_notepad"
-                android:paddingTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Settings"
-                android:textColor="#ffff"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/settings_btn" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/History_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
 
@@ -407,7 +378,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="0dp"
             android:orientation="vertical">
 
 

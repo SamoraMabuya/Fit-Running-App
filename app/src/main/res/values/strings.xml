@@ -36,4 +36,19 @@
     <string name="Reg">Registering.</string>
     <string name="settings_title">Settings</string>
     <string name="Distance">Distance</string>
+    <string name="meters">Miles</string>
+    <string name="spd_in_mph">Spd in mph</string>
+    <string name="spd_in_km_h">Spd_in_km/h</string>
+
+    <string-array name="feedback_time">
+        <item> No feedback </item>
+        <item> 5 min </item>
+        <item> 10 min </item>
+        <item> 15 min </item>
+        <item> 20 min </item>
+        <item> 25 min </item>
+        <item> 30 min </item>
+    </string-array>
+    <string name="title_activity_countdowntimer">Countdowntimer</string>
+    <string name="kilometers">Kilometers</string>
 </resources>

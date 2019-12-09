@@ -35,6 +35,7 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
 
     Button start_btn;
     Button music_btn;
+    Button settings_btn;
     LocationManager locationManager;
     Location location;
 
@@ -46,7 +47,7 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
 
         start_btn = (Button) findViewById(R.id.start_btn);
         music_btn = (Button) findViewById(R.id.music_btn);
-
+        settings_btn = (Button) findViewById(R.id.settings_btn);
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -72,6 +73,16 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
             public void onClick(View v) {
                 Intent intent = new Intent(INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH);
                 startActivity(intent);
+            }
+        });
+
+        settings_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(home.this, settings.class);
+                startActivity(intent);
+
+
             }
         });
     }

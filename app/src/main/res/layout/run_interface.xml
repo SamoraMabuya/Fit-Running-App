@@ -111,7 +111,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/curr_speed"
+            android:id="@+id/spdInmph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -125,7 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/curr_spd"
+            android:text="@string/spd_in_mph"
             android:textColor="#F0E7E7"
             android:textSize="20sp" />
 
@@ -145,13 +145,13 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/avg_speed"
+            android:id="@+id/speedInkmh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/_0_00"
             android:textColor="#F8F7F7"
-            android:textSize="30sp" />
+            android:textSize="30sp"/>
 
 
         <TextView
@@ -159,7 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/avg_spd"
+            android:text="@string/spd_in_km_h"
             android:textColor="#F0E7E7"
             android:textSize="20sp" />
 
@@ -195,7 +195,8 @@
         android:layout_marginBottom="23dp"
         android:background="@drawable/resume_button"
         android:drawableTop="@drawable/ic_multimedia"
-        android:paddingTop="10dp"/>
+        android:paddingTop="10dp" />
+
 
 
 

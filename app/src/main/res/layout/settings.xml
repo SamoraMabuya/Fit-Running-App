@@ -110,19 +110,21 @@
 
                 <RadioButton
                     android:id="@+id/miles_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:onClick="buttonCheck"
                     android:text="Miles"
-                    android:layoutDirection="rtl"
-                    android:gravity="center""/>
+                    android:gravity="start"
+                    android:paddingTop="30dp"
+                    android:paddingStart="-30dp"
+                    android:paddingEnd="35dp"/>
 
-<!--                <RadioButton-->
-<!--                    android:id="@+id/kilometer_btn"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:checked="true"-->
-<!--                    android:onClick="buttonCheck"/>-->
+                <RadioButton
+                    android:id="@+id/kilometer_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:onClick="buttonCheck"/>
 
 
             </RadioGroup>

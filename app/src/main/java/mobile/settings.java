@@ -2,27 +2,21 @@ package mobile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.Switch;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import mobile.apps.R;
 
 import static android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
-import static android.provider.MediaStore.INTENT_ACTION_MEDIA_SEARCH;
 
-public class settings extends AppCompatActivity {
+public class settings extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
     Button go_back_btn;
     Button music_btn;
@@ -31,9 +25,13 @@ public class settings extends AppCompatActivity {
     RadioGroup distancebtn_group;
     RadioButton miles_btn;
     RadioButton kilometer_btn;
-    RadioButton distance_button_clicked;
-    RadioButton radioButton;
 
+    public static final String Shared_info = "info";
+    public static String MILESBTN = "miles_btn";
+    public static String KMBTN = "kilometer_btn";
+    public static String DBG = "distancebtn_group";
+
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -41,10 +39,20 @@ public class settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
+
+        sharedPreferences = getSharedPreferences(Shared_info, MODE_PRIVATE);
+
+
         go_back_btn = (Button) findViewById(R.id.go_back_btn);
         music_btn = (Button) findViewById(R.id.music_btn);
         settings_btn = (Button) findViewById(R.id.settings_btn);
         distancebtn_group = findViewById(R.id.distance_btn_group);
+        miles_btn = (RadioButton) findViewById(R.id.miles_btn);
+        kilometer_btn = (RadioButton) findViewById(R.id.kilometer_btn);
+
+
+        distancebtn_group.check(sharedPreferences.getInt("distancebtn_group", R.id.distance_btn_group));
+        distancebtn_group.setOnCheckedChangeListener(this);
 
 
         go_back_btn.setOnClickListener(new View.OnClickListener() {
@@ -59,20 +67,52 @@ public class settings extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH);
                 startActivity(intent);
+
+            }
+        });
+        kilometer_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                boolean kmChecked = kilometer_btn.isChecked();
+                editor.putBoolean(KMBTN, kmChecked);
+                sharedPreferences.getBoolean("kilometer_btn", true);
+                editor.apply();
+
+
+            }
+        });
+        miles_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                boolean milesChecked = miles_btn.isChecked();
+                editor.putBoolean(MILESBTN, milesChecked);
+                editor.apply();
+
             }
         });
     }
 
-    public void buttonCheck(View view) {
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        SharedPreferences.Editor editor = getSharedPreferences(Shared_info, Context.MODE_PRIVATE).edit();
+        switch (distancebtn_group.getCheckedRadioButtonId()) {
+            case R.id.miles_btn:
+                boolean milesChecked = miles_btn.isChecked();
+                editor.putBoolean(MILESBTN, milesChecked);
+                break;
 
-        int radioId = distancebtn_group.getCheckedRadioButtonId();
-
-        radioButton = findViewById(radioId);
-
-
+            case R.id.kilometer_btn:
+                boolean kmchecked = kilometer_btn.isChecked();
+                editor.putBoolean(KMBTN, kmchecked);
+                sharedPreferences.getBoolean("kilometer_btn", true);
+                break;
+        }
+        editor.putInt("distancebtn_group", distancebtn_group.getCheckedRadioButtonId());
+        editor.apply();
     }
+
 }
-
-
 
 

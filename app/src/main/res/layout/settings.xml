@@ -112,19 +112,27 @@
                     android:id="@+id/miles_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="buttonCheck"
                     android:text="Miles"
+                    android:textColor="#ffff"
                     android:gravity="start"
                     android:paddingTop="30dp"
                     android:paddingStart="-30dp"
-                    android:paddingEnd="35dp"/>
+                    android:paddingEnd="35dp"
+                    android:onClick="buttonCheck"/>
 
                 <RadioButton
                     android:id="@+id/kilometer_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="km"
+                    android:textColor="#ffff"
+                    android:gravity="start"
+                    android:paddingTop="30dp"
+                    android:paddingStart="-26dp"
                     android:checked="true"
+                    android:paddingEnd="5dp"
                     android:onClick="buttonCheck"/>
+
 
 
             </RadioGroup>

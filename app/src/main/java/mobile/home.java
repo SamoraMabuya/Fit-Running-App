@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -27,6 +29,7 @@ import mobile.apps.R;
 
 import static android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
 import static android.provider.MediaStore.INTENT_ACTION_MEDIA_SEARCH;
+import static mobile.settings.Shared_info;
 
 public class home extends AppCompatActivity implements LocationListener, com.google.android.gms.location.LocationListener {
 
@@ -38,6 +41,8 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
     Button settings_btn;
     LocationManager locationManager;
     Location location;
+    RadioButton miles_btn;
+    RadioButton kilometer_btn;
 
 
     @Override
@@ -55,17 +60,15 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         start_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(home.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, STORAGE_PERMISSION_CODE);
+//                if (ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                    ActivityCompat.requestPermissions(home.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, STORAGE_PERMISSION_CODE);
+//
+//                } else {
+//
+//                    if (ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                Intent intent = new Intent(home.this, run_interface.class);
+                startActivity(intent);
 
-                } else {
-
-                    if (ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        startRun_interface();
-
-                    }
-
-                }
             }
         });
         music_btn.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +95,7 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         if (requestCode == STORAGE_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                 requestStoragePermission();
+
 
             } else {
 
@@ -168,4 +172,6 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         }
     }
 }
+
+
 

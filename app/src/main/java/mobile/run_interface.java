@@ -1,16 +1,13 @@
 package mobile;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -35,12 +32,9 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import java.text.DecimalFormat;
-import java.text.Format;
-import java.util.Locale;
 
 import mobile.apps.R;
 
-import static mobile.settings.Shared_info;
 
 
 public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener {
@@ -85,6 +79,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     String MILESBTN = "miles_btn";
     String KMBTN = "kilometer_btn";
+    public static final String Shared_info = "info";
+    public static String DBG = "distancebtn_group";
+
 
 
     Boolean isActivated;
@@ -105,13 +102,11 @@ public class run_interface extends AppCompatActivity implements LocationListener
         timer = (Chronometer) findViewById(R.id.timer);
         miles_btn = (RadioButton) findViewById(R.id.miles_btn);
         kilometer_btn = (RadioButton) findViewById(R.id.kilometer_btn);
+        distancebtn_group = findViewById(R.id.distance_btn_group);
+
 
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-        SharedPreferences sharedPreferences = getSharedPreferences("SharedValues", 0);
-        MILESBTN = sharedPreferences.getString("milesbtn", null);
-        KMBTN = sharedPreferences.getString("kilometer_btn", null);
 
 
         NetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -168,6 +163,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
                                 play_button.setVisibility(View.VISIBLE);
                                 update = SystemClock.elapsedRealtime() - timer.getBase();
                                 locationManager.removeUpdates(run_interface.this);
+                                Intent intent = new Intent(run_interface.this, home.class);
+                                startActivity(intent);
                             }
                         }
                     });
@@ -185,6 +182,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
                             end_location = null;
                             distance = 0;
                             current_speed = 0;
+                            Intent intent = new Intent(run_interface.this, home.class);
+                            startActivity(intent);
                         }
                     });
                 }
@@ -262,11 +261,11 @@ public class run_interface extends AppCompatActivity implements LocationListener
     }
 
     private void metricUpdate() {
-        LoadData();
-        if (kilometer_btn.equals("buttonChecked")) {
-            distanceInkilometers();
-        } else
-            distanceInMiles();
+//        LoadData();
+//        if (kilometer_btn.equals("buttonChecked")) {
+//            distanceInkilometers();
+//        } else
+//            distanceInMiles();
     }
 
 

@@ -1,6 +1,5 @@
 package mobile;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,13 +23,12 @@ public class settings extends AppCompatActivity {
     RadioGroup distancebtn_group;
     RadioButton miles_btn;
     RadioButton kilometer_btn;
+    RadioGroup radioGroup;
 
-    public static final String GetInfo = "GetInfo";
+    public static String GetInfo = "GetInfo";
     public static String MILESBTN = "miles_btn";
     public static String KMBTN = "kilometer_btn";
     public static String DBG = "distancebtn_group";
-
-    Context context;
 
     SharedPreferences sharedPreferences;
 
@@ -43,10 +41,8 @@ public class settings extends AppCompatActivity {
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
 
-
         go_back_btn = (Button) findViewById(R.id.go_back_btn);
         music_btn = (Button) findViewById(R.id.music_btn);
-        settings_btn = (Button) findViewById(R.id.settings_btn);
         distancebtn_group = findViewById(R.id.distance_btn_group);
         miles_btn = (RadioButton) findViewById(R.id.miles_btn);
         kilometer_btn = (RadioButton) findViewById(R.id.kilometer_btn);
@@ -60,7 +56,9 @@ public class settings extends AppCompatActivity {
                 editor.putBoolean(MILESBTN, miles_btn.isChecked());
                 editor.putBoolean(KMBTN, kilometer_btn.isChecked());
                 editor.apply();
-                Intent intent = new Intent(settings.this, home.class);
+                Intent intent = new Intent(getApplicationContext(), home.class);
+                intent.putExtra("miles_btn", miles_btn.isChecked());
+                intent.putExtra("kilometer_btn", kilometer_btn.isChecked());
                 startActivity(intent);
             }
         });
@@ -81,6 +79,9 @@ public class settings extends AppCompatActivity {
                 editor.apply();
 
 
+
+
+
             }
         });
         miles_btn.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +98,6 @@ public class settings extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         kilometer_btn.setChecked(sharedPreferences.getBoolean("kilometer_btn", true));
         miles_btn.setChecked(sharedPreferences.getBoolean("miles_btn", false));
-
     }
 }
 

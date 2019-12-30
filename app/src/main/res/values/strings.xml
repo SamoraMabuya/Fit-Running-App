@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Run.app</string>
+    <string name="small_screen_size">Small Screen Size Layout</string>
+    <string name="normal_screen_size">Normal Screen Size Layout</string>
+    <string name="large_screen_size">Large Screen Size Layout</string>
+    <string name="xlarge_screen_size">Extra Large Screen Size Layout</string>
+    <string name="main_layout">Main Layout</string>
+    <string name="sw320">The smallest width of the screen is greater than or equal to 320dp</string>
+    <string name="sw480">The smallest width of the screen is greater than or equal to 480dp</string>
     <string name="LOG_IN">Log In</string>
     <string name="sourcecodepromedium">sourcecodepro_medium</string>
     <string name="create_account_button">Create Account</string>

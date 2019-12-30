@@ -35,9 +35,10 @@ import java.text.DecimalFormat;
 
 import mobile.apps.R;
 
+import static mobile.settings.GetInfo;
 
 
-public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener {
+public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener, RadioGroup.OnCheckedChangeListener {
 
     FusedLocationProviderClient fusionprovider;
     LocationManager locationManager;
@@ -51,9 +52,10 @@ public class run_interface extends AppCompatActivity implements LocationListener
     boolean GPSEnabled = false;
 
     boolean active;
+    boolean chooseUnit;
     long update;
     TextView distance_counter, SpdInmph, SpdInkmh, countdown_timer;
-    Button play_button, pause_button, stop_btn;
+    Button play_button, pause_button, stop_btn, homebutton;
     Chronometer timer;
 
     CountDownTimer countDownTimer;
@@ -62,6 +64,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     long MilliesLeft = StartTime;
     long min;
     long sec;
+    RadioButton radioButton;
 
     double distance = 0;
     double current_speed;
@@ -77,21 +80,16 @@ public class run_interface extends AppCompatActivity implements LocationListener
     RadioButton miles_btn;
     RadioButton kilometer_btn;
 
-    String MILESBTN = "miles_btn";
-    String KMBTN = "kilometer_btn";
+    public static final String MILESBTN = "miles_btn";
+    public static final String KMBTN = "kilometer_btn";
     public static final String Shared_info = "info";
     public static String DBG = "distancebtn_group";
-
-
-
-    Boolean isActivated;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.run_interface);
-
 
         distance_counter = (TextView) findViewById(R.id.distance_counter);
         play_button = (Button) findViewById(R.id.play_button);
@@ -100,17 +98,30 @@ public class run_interface extends AppCompatActivity implements LocationListener
         SpdInmph = (TextView) findViewById(R.id.spdInmph);
         SpdInkmh = (TextView) findViewById(R.id.speedInkmh);
         timer = (Chronometer) findViewById(R.id.timer);
+        distancebtn_group = (RadioGroup) findViewById(R.id.distance_btn_group);
         miles_btn = (RadioButton) findViewById(R.id.miles_btn);
         kilometer_btn = (RadioButton) findViewById(R.id.kilometer_btn);
         distancebtn_group = findViewById(R.id.distance_btn_group);
-
+        homebutton = (Button) findViewById(R.id.homebutton);
 
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-
         NetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         GPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        Intent intent = getIntent();
+        int kbtn = intent.getIntExtra("miles_btn", 1);
+        int mbtn = intent.getIntExtra("kilometer_btn", 1);
+
+        final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+        final Boolean milesbutton = sharedPreferences.getBoolean(MILESBTN, false);
+        final Boolean kilometerbutton = sharedPreferences.getBoolean(KMBTN, true);
+
+        Boolean milesbtn = getIntent().getBooleanExtra(MILESBTN, false);
+        Boolean kilometerbtn = getIntent().getBooleanExtra(KMBTN, true);
+        getIntent().getBooleanExtra(MILESBTN, false);
+        getIntent().getBooleanExtra(KMBTN, true);
 
 
         timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -122,6 +133,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
             }
         });
     }
+
 
     @Override
     protected void onStart() {
@@ -182,6 +194,13 @@ public class run_interface extends AppCompatActivity implements LocationListener
                             end_location = null;
                             distance = 0;
                             current_speed = 0;
+
+                        }
+                    });
+
+                    homebutton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
                             Intent intent = new Intent(run_interface.this, home.class);
                             startActivity(intent);
                         }
@@ -198,6 +217,14 @@ public class run_interface extends AppCompatActivity implements LocationListener
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        RadioButton activeButton = (RadioButton) findViewById(checkedId);
+        if (activeButton.getId() == R.id.miles_btn) {
+            distanceInMiles();
+        }
+    }
+
 
     @Override
     public void onLocationChanged(Location location) {
@@ -208,8 +235,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
         } else
             end_location = curr_location;
 
-        metricUpdate();
-        distance_counter.setText(new DecimalFormat("#.##").format(distance));
+        ChooseMetricUnits();
 
         current_speed = location.getSpeed() * 2.236936;
         SpdInmph.setText(new DecimalFormat("0.00").format(current_speed));
@@ -217,10 +243,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         current_speed = location.getSpeed() * 3.6;
         SpdInkmh.setText(new DecimalFormat("0.00").format(current_speed));
 
-        {
-
-
-        }
     }
 
 
@@ -249,6 +271,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void distanceInMiles() {
         distance = distance + (start_location.distanceTo(end_location) * 0.00062137);
+        distance_counter.setText(new DecimalFormat("#.##m").format(distance));
 
 
     }
@@ -256,16 +279,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
     private void distanceInkilometers() {
         distance = distance + (start_location.distanceTo(end_location) / 1000);
         start_location = end_location;
+        distance_counter.setText(new DecimalFormat("#.##k").format(distance));
 
 
-    }
-
-    private void metricUpdate() {
-//        LoadData();
-//        if (kilometer_btn.equals("buttonChecked")) {
-//            distanceInkilometers();
-//        } else
-//            distanceInMiles();
     }
 
 
@@ -311,46 +327,24 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     }
 
-    public void LoadData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("SharedValues", 0);
-        MILESBTN = sharedPreferences.getString("miles_btn", null);
-        KMBTN = sharedPreferences.getString("kilometer_btn", null);
+    private void ChooseMetricUnits() {
+        final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+        final Boolean milesbutton = sharedPreferences.getBoolean(settings.MILESBTN, true);
+        final Boolean kilometerbutton = sharedPreferences.getBoolean(settings.KMBTN, true);
+        Boolean milesbtn = getIntent().getBooleanExtra(settings.MILESBTN, true);
+        Boolean kilometerbtn = getIntent().getBooleanExtra(KMBTN, true);
+        getIntent().getBooleanExtra(settings.MILESBTN, false);
+        getIntent().getBooleanExtra(settings.KMBTN, true);
+        chooseUnit = getIntent().getBooleanExtra("chooseUnit", false);
+        Intent intent = getIntent();
+        boolean MetricUnits = intent.getBooleanExtra("GetInfo",false);
+        if(milesbutton) {
+            distanceInMiles();
+        } else
+            distanceInkilometers();
+        }
+
     }
-}
-
-//    public void LoadRadioButtons() {
-//        SharedPreferences sharedPreferences = getSharedPreferences(Shared_info, MODE_PRIVATE);
-//        miles_btn.setChecked(sharedPreferences.getBoolean("Milesbtn", false));
-//        kilometer_btn.setChecked(sharedPreferences.getBoolean("Kilometersbtn", false));
-//
-//
-//    }
-
-
-//    public void buttonCheck(View view) {
-//        LoadRadioButtons();
-//        boolean buttonChecked = ((RadioButton) view).isChecked();
-//
-//        switch (view.getId()) {
-//            case R.id.miles_btn:
-//                if (buttonChecked)
-//                    distanceInMiles();
-//                distance_counter.setText(new DecimalFormat("0.00").format(distanceinmiles));
-//                break;
-//
-//            case R.id.kilometer_btn:
-//                if (buttonChecked)
-//                    distanceInkilometers();
-//                break;
-//        }
-//    }
-//}
-
-
-
-
-
-
 
 
 

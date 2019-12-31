@@ -110,20 +110,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         NetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         GPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-        Intent intent = getIntent();
-        int kbtn = intent.getIntExtra("miles_btn", 1);
-        int mbtn = intent.getIntExtra("kilometer_btn", 1);
-
-        final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        final Boolean milesbutton = sharedPreferences.getBoolean(MILESBTN, false);
-        final Boolean kilometerbutton = sharedPreferences.getBoolean(KMBTN, true);
-
-        Boolean milesbtn = getIntent().getBooleanExtra(MILESBTN, false);
-        Boolean kilometerbtn = getIntent().getBooleanExtra(KMBTN, true);
-        getIntent().getBooleanExtra(MILESBTN, false);
-        getIntent().getBooleanExtra(KMBTN, true);
-
-
         timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -271,7 +257,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void distanceInMiles() {
         distance = distance + (start_location.distanceTo(end_location) * 0.00062137);
-        distance_counter.setText(new DecimalFormat("#.##m").format(distance));
+        distance_counter.setText(new DecimalFormat("0.00").format(distance) + " Miles");
 
 
     }
@@ -279,7 +265,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     private void distanceInkilometers() {
         distance = distance + (start_location.distanceTo(end_location) / 1000);
         start_location = end_location;
-        distance_counter.setText(new DecimalFormat("#.##k").format(distance));
+        distance_counter.setText(new DecimalFormat("0.00").format(distance) + " km");
 
 
     }
@@ -329,19 +315,11 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void ChooseMetricUnits() {
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        final Boolean milesbutton = sharedPreferences.getBoolean(settings.MILESBTN, true);
-        final Boolean kilometerbutton = sharedPreferences.getBoolean(settings.KMBTN, true);
-        Boolean milesbtn = getIntent().getBooleanExtra(settings.MILESBTN, true);
-        Boolean kilometerbtn = getIntent().getBooleanExtra(KMBTN, true);
-        getIntent().getBooleanExtra(settings.MILESBTN, false);
-        getIntent().getBooleanExtra(settings.KMBTN, true);
-        chooseUnit = getIntent().getBooleanExtra("chooseUnit", false);
-        Intent intent = getIntent();
-        boolean MetricUnits = intent.getBooleanExtra("GetInfo",false);
-        if(milesbutton) {
-            distanceInMiles();
-        } else
+        final Boolean MetricUnit = sharedPreferences.getBoolean(settings.KMBTN, true);
+        if(MetricUnit) {
             distanceInkilometers();
+        } else
+            distanceInMiles();
         }
 
     }

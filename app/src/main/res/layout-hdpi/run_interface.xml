@@ -231,5 +231,17 @@
         android:drawableTop="@drawable/ic_dynnamitt_home"
         android:paddingTop="8dp"/>
 
+    <TextView
+        android:id="@+id/TextViewCoundown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/_00_00"
+        android:textColor="#ffff"
+        android:textSize="60sp"
+        android:background="@drawable/countdowntimer_background"
+        android:paddingTop="110dp"
+        android:paddingStart="70dp"/>
 
 </RelativeLayout>

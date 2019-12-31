@@ -36,7 +36,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="170dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="50dp"
         android:orientation="vertical">
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textColor="#F1ECEC"
-            android:textSize="30sp" />
+            android:textSize="32sp" />
 
         <TextView
             android:id="@+id/timer_label"
@@ -57,12 +57,13 @@
             android:singleLine="true"
             android:text="@string/time"
             android:textColor="#E7E3E3"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/distanceSection"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
@@ -70,7 +71,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="270dp"
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="00dp"
         android:orientation="vertical">
@@ -82,7 +83,7 @@
             android:layout_gravity="center"
             android:text="@string/_0_00"
             android:textColor="#F8F7F7"
-            android:textSize="30sp" />
+            android:textSize="32sp" />
 
 
         <TextView
@@ -92,7 +93,7 @@
             android:layout_gravity="center"
             android:text="@string/distance"
             android:textColor="#F0E7E7"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
 
@@ -105,7 +106,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="180dp"
         android:layout_marginBottom="210dp"
         android:orientation="vertical">
@@ -118,7 +119,7 @@
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:text="@string/curr_0_00"
             android:textColor="#F8F7F7"
-            android:textSize="30sp" />
+            android:textSize="32sp" />
 
 
         <TextView
@@ -127,7 +128,7 @@
             android:layout_gravity="center"
             android:text="@string/spd_in_mph"
             android:textColor="#F0E7E7"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
 
@@ -140,7 +141,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="180dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="210dp"
         android:orientation="vertical">
@@ -152,7 +153,7 @@
             android:layout_gravity="center"
             android:text="@string/_0_00"
             android:textColor="#F8F7F7"
-            android:textSize="30sp" />
+            android:textSize="32sp" />
 
 
         <TextView
@@ -162,74 +163,74 @@
             android:layout_gravity="center"
             android:text="@string/spd_in_km_h"
             android:textColor="#F0E7E7"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/pause_button"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="false"
-        android:layout_alignParentBottom="false"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="380dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/resume_button"
         android:drawableTop="@drawable/ic_pause"
         android:paddingTop="10dp" />
 
     <Button
         android:id="@+id/play_button"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="false"
-        android:layout_alignParentBottom="false"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="380dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/resume_button"
-        android:drawableTop="@drawable/ic_multimedia"
+        android:drawableTop="@drawable/ic_multimedia2"
         android:paddingTop="10dp" />
 
 
     <Button
         android:id="@+id/stop_btn"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="false"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="330dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/resume_button"
-        android:drawableTop="@drawable/ic_stop"
+        android:drawableTop="@drawable/ic_stop2"
         android:paddingTop="10dp" />
 
     <Button
         android:id="@+id/homebutton"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="false"
-        android:layout_marginStart="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="145dp"
         android:layout_marginTop="300dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginEnd="145dp"
+        android:layout_marginBottom="150dp"
         android:background="@drawable/resume_button"
-        android:drawableTop="@drawable/ic_dynnamitt_home"
-        android:paddingTop="8dp"/>
+        android:drawableTop="@drawable/ic_dynnamitt_home2"
+        android:paddingTop="8dp" />
 
 
 </RelativeLayout>

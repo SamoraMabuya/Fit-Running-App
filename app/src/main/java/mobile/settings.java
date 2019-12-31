@@ -21,13 +21,18 @@ public class settings extends AppCompatActivity {
     Button settings_btn;
 
     RadioGroup distancebtn_group;
+    RadioGroup CountdownButtons;
     RadioButton miles_btn;
     RadioButton kilometer_btn;
+    RadioButton on;
+    RadioButton off;
     RadioGroup radioGroup;
 
     public static String GetInfo = "GetInfo";
     public static String MILESBTN = "miles_btn";
     public static String KMBTN = "kilometer_btn";
+    public static String ON = "on";
+    public static String OFF = "off";
     public static String DBG = "distancebtn_group";
 
     SharedPreferences sharedPreferences;
@@ -46,7 +51,9 @@ public class settings extends AppCompatActivity {
         distancebtn_group = findViewById(R.id.distance_btn_group);
         miles_btn = (RadioButton) findViewById(R.id.miles_btn);
         kilometer_btn = (RadioButton) findViewById(R.id.kilometer_btn);
-
+        on = (RadioButton) findViewById(R.id.on);
+        off = (RadioButton) findViewById(R.id.off);
+        CountdownButtons = (RadioGroup) findViewById(R.id.CountdownButtons);
 
         go_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,10 +62,10 @@ public class settings extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(MILESBTN, miles_btn.isChecked());
                 editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                editor.putBoolean(ON, on.isChecked());
+                editor.putBoolean(OFF, off.isChecked());
                 editor.apply();
                 Intent intent = new Intent(getApplicationContext(), home.class);
-                intent.putExtra("miles_btn", miles_btn.isChecked());
-                intent.putExtra("kilometer_btn", kilometer_btn.isChecked());
                 startActivity(intent);
             }
         });
@@ -78,10 +85,6 @@ public class settings extends AppCompatActivity {
                 editor.putBoolean(KMBTN, kilometer_btn.isChecked());
                 editor.apply();
 
-
-
-
-
             }
         });
         miles_btn.setOnClickListener(new View.OnClickListener() {
@@ -94,10 +97,33 @@ public class settings extends AppCompatActivity {
             }
         });
 
-
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         kilometer_btn.setChecked(sharedPreferences.getBoolean("kilometer_btn", true));
         miles_btn.setChecked(sharedPreferences.getBoolean("miles_btn", false));
+
+
+        on.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(ON, on.isChecked());
+                editor.apply();
+            }
+        });
+
+        off.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(OFF, off.isChecked());
+                editor.apply();
+            }
+        });
+
+        sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+        on.setChecked(sharedPreferences.getBoolean("on", true));
+        off.setChecked(sharedPreferences.getBoolean("off", false));
     }
 }
-

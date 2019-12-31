@@ -36,7 +36,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="240dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="50dp"
         android:orientation="vertical">
@@ -70,7 +70,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="00dp"
         android:orientation="vertical">
@@ -105,7 +105,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="180dp"
         android:layout_marginBottom="210dp"
         android:orientation="vertical">
@@ -140,7 +140,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="180dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="210dp"
         android:orientation="vertical">
@@ -173,11 +173,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="false"
-        android:layout_alignParentBottom="false"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="380dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/resume_button"
         android:drawableTop="@drawable/ic_pause"
         android:paddingTop="10dp" />
@@ -189,11 +189,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="false"
-        android:layout_alignParentBottom="false"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="380dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/resume_button"
         android:drawableTop="@drawable/ic_multimedia"
         android:paddingTop="10dp" />
@@ -206,11 +206,11 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="false"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="380dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/resume_button"
         android:drawableTop="@drawable/ic_stop"
         android:paddingTop="10dp" />
@@ -222,14 +222,14 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="false"
-        android:layout_marginStart="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="300dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="120dp"
         android:background="@drawable/resume_button"
         android:drawableTop="@drawable/ic_dynnamitt_home"
-        android:paddingTop="8dp"/>
+        android:paddingTop="8dp" />
 
 
 </RelativeLayout>

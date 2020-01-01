@@ -232,7 +232,7 @@
         android:paddingTop="8dp"/>
 
     <TextView
-        android:id="@+id/TextViewCoundown"
+        android:id="@+id/CountDownTimerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

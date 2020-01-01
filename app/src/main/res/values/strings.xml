@@ -58,4 +58,8 @@
     </string-array>
     <string name="title_activity_countdowntimer">Countdowntimer</string>
     <string name="kilometers">Kilometers</string>
+    <string name="km">Km</string>
+    <string name="miles">Miles</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
 </resources>

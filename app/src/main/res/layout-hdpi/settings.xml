@@ -101,7 +101,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="35dp"
                 android:gravity="end"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -113,8 +112,7 @@
                     android:id="@+id/miles_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="buttonCheck"
-                    android:text="Miles"
+                    android:text="@string/miles"
                     android:textColor="#ffff"
                     android:gravity="start"
                     android:paddingTop="30dp"
@@ -125,14 +123,13 @@
                     android:id="@+id/kilometer_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="km"
+                    android:text="@string/km"
                     android:checked="true"
                     android:textColor="#ffff"
                     android:gravity="start"
                     android:paddingTop="30dp"
-                    android:paddingStart="-26dp"
-                    android:paddingEnd="5dp"
-                    android:onClick="buttonCheck"/>
+                    android:paddingStart="-25dp"
+                    android:paddingEnd="35dp"/>
 
 
 
@@ -143,55 +140,64 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/audio.feedback"
+            android:id="@+id/CountDownSection"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/white_solid"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/distance.section">
+            app:layout_constraintTop_toBottomOf="@id/distance.section"
+            tools:layout_editor_absoluteX="0dp">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/CountDownText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/next_art_semibold"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="0dp"
-                android:text="Audio Stats"
+                android:text="CountDown"
                 android:textColor="#ffff"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginEnd="80dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/CountdownButtons"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <RadioGroup
-                android:id="@+id/CountdownButtons"
+                android:id="@+id/CountDownBtnGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:gravity="end"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
 
+                <RadioButton
+                    android:id="@+id/OnButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/on"
+                    android:textColor="#ffff"
+                    android:gravity="start"
+                    android:paddingTop="30dp"
+                    android:paddingStart="-25dp"
+                    android:paddingEnd="50dp"/>
 
-                    <RadioButton
-                        android:id="@+id/on"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                <RadioButton
+                    android:id="@+id/OffButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/off"
+                    android:checked="true"
+                    android:textColor="#ffff"
+                    android:gravity="start"
+                    android:paddingTop="30dp"
+                    android:paddingStart="-25dp"
+                    android:paddingEnd="35dp"/>
 
-
-                    <RadioButton
-                        android:id="@+id/off"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true" />
 
 
             </RadioGroup>
@@ -205,7 +211,7 @@
             android:layout_height="60dp"
             android:background="@drawable/white_solid"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/audio.feedback">
+            app:layout_constraintTop_toBottomOf="@+id/CountDownSection">
 
             <TextView
                 android:layout_width="wrap_content"

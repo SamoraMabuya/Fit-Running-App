@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -26,12 +27,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import java.text.DecimalFormat;
+import java.util.Locale;
 
 import mobile.apps.R;
 
@@ -42,43 +43,34 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     FusedLocationProviderClient fusionprovider;
     LocationManager locationManager;
-    LocationCallback locationCallback;
-    LocationServices locationServices;
     LocationRequest locationRequest;
-    LocationListener locationListener;
-    Location start_location, end_location, curr_location, location;
+    Location start_location, end_location, curr_location;
     private static final int Permission_Request_Code = 100;
     boolean NetworkEnabled = false;
     boolean GPSEnabled = false;
 
-    boolean active;
-    boolean chooseUnit;
-    long update;
-    TextView distance_counter, SpdInmph, SpdInkmh, countdown_timer;
-    Button play_button, pause_button, stop_btn, homebutton;
-    Chronometer timer;
 
+    boolean active;
+    long update;
+    TextView distance_counter, SpdInmph, SpdInkmh, CountDownTimerView;
+    Button play_button, pause_button, stop_btn, homebutton;
+
+    Chronometer timer;
     CountDownTimer countDownTimer;
-    long StartTime = 10000;
-    long MilliesUntilFinish;
-    long MilliesLeft = StartTime;
-    long min;
-    long sec;
-    RadioButton radioButton;
+    private static final long StartTime = 11000;
+
+    private long TimeLeft = StartTime;
+    boolean StartCountDown = false;
+    boolean CountDownProcess = false;
 
     double distance = 0;
     double current_speed;
-    double average_speed = 0;
-    double elapsedtime;
-    double start_time;
-    double end_time;
-    double distanceinmiles;
-    double distanceinkm;
-    double distanceinmeters;
+
 
     RadioGroup distancebtn_group;
     RadioButton miles_btn;
     RadioButton kilometer_btn;
+
 
     public static final String MILESBTN = "miles_btn";
     public static final String KMBTN = "kilometer_btn";
@@ -103,6 +95,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
         kilometer_btn = (RadioButton) findViewById(R.id.kilometer_btn);
         distancebtn_group = findViewById(R.id.distance_btn_group);
         homebutton = (Button) findViewById(R.id.homebutton);
+        CountDownTimerView = (TextView) findViewById(R.id.CountDownTimerView);
+
+        CountDownSwitch();
 
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -118,13 +113,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 }
             }
         });
-    }
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         final int LocationFinePermission = ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION);
+
         play_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -161,8 +152,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
                                 play_button.setVisibility(View.VISIBLE);
                                 update = SystemClock.elapsedRealtime() - timer.getBase();
                                 locationManager.removeUpdates(run_interface.this);
-                                Intent intent = new Intent(run_interface.this, home.class);
-                                startActivity(intent);
+
                             }
                         }
                     });
@@ -316,13 +306,65 @@ public class run_interface extends AppCompatActivity implements LocationListener
     private void ChooseMetricUnits() {
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         final Boolean MetricUnit = sharedPreferences.getBoolean(settings.KMBTN, true);
-        if(MetricUnit) {
+        if (MetricUnit) {
             distanceInkilometers();
         } else
             distanceInMiles();
-        }
+    }
+
+    private void StartCountDown() {
+        countDownTimer = new CountDownTimer(TimeLeft, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                TimeLeft = millisUntilFinished;
+                CountDownViewUpdate();
+
+            }
+
+
+            @Override
+            public void onFinish() {
+                active = false;
+                AutoStartActivity();
+                CountDownTimerView.setVisibility(View.GONE);
+
+
+            }
+        }.start();
+    }
+
+
+    private void CountDownViewUpdate() {
+        int min = (int) (TimeLeft / 1000) / 60;
+        int sec = (int) (TimeLeft / 1000) % 60;
+
+        String TimeLeftFormat = String.format(Locale.getDefault(), "%02d:%02d", min, sec);
+
+        CountDownTimerView.setText(TimeLeftFormat);
 
     }
+
+    private void CountDownSwitch() {
+        final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+        final boolean TimerSwitch = sharedPreferences.getBoolean(settings.ON, true);
+        if (TimerSwitch) {
+            StartCountDown();
+        } else
+            CountDownTimerView.setVisibility(View.GONE);
+
+    }
+
+    private void AutoStartActivity() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            play_button.performContextClick();
+            View playButton = findViewById(R.id.play_button);
+            playButton.performClick();
+
+        }
+    }
+}
+
+
 
 
 

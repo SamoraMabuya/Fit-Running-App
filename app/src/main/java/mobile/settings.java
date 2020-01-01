@@ -18,14 +18,13 @@ public class settings extends AppCompatActivity {
 
     Button go_back_btn;
     Button music_btn;
-    Button settings_btn;
 
     RadioGroup distancebtn_group;
-    RadioGroup CountdownButtons;
+    RadioGroup CountDownBtnGroup;
     RadioButton miles_btn;
     RadioButton kilometer_btn;
-    RadioButton on;
-    RadioButton off;
+    RadioButton OnButton;
+    RadioButton OffButton;
     RadioGroup radioGroup;
 
     public static String GetInfo = "GetInfo";
@@ -51,9 +50,9 @@ public class settings extends AppCompatActivity {
         distancebtn_group = findViewById(R.id.distance_btn_group);
         miles_btn = (RadioButton) findViewById(R.id.miles_btn);
         kilometer_btn = (RadioButton) findViewById(R.id.kilometer_btn);
-        on = (RadioButton) findViewById(R.id.on);
-        off = (RadioButton) findViewById(R.id.off);
-        CountdownButtons = (RadioGroup) findViewById(R.id.CountdownButtons);
+        OnButton = (RadioButton) findViewById(R.id.OnButton);
+        OffButton = (RadioButton) findViewById(R.id.OffButton);
+        CountDownBtnGroup = (RadioGroup) findViewById(R.id.CountDownBtnGroup);
 
         go_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +61,8 @@ public class settings extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(MILESBTN, miles_btn.isChecked());
                 editor.putBoolean(KMBTN, kilometer_btn.isChecked());
-                editor.putBoolean(ON, on.isChecked());
-                editor.putBoolean(OFF, off.isChecked());
+                editor.putBoolean(ON, OnButton.isChecked());
+                editor.putBoolean(OFF, OffButton.isChecked());
                 editor.apply();
                 Intent intent = new Intent(getApplicationContext(), home.class);
                 startActivity(intent);
@@ -102,28 +101,28 @@ public class settings extends AppCompatActivity {
         miles_btn.setChecked(sharedPreferences.getBoolean("miles_btn", false));
 
 
-        on.setOnClickListener(new View.OnClickListener() {
+        OnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(ON, on.isChecked());
+                editor.putBoolean(ON,OnButton.isChecked());
                 editor.apply();
             }
         });
 
-        off.setOnClickListener(new View.OnClickListener() {
+        OffButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(OFF, off.isChecked());
+                editor.putBoolean(OFF, OffButton.isChecked());
                 editor.apply();
             }
         });
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        on.setChecked(sharedPreferences.getBoolean("on", true));
-        off.setChecked(sharedPreferences.getBoolean("off", false));
+        OnButton.setChecked(sharedPreferences.getBoolean("on", true));
+        OffButton.setChecked(sharedPreferences.getBoolean("off", false));
     }
 }

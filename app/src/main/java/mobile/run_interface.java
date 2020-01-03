@@ -114,6 +114,13 @@ public class run_interface extends AppCompatActivity implements LocationListener
             }
         });
 
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(run_interface.this, home.class);
+                startActivity(intent);
+
+
         final int LocationFinePermission = ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION);
 
         play_button.setOnClickListener(new View.OnClickListener() {
@@ -173,19 +180,15 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
                         }
                     });
-
-                    homebutton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(run_interface.this, home.class);
-                            startActivity(intent);
-                        }
-                    });
                 }
+
+
+
+                    }
+                });
             }
         });
     }
-
     private void createLocationRequest() {
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(5000);

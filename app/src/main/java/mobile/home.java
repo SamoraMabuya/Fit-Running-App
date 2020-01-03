@@ -1,37 +1,35 @@
 package mobile;
 
 import android.Manifest;
-import android.app.Application;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
-import java.io.File;
+import androidx.core.content.ContextCompat;
 
 import mobile.apps.R;
 
 import static android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
+import static android.provider.MediaStore.INTENT_ACTION_MEDIA_SEARCH;
+import static android.provider.MediaStore.INTENT_ACTION_MUSIC_PLAYER;
 
 public class home extends AppCompatActivity implements LocationListener, com.google.android.gms.location.LocationListener {
 
-    private static final int STORAGE_PERMISSION_CODE = 58;
+    private static final int PermissionCode = 58;
 
 
     Button start_btn;
@@ -40,6 +38,7 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
     LocationManager locationManager;
     Location location;
     RadioButton miles_btn;
+
     RadioButton kilometer_btn;
 
 
@@ -55,20 +54,14 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 
-        start_btn.setOnClickListener(new View.OnClickListener() {
+        settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-//                if (ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                    ActivityCompat.requestPermissions(home.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, STORAGE_PERMISSION_CODE);
-//
-//                } else {
-//
-//                    if (ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(home.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                Intent intent = new Intent(home.this, run_interface.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(home.this, settings.class);
                 startActivity(intent);
-
             }
         });
+
         music_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,52 +70,87 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
             }
         });
 
-        settings_btn.setOnClickListener(new View.OnClickListener() {
+
+        start_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(home.this, settings.class);
-                startActivity(intent);
-
-
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(home.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(home.this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    startRun_interface();
+                } else {
+                    LocationPermissionRequest();
+                }
             }
         });
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                requestStoragePermission();
+    private void LocationPermissionRequest() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(home.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
 
+            new AlertDialog.Builder(this)
+                    .setTitle("Location Permission Required")
+                    .setMessage("Please allow permission access to proceed.")
+                    .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            ActivityCompat.requestPermissions(home.this,
+                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                                            Manifest.permission.ACCESS_BACKGROUND_LOCATION}, PermissionCode);
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create().show();
 
-            } else {
-
-                if (grantResults.length == 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(home.this, "Allow permission & enable GPS. If you've allowed permission, just enable GPS", Toast.LENGTH_LONG).show();
-
-                }
-            }
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION}, PermissionCode);
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == PermissionCode) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                LocationAlert();
+            } else {
+                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
 
-    private void requestStoragePermission() {
-        androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Location");
-        alertDialogBuilder.setMessage("Please enable GPS to continue?")
-                .setPositiveButton("Turn on location", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(callGPSSettingIntent);
-                    }
-                });
-        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
             }
-        });
-        AlertDialog alert = alertDialogBuilder.create();
-        alert.show();
+        }
+
+    }
+
+    public void LocationAlert() {
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
+            dialogbuilder.setMessage(" Enable GPS To Continue")
+                    .setPositiveButton("Turn location on", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent call_gps_settings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(call_gps_settings);
+
+
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+            AlertDialog alertDialog = dialogbuilder.create();
+            alertDialog.show();
+
+        }
     }
 
 
@@ -133,43 +161,34 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-
     }
 
     @Override
     public void onProviderEnabled(String provider) {
-        if (!provider.equals(LocationManager.NETWORK_PROVIDER))
-            backtohome();
-        if (!provider.equals(LocationManager.GPS_PROVIDER))
-            backtohome();
 
-    }
+        }
 
 
-    public void backtohome() {
-        Intent intent = new Intent(home.this, home.class);
-        startActivity(intent);
+        private void backtohome () {
+            Intent intent = new Intent(home.this, home.class);
+            startActivity(intent);
 
-    }
+        }
 
 
-    private void startRun_interface() {
-        Intent intent = new Intent(home.this, run_interface.class);
-        startActivity(intent);
+        private void startRun_interface () {
+            Intent intent = new Intent(home.this, run_interface.class);
+            startActivity(intent);
 
-    }
+        }
+
 
 
     @Override
     public void onProviderDisabled(final String provider) {
-        if (!provider.equals(LocationManager.NETWORK_PROVIDER)) {
-            backtohome();
-            if (!provider.equals(LocationManager.GPS_PROVIDER)) {
-                backtohome();
+
             }
         }
-    }
-}
 
 
 

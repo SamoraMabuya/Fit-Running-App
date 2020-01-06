@@ -9,26 +9,27 @@ import android.view.Gravity;
 import android.widget.Toast;
 
 public class IncomingCall extends BroadcastReceiver {
-
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        try {
+        if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+            showMessage(context, "Active call");
 
-            String calling_state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-            if (calling_state.equals(TelephonyManager.CALL_STATE_RINGING)) {
-                Toast.makeText(context, "Incoming Call", Toast.LENGTH_SHORT).show();
-            }
+        } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
+            showMessage(context, "Incoming call");
 
-            if (calling_state.equals(TelephonyManager.CALL_STATE_OFFHOOK)) {
-                Toast.makeText(context, "Incoming Call", Toast.LENGTH_SHORT).show();
-            }
+        } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_IDLE)) {
+            showMessage(context, "Call Ended");
 
-            if (calling_state.equals(TelephonyManager.CALL_STATE_IDLE)) {
-                Toast.makeText(context, "Incoming Call", Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+
         }
     }
+
+    void showMessage(Context context, String message) {
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
 }
+

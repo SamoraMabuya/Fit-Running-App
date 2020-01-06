@@ -101,9 +101,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        fusionprovider = LocationServices.getFusedLocationProviderClient(run_interface.this);
 
-        NetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        GPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
@@ -120,21 +119,14 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 Intent intent = new Intent(run_interface.this, home.class);
                 startActivity(intent);
 
+            }
+        });
 
-        final int LocationFinePermission = ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION);
 
         play_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-                fusionprovider = LocationServices.getFusedLocationProviderClient(run_interface.this);
-                timer.setBase(SystemClock.elapsedRealtime());
-                if (LocationFinePermission != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(run_interface.this, new String[]
-                                    {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                            Permission_Request_Code);
-                    LocationSwitch();
-                } else {
-                    if (!active) {
+                if (!active) {
+                    if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 0, run_interface.this);
                         createLocationRequest();
@@ -146,7 +138,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         play_button.setVisibility(View.VISIBLE);
                         pause_button.setVisibility(View.GONE);
                         active = false;
-
 
                     }
 
@@ -181,14 +172,10 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         }
                     });
                 }
-
-
-
-                    }
-                });
             }
         });
     }
+
     private void createLocationRequest() {
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(5000);
@@ -264,13 +251,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
     }
 
 
-    private void LocationSwitch() {
-        if (!NetworkEnabled && !GPSEnabled)
-            EnableGPSAlertBox();
-
-    }
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -283,28 +263,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         }
     }
 
-
-    public void EnableGPSAlertBox() {
-        AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(run_interface.this);
-        dialogbuilder.setMessage(" Enable GPS To Continue")
-                .setPositiveButton("Turn location on", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent call_gps_settings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(call_gps_settings);
-
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-        AlertDialog alertDialog = dialogbuilder.create();
-        alertDialog.show();
-
-    }
 
     private void ChooseMetricUnits() {
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);

@@ -50,7 +50,6 @@
             </intent-filter>
         </activity>
         <receiver android:name="mobile.IncomingCall"
-            android:label="Call Receiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

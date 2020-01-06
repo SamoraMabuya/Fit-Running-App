@@ -53,6 +53,13 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_PHONE_STATE}, PermissionCode);
+        }
+
+
 
         settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +83,9 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(home.this,
                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(home.this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                        Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                        && ContextCompat.checkSelfPermission(home.this,
+                        Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
                     startRun_interface();
                 } else {
                     LocationPermissionRequest();
@@ -96,7 +105,8 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
                             ActivityCompat.requestPermissions(home.this,
                                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                             Manifest.permission.ACCESS_COARSE_LOCATION,
-                                            Manifest.permission.ACCESS_BACKGROUND_LOCATION}, PermissionCode);
+                                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                    Manifest.permission.READ_PHONE_STATE}, PermissionCode);
                         }
                     })
                     .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -111,7 +121,8 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_BACKGROUND_LOCATION}, PermissionCode);
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                            Manifest.permission.READ_PHONE_STATE}, PermissionCode);
         }
     }
 

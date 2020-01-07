@@ -122,7 +122,7 @@ public class settings extends AppCompatActivity {
         });
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        OnButton.setChecked(sharedPreferences.getBoolean("on", true));
-        OffButton.setChecked(sharedPreferences.getBoolean("off", false));
+        OnButton.setChecked(sharedPreferences.getBoolean("on", false));
+        OffButton.setChecked(sharedPreferences.getBoolean("off", true));
     }
 }

@@ -196,7 +196,7 @@
         android:layout_marginBottom="23dp"
         android:background="@drawable/resume_button"
         android:drawableTop="@drawable/ic_multimedia"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"/>
 
 
     <Button

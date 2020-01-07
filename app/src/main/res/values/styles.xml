@@ -17,5 +17,11 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <style name="PhoneCallToast">
+        <item name="android:colorBackground">#EC7A07</item>
+        <item name="android:textColor">#ffff</item>
+    </style>
+
 
 </resources>

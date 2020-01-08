@@ -35,6 +35,8 @@ public class settings extends AppCompatActivity {
     public static String DBG = "distancebtn_group";
 
     SharedPreferences sharedPreferences;
+    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
+
 
 
     @Override
@@ -71,7 +73,7 @@ public class settings extends AppCompatActivity {
         music_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH);
+                Intent intent = new Intent(CATEGORY_APP_MUSIC);
                 startActivity(intent);
 
             }

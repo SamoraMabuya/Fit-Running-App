@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -117,7 +115,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
             }
         });
 
-
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,8 +127,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
         play_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        && ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                if (ContextCompat.checkSelfPermission(run_interface.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                         && ContextCompat.checkSelfPermission(run_interface.this,
                         Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                     RequestPermissions();
@@ -187,61 +185,58 @@ public class run_interface extends AppCompatActivity implements LocationListener
                     });
                 }
             }
-
-
-            private void RequestPermissions() {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                    new AlertDialog.Builder(run_interface.this)
-                            .setTitle("Location Permission Required")
-                            .setMessage("Please allow permission access to proceed.")
-                            .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                                        ActivityCompat.requestPermissions(run_interface.this,
-                                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                                                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                                                        Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                                                        Manifest.permission.READ_PHONE_STATE}, AccessCode);
-                                    }
-                                }
-                            })
-                            .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            })
-                            .create().show();
-
-                } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        ActivityCompat.requestPermissions(run_interface.this,
-                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                                        Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                                        Manifest.permission.READ_PHONE_STATE}, AccessCode);
-                    }
-                }
-            }
         });
     }
 
+    private void RequestPermissions() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+            new AlertDialog.Builder(this)
+                    .setTitle("Location Permission Required")
+                    .setMessage("Please allow permission access to proceed.")
+                    .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                ActivityCompat.requestPermissions(run_interface.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                                Manifest.permission.READ_PHONE_STATE}, AccessCode);
+                            }
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create().show();
+
+        } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                Manifest.permission.READ_PHONE_STATE}, AccessCode);
+            }
+        }
+
+
+
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == AccessCode) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 LocationAlert();
-            } else {
-                Toast.makeText(run_interface.this, "Permission DENIED", Toast.LENGTH_SHORT).show();
 
+                } else{
+                    Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+
+                }
             }
         }
-    }
-
-
 
 
     private void createLocationRequest() {
@@ -259,7 +254,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
             distanceInMiles();
         }
     }
-
     public void LocationAlert() {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
@@ -320,7 +314,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     public void onProviderDisabled(String provider) {
 
     }
-
+    
 
     private void distanceInMiles() {
         distance = distance + (start_location.distanceTo(end_location) * 0.00062137);
@@ -353,9 +347,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
             public void onTick(long millisUntilFinished) {
                 homebutton.setEnabled(false);
                 homebutton.setBackgroundResource(R.drawable.disabled_button_resource);
+
                 play_button.setEnabled(false);
                 play_button.setBackgroundResource(R.drawable.disabled_button_resource);
-
 
                 pause_button.setEnabled(false);
                 pause_button.setBackgroundResource(R.drawable.disabled_button_resource);
@@ -366,7 +360,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 TimeLeft = millisUntilFinished;
                 CountDownViewUpdate();
 
-
             }
 
 
@@ -375,10 +368,18 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 active = false;
                 AutoStartActivity();
                 CountDownTimerView.setVisibility(View.GONE);
+
                 homebutton.setEnabled(true);
+                homebutton.setBackgroundResource(R.drawable.resume_button);
+
                 play_button.setEnabled(true);
+                play_button.setBackgroundResource(R.drawable.resume_button);
+
                 pause_button.setEnabled(true);
+                pause_button.setBackgroundResource(R.drawable.resume_button);
+
                 stop_btn.setEnabled(true);
+                stop_btn.setBackgroundResource(R.drawable.resume_button);
 
 
             }
@@ -398,7 +399,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void CountDownSwitch() {
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        final boolean TimerSwitch = sharedPreferences.getBoolean(settings. ON, false);
+        final boolean TimerSwitch = sharedPreferences.getBoolean(settings.ON, true);
         if (TimerSwitch) {
             StartCountDown();
         } else

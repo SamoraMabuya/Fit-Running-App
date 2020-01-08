@@ -10,6 +10,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,6 @@ import mobile.apps.R;
 
 import static android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
 import static android.provider.MediaStore.INTENT_ACTION_MEDIA_SEARCH;
-import static android.provider.MediaStore.INTENT_ACTION_MUSIC_PLAYER;
 
 public class home extends AppCompatActivity implements LocationListener, com.google.android.gms.location.LocationListener {
 
@@ -40,6 +40,8 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
     RadioButton miles_btn;
 
     RadioButton kilometer_btn;
+
+    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
 
     @Override
@@ -64,7 +66,7 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         music_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH);
+                Intent intent = new Intent(CATEGORY_APP_MUSIC);
                 startActivity(intent);
             }
         });

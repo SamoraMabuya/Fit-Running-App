@@ -41,6 +41,8 @@ import static mobile.settings.GetInfo;
 
 public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener, RadioGroup.OnCheckedChangeListener {
 
+    RunoraDatabaseHelper Runora_database;
+
     FusedLocationProviderClient fusionprovider;
     LocationManager locationManager;
     LocationRequest locationRequest;
@@ -53,7 +55,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     boolean active;
     long update;
     TextView distance_counter, SpdInmph, SpdInkmh, CountDownTimerView;
-    Button play_button, pause_button, stop_btn, homebutton;
+    Button play_button, pause_button, stop_btn, homebutton, musicButton;
 
     Chronometer timer;
     CountDownTimer countDownTimer;
@@ -78,12 +80,15 @@ public class run_interface extends AppCompatActivity implements LocationListener
     public static String DBG = "distancebtn_group";
 
     private static final int AccessCode = 48;
+    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.run_interface);
+
+        Runora_database = new RunoraDatabaseHelper(this);
 
         distance_counter = (TextView) findViewById(R.id.distance_counter);
         play_button = (Button) findViewById(R.id.play_button);
@@ -98,6 +103,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
         distancebtn_group = findViewById(R.id.distance_btn_group);
         homebutton = (Button) findViewById(R.id.homebutton);
         CountDownTimerView = (TextView) findViewById(R.id.CountDownTimerView);
+        musicButton = (Button) findViewById(R.id.musicButton);
+
 
         CountDownSwitch();
 
@@ -112,7 +119,17 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 if ((SystemClock.elapsedRealtime() - timer.getBase()) >= 86400000) {
                     chronometer.setBase(SystemClock.elapsedRealtime());
                 }
+
             }
+        });
+        musicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CATEGORY_APP_MUSIC);
+                startActivity(intent);
+            }
+
+
         });
 
         homebutton.setOnClickListener(new View.OnClickListener() {
@@ -131,14 +148,16 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
                         Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                         && ContextCompat.checkSelfPermission(run_interface.this,
-                        Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                        Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     RequestPermissions();
                 } else if (!active) {
                     if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             && ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                             && ContextCompat.checkSelfPermission(run_interface.this,
-                            Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                            Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
+                            Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 0, run_interface.this);
                         createLocationRequest();
@@ -173,13 +192,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
                             timer.stop();
                             active = false;
                             update = 0;
-                            timer.setBase(SystemClock.elapsedRealtime());
                             play_button.setVisibility(View.VISIBLE);
                             locationManager.removeUpdates(run_interface.this);
-                            start_location = null;
-                            end_location = null;
-                            distance = 0;
-                            current_speed = 0;
+                            SaveData();
 
                         }
                     });
@@ -196,7 +211,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
                     .setMessage("Please allow permission access to proceed.")
                     .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            if (Build.VERSION.SDK_INT >= 29) {
                                 ActivityCompat.requestPermissions(run_interface.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                                 Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -214,15 +229,13 @@ public class run_interface extends AppCompatActivity implements LocationListener
                     .create().show();
 
         } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                                Manifest.permission.ACCESS_COARSE_LOCATION,
-                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                                Manifest.permission.READ_PHONE_STATE}, AccessCode);
-            }
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                            Manifest.permission.READ_PHONE_STATE}, AccessCode);
         }
-
-
+    }
 
 
     @Override
@@ -231,12 +244,12 @@ public class run_interface extends AppCompatActivity implements LocationListener
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 LocationAlert();
 
-                } else{
-                    Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
 
-                }
             }
         }
+    }
 
 
     private void createLocationRequest() {
@@ -254,6 +267,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
             distanceInMiles();
         }
     }
+
     public void LocationAlert() {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
@@ -314,7 +328,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     public void onProviderDisabled(String provider) {
 
     }
-    
+
 
     private void distanceInMiles() {
         distance = distance + (start_location.distanceTo(end_location) * 0.00062137);
@@ -357,6 +371,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 stop_btn.setEnabled(false);
                 stop_btn.setBackgroundResource(R.drawable.disabled_button_resource);
 
+                musicButton.setEnabled(false);
+                musicButton.setBackgroundResource(R.drawable.disabled_button_resource);
+
                 TimeLeft = millisUntilFinished;
                 CountDownViewUpdate();
 
@@ -380,6 +397,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
                 stop_btn.setEnabled(true);
                 stop_btn.setBackgroundResource(R.drawable.resume_button);
+
+                musicButton.setEnabled(true);
+                musicButton.setBackgroundResource(R.drawable.resume_button);
 
 
             }
@@ -415,8 +435,43 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
         }
     }
-}
 
+    private void SaveData() {
+            new AlertDialog.Builder(this)
+                    .setTitle("Save Activity To History")
+                    .setMessage("Would you like to save your activity?.")
+                    .setPositiveButton("Yes, Save Activity", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString());
+                            if (dataSaved = true)
+                                Toast.makeText(run_interface.this, "Activity Saved", Toast.LENGTH_LONG).show();
+                            start_location = null;
+                            end_location = null;
+                            distance = 0;
+                            current_speed = 0;
+                            distance_counter.setText(new DecimalFormat("0.00").format(distance));
+                            timer.setBase(SystemClock.elapsedRealtime());
+
+
+                        }
+                    })
+                    .setNegativeButton("No, Don't Save Activity", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            start_location = null;
+                            end_location = null;
+                            distance = 0;
+                            current_speed = 0;
+                            distance_counter.setText(new DecimalFormat("0.00").format(distance));
+                            timer.setBase(SystemClock.elapsedRealtime());
+
+                        }
+                    })
+                    .create().show();
+
+    }
+    }
 
 
 

@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -77,9 +78,9 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(home.this,
                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(home.this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                        Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
                         && ContextCompat.checkSelfPermission(home.this,
-                        Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                        Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED  && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     startRun_interface();
                 } else {
                     LocationPermissionRequest();
@@ -96,11 +97,13 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
                     .setMessage("Please allow permission access to proceed.")
                     .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            ActivityCompat.requestPermissions(home.this,
-                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                                            Manifest.permission.ACCESS_COARSE_LOCATION,
-                                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                                    Manifest.permission.READ_PHONE_STATE}, PermissionCode);
+                            if (Build.VERSION.SDK_INT >= 29) {
+                                ActivityCompat.requestPermissions(home.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                        Manifest.permission.READ_PHONE_STATE}, PermissionCode);
+                            }
                         }
                     })
                     .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -112,11 +115,14 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
                     .create().show();
 
         } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                            Manifest.permission.READ_PHONE_STATE}, PermissionCode);
+            if (Build.VERSION.SDK_INT >= 29) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE}, PermissionCode);
+            }
         }
     }
 
@@ -193,7 +199,13 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
     public void onProviderDisabled(final String provider) {
 
             }
+
+
+
         }
+
+
+
 
 
 

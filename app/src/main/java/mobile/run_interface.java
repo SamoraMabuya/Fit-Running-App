@@ -444,7 +444,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         public void onClick(DialogInterface dialog, int id) {
                             boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString());
                             if (dataSaved = true)
-                                Toast.makeText(run_interface.this, "Activity Saved", Toast.LENGTH_LONG).show();
+                                Toast.makeText(run_interface.this, "Activity Saved To History", Toast.LENGTH_LONG).show();
                             start_location = null;
                             end_location = null;
                             distance = 0;
@@ -469,6 +469,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         }
                     })
                     .create().show();
+
+    }
+    public void AverageSpeed() {
 
     }
     }

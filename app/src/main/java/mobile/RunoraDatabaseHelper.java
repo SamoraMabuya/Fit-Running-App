@@ -21,7 +21,7 @@ public class RunoraDatabaseHelper extends SQLiteOpenHelper {
     public static final String ROW_1 = "Date";
 
 
-    public RunoraDatabaseHelper(@Nullable Context context) {
+    public RunoraDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         SQLiteDatabase db = this.getWritableDatabase();
     }
@@ -39,23 +39,32 @@ public class RunoraDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean insertData(String elapsed_time, String total_distance, String date) {
+    public boolean insertData(String elapsed_time, String total_distance, String current_date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, elapsed_time);
         contentValues.put(COL_3, total_distance);
-        contentValues.put(ROW_1, date);
+        contentValues.put(ROW_1, current_date);
         long result = db.insert(TABLE_NAME, null, contentValues);
-        if(result == -1)
-            return  false;
-        else
-            return  true;
+        return result != -1;
     }
 
     public Cursor RetrieveDataFromDatabase(SQLiteDatabase sqLiteDatabase) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME, null);
         return cursor;
+    }
+
+    public boolean updateData(String elapsed_time, String total_distance, String current_date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_2, elapsed_time);
+        contentValues.put(COL_3, total_distance);
+        contentValues.put(ROW_1, current_date);
+        db.update(TABLE_NAME, contentValues, "elapsed_time = ?", new String[] { elapsed_time });
+        return true;
+
+
     }
 }
 

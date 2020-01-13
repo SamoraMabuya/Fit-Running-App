@@ -1,61 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
     android:id="@+id/history_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context="history">
+
+
+
 
     <TextView
         android:id="@+id/date_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="date"
-        android:textAlignment="center"/>
-
-
+        android:textAlignment="center" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@id/date_heading">
 
 
         <TextView
             android:id="@+id/Duration_column"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="Duration"/>
+            android:text="Duration"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/Distance_column"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="Distance"/>
+            android:text="Distance"
+            android:textAlignment="center" />
 
 
         <TextView
             android:id="@+id/Date_column"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="AverageSpeed"/>
-
-
+            android:text="AverageSpeed"
+            android:textAlignment="center" />
 
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/run_interface_background"/>
-
 
 
 

@@ -448,7 +448,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         Calendar calendar = Calendar.getInstance();
                         String current_date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
                         boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date);
-                        if (dataSaved = true)
+                        boolean dataUpdate = Runora_database.updateData(timer.getText().toString(), distance_counter.getText().toString(), current_date);
+                        if (dataSaved && dataUpdate)
                             Toast.makeText(run_interface.this, "Activity Saved To History", Toast.LENGTH_LONG).show();
                         start_location = null;
                         end_location = null;

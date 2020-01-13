@@ -31,7 +31,9 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 import mobile.apps.R;
@@ -67,6 +69,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     double distance = 0;
     double current_speed;
+    double average_speed;
 
 
     RadioGroup distancebtn_group;
@@ -148,16 +151,14 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
                         Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                         && ContextCompat.checkSelfPermission(run_interface.this,
-                        Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                     RequestPermissions();
                 } else if (!active) {
                     if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             && ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                             && ContextCompat.checkSelfPermission(run_interface.this,
-                            Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
-                            Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED ) {
                         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 0, run_interface.this);
                         createLocationRequest();
@@ -332,6 +333,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void distanceInMiles() {
         distance = distance + (start_location.distanceTo(end_location) * 0.00062137);
+        start_location = end_location;
         distance_counter.setText(new DecimalFormat("0.00").format(distance) + " Miles");
 
 
@@ -419,11 +421,12 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void CountDownSwitch() {
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        final boolean TimerSwitch = sharedPreferences.getBoolean(settings.ON, true);
+        final boolean TimerSwitch = sharedPreferences.getBoolean(settings.OFF, true);
         if (TimerSwitch) {
-            StartCountDown();
-        } else
             CountDownTimerView.setVisibility(View.GONE);
+        } else
+            StartCountDown();
+
 
     }
 
@@ -437,44 +440,46 @@ public class run_interface extends AppCompatActivity implements LocationListener
     }
 
     private void SaveData() {
-            new AlertDialog.Builder(this)
-                    .setTitle("Save Activity To History")
-                    .setMessage("Would you like to save your activity?.")
-                    .setPositiveButton("Yes, Save Activity", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString());
-                            if (dataSaved = true)
-                                Toast.makeText(run_interface.this, "Activity Saved To History", Toast.LENGTH_LONG).show();
-                            start_location = null;
-                            end_location = null;
-                            distance = 0;
-                            current_speed = 0;
-                            distance_counter.setText(new DecimalFormat("0.00").format(distance));
-                            timer.setBase(SystemClock.elapsedRealtime());
+        new AlertDialog.Builder(this)
+                .setTitle("Save Activity To History")
+                .setMessage("Would you like to save your activity?.")
+                .setPositiveButton("Yes, Save Activity", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Calendar calendar = Calendar.getInstance();
+                        String current_date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+                        boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date);
+                        if (dataSaved = true)
+                            Toast.makeText(run_interface.this, "Activity Saved To History", Toast.LENGTH_LONG).show();
+                        start_location = null;
+                        end_location = null;
+                        distance = 0;
+                        current_speed = 0;
+                        distance_counter.setText(new DecimalFormat("0.00").format(distance));
+                        timer.setBase(SystemClock.elapsedRealtime());
 
 
-                        }
-                    })
-                    .setNegativeButton("No, Don't Save Activity", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            start_location = null;
-                            end_location = null;
-                            distance = 0;
-                            current_speed = 0;
-                            distance_counter.setText(new DecimalFormat("0.00").format(distance));
-                            timer.setBase(SystemClock.elapsedRealtime());
+                    }
+                })
+                .setNegativeButton("No, Don't Save Activity", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        start_location = null;
+                        end_location = null;
+                        distance = 0;
+                        current_speed = 0;
+                        distance_counter.setText(new DecimalFormat("0.00").format(distance));
+                        timer.setBase(SystemClock.elapsedRealtime());
 
-                        }
-                    })
-                    .create().show();
-
+                    }
+                })
+                .create().show();
     }
+
     public void AverageSpeed() {
-
+        average_speed = distance / SystemClock.elapsedRealtime() - timer.getBase();
     }
-    }
+}
 
 
 

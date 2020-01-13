@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import mobile.apps.DisplayHistory;
 import mobile.apps.R;
 
 import static android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
@@ -33,9 +34,7 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
     private static final int PermissionCode = 58;
 
 
-    Button start_btn;
-    Button music_btn;
-    Button settings_btn;
+    Button start_btn, music_btn, settings_btn, history_btn;
     LocationManager locationManager;
     Location location;
     RadioButton miles_btn;
@@ -53,8 +52,18 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         start_btn = (Button) findViewById(R.id.start_btn);
         music_btn = (Button) findViewById(R.id.music_btn);
         settings_btn = (Button) findViewById(R.id.settings_btn);
+        history_btn = (Button) findViewById(R.id.history_btn);
+
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        history_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(home.this, DisplayHistory.class));
+
+            }
+        });
 
         settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,14 +106,13 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
                     .setMessage("Please allow permission access to proceed.")
                     .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            if (Build.VERSION.SDK_INT >= 29) {
                                 ActivityCompat.requestPermissions(home.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                                 Manifest.permission.ACCESS_COARSE_LOCATION,
                                                 Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                                         Manifest.permission.READ_PHONE_STATE}, PermissionCode);
                             }
-                        }
+
                     })
                     .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                         @Override
@@ -115,16 +123,14 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
                     .create().show();
 
         } else {
-            if (Build.VERSION.SDK_INT >= 29) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                 Manifest.permission.ACCESS_COARSE_LOCATION,
                                 Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                                Manifest.permission.READ_PHONE_STATE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE}, PermissionCode);
+                                Manifest.permission.READ_PHONE_STATE}, PermissionCode);
             }
         }
-    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -176,13 +182,6 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
 
     @Override
     public void onProviderEnabled(String provider) {
-
-        }
-
-
-        private void backtohome () {
-            Intent intent = new Intent(home.this, home.class);
-            startActivity(intent);
 
         }
 

@@ -5,50 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".history">
-
-
-
+    android:id="@+id/history_layout"
+    tools:context="history">
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/date_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date"
-        android:gravity="center_horizontal" />
+        android:text="date"
+        android:textAlignment="center"/>
+
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:orientation="horizontal">
+
 
         <TextView
-            android:Icon_column
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/duration_column"
-            android:layout_width="wrap_content"
+            android:id="@+id/Duration_column"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Duration"
-            android:layout_marginEnd="15dp"/>
+            android:textAlignment="center"
+            android:text="Duration"/>
 
         <TextView
             android:id="@+id/Distance_column"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Distance"
-            android:gravity="center_horizontal"
-            android:layout_marginEnd="15dp"/>
+            android:textAlignment="center"
+            android:text="Distance"/>
+
 
         <TextView
-            android:id="@+id/AvgSpeed_column"
-            android:layout_width="wrap_content"
+            android:id="@+id/Date_column"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Average speed"/>
+            android:textAlignment="center"
+            android:text="AverageSpeed"/>
+
 
 
 

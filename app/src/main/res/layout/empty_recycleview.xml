@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".RecyclerView">
-
-
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/mainbackground"
@@ -188,25 +185,16 @@
 
     </LinearLayout>
 
-    <include
 
-        android:id="@+id/empty_recycleview"
-        android:layout="@layout/empty_recycleview">
-
-    </include>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-
-        android:id="@+id/Recycle_layout"
+    <TextView
+        android:id="@+id/EmptyActivity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/HistoryTab"
-        android:layout_above="@id/bottom_banner">
-
-
-    </androidx.recyclerview.widget.RecyclerView>
-
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="@{dataset.size() > 0 ? View.GONE : View.VISIBLE}"
+        android:text="Your History Is Empty"
+        android:textColor="#ffff"
+        android:textSize="16dp"/>
 
 
 </RelativeLayout>

@@ -1,15 +1,16 @@
 package mobile.apps;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -22,9 +23,11 @@ import mobile.settings;
 public class DisplayHistory extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    View ShowEmptyActivity;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<RetrieveRunnerActivity> arrayList = new ArrayList<>();
+    TextView EmptyActivity;
 
     Button returnButton;
     Button history_btn;
@@ -40,7 +43,7 @@ public class DisplayHistory extends AppCompatActivity {
         RunoraDatabaseHelper runoraDatabaseHelper = new RunoraDatabaseHelper(this);
         SQLiteDatabase sqLiteDatabase = runoraDatabaseHelper.getReadableDatabase();
 
-        Cursor cursor = runoraDatabaseHelper.RetrieveDataFromDatabase(sqLiteDatabase);
+        final Cursor cursor = runoraDatabaseHelper.RetrieveDataFromDatabase(sqLiteDatabase);
 
         cursor.moveToFirst();
         do {
@@ -49,11 +52,17 @@ public class DisplayHistory extends AppCompatActivity {
         } while (cursor.moveToNext());
         runoraDatabaseHelper.close();
 
+
         adapter = new RecycleAdapter(arrayList);
         recyclerView.setAdapter(adapter);
 
+
         returnButton = (Button) findViewById(R.id.returnButton);
         history_btn = (Button) findViewById(R.id.history_btn);
+        recyclerView = (RecyclerView) findViewById(R.id.Recycle_layout);
+        ShowEmptyActivity = findViewById(R.id.empty_recycleview);
+        mobile.apps.RecyclerView.ShowAvailable(recyclerView);
+        mobile.apps.RecyclerView.NoActivity(ShowEmptyActivity);
 
 
         returnButton.setOnClickListener(new View.OnClickListener() {

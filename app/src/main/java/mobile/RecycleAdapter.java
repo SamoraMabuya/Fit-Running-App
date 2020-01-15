@@ -19,7 +19,7 @@ import mobile.apps.R;
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecyclerViewHolder> {
 
 
-    ArrayList<RetrieveRunnerActivity> arrayList = new ArrayList<>();
+    private ArrayList<RetrieveRunnerActivity> arrayList = new ArrayList<>();
 
     public RecycleAdapter(ArrayList<RetrieveRunnerActivity> arrayList) {
         this.arrayList = arrayList;
@@ -32,6 +32,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
         View view = inflater.inflate(R.layout.history, parent, false);
         RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view);
         return recyclerViewHolder;
+
 
 
     }
@@ -66,5 +67,6 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
             Distance_column = (TextView) view.findViewById(R.id.Distance_column);
             date_heading = (TextView) view.findViewById(R.id.date_heading);
         }
+
     }
 }

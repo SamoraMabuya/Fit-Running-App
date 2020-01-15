@@ -2,6 +2,7 @@ package mobile;
 
 public class RetrieveRunnerActivity {
 
+
     private String elapsed_time;
     private String total_distance;
     private String date;

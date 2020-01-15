@@ -23,6 +23,7 @@
         tools:ignore="contentDescription" />
 
     <ImageView
+        android:id="@+id/overlayScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/run_interface_background"

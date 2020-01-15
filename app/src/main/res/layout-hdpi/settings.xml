@@ -25,7 +25,9 @@
         android:id="@+id/ovelay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/image_overlay" />
+        android:src="@drawable/gradient_background"
+        android:layout_below="@id/SettingsTab"
+        android:layout_above="@id/bottom_banner"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/SettingsTab"
@@ -37,14 +39,14 @@
             android:id="@+id/Settings"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/setting_button"
+            android:background="@drawable/bottom_banner"
             android:fontFamily="@font/next_art_semibold"
             android:paddingTop="20dp"
             android:text="@string/settings"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +55,11 @@
         <Button
             android:id="@+id/go_back_btn"
             android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="230dp"
-            android:background="@drawable/ic_left_arrow"
+            android:layout_height="30dp"
+            android:layout_marginEnd="210dp"
+            android:background="@drawable/returnbuttonresource"
+            android:drawableTop="@drawable/ic_left_arrow"
+            android:paddingLeft="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/Settings"
             app:layout_constraintStart_toStartOf="@+id/Settings"

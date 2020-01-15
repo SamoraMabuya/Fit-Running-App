@@ -4,15 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
 import mobile.RecycleAdapter;
 import mobile.RetrieveRunnerActivity;
 import mobile.RunoraDatabaseHelper;
+import mobile.home;
+import mobile.settings;
 
 public class DisplayHistory extends AppCompatActivity {
 
@@ -20,6 +25,9 @@ public class DisplayHistory extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<RetrieveRunnerActivity> arrayList = new ArrayList<>();
+
+    Button returnButton;
+    Button history_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,5 +51,25 @@ public class DisplayHistory extends AppCompatActivity {
 
         adapter = new RecycleAdapter(arrayList);
         recyclerView.setAdapter(adapter);
+
+        returnButton = (Button) findViewById(R.id.returnButton);
+        history_btn = (Button) findViewById(R.id.history_btn);
+
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DisplayHistory.this, home.class);
+                startActivity(intent);
+            }
+        });
+
+        history_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DisplayHistory.this, settings.class);
+                startActivity(intent);
+            }
+        });
     }
 }

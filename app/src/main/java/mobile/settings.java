@@ -10,14 +10,14 @@ import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import mobile.apps.DisplayHistory;
 import mobile.apps.R;
 
 import static android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
 
 public class settings extends AppCompatActivity {
 
-    Button go_back_btn;
-    Button music_btn;
+    Button go_back_btn, music_btn, history_btn;
 
     RadioGroup distancebtn_group;
     RadioGroup CountDownBtnGroup;
@@ -55,6 +55,16 @@ public class settings extends AppCompatActivity {
         OnButton = (RadioButton) findViewById(R.id.OnButton);
         OffButton = (RadioButton) findViewById(R.id.OffButton);
         CountDownBtnGroup = (RadioGroup) findViewById(R.id.CountDownBtnGroup);
+        history_btn = (Button) findViewById(R.id.history_btn);
+
+        history_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(settings.this, DisplayHistory.class);
+                startActivity(intent);
+            }
+        });
+
 
         go_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override

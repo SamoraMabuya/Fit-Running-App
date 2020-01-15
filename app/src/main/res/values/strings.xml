@@ -62,4 +62,5 @@
     <string name="miles">Miles</string>
     <string name="on">On</string>
     <string name="off">Off</string>
+    <string name="gobackbutton">gobackbutton</string>
 </resources>

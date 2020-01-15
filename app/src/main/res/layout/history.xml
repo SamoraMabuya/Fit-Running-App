@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/history_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,51 +9,146 @@
     tools:context="history">
 
 
+<!--    <ImageView-->
+<!--        android:id="@+id/mainbackground"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginTop="2dp"-->
+<!--        android:layout_marginEnd="-203dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/road_run"-->
+<!--        tools:ignore="contentDescription" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/overlay"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@drawable/run_interface_background"/>-->
 
 
-    <TextView
-        android:id="@+id/date_heading"
-        android:layout_width="match_parent"
+
+    <TableLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="date"
-        android:textAlignment="center" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/date_heading">
-
+        android:layout_marginTop="30dp">
 
         <TextView
-            android:id="@+id/Duration_column"
-            android:layout_width="100dp"
+            android:id="@+id/date_heading"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Duration"
-            android:textAlignment="center" />
+            android:layout_alignParentTop="true"
+            android:text="Day, Month, th, Year"
+            android:textAlignment="center"
+            android:textColor="#ffff"
+            android:background="@drawable/date_background"/>
 
-        <TextView
-            android:id="@+id/Distance_column"
-            android:layout_width="100dp"
+        <TableRow
+            android:id="@+id/col_headings"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Distance"
-            android:textAlignment="center" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/textviewborders"
+            android:orientation="horizontal"
+            android:padding="0dp">
 
 
-        <TextView
-            android:id="@+id/Date_column"
-            android:layout_width="100dp"
+            <TextView
+                android:id="@+id/Duration_col"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Duration"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:textColor="#ffff"/>
+
+            <TextView
+                android:id="@+id/Distance_col"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Distance"
+                android:textAlignment="center"
+                android:background="@drawable/textviewborder_side"
+                android:padding="5dp"
+                android:textColor="#ffff"/>
+
+
+            <TextView
+                android:id="@+id/AvegrageSpeedCol"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Avg Speed"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:textColor="#ffff"/>
+
+
+        </TableRow>
+
+
+
+        <TableRow
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AverageSpeed"
-            android:textAlignment="center" />
+            android:orientation="horizontal"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/col_headings"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="-6dp"
+            android:background="@drawable/textviewborders_no_top"
+            android:textColor="#ffff">
 
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/Duration_column"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Duration"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:textColor="#ffff"/>
+
+            <TextView
+                android:id="@+id/Distance_column"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Distance"
+                android:textAlignment="center"
+                android:background="@drawable/textviewborders_no_top"
+                android:padding="5dp"
+                android:textColor="#ffff"/>
+
+
+            <TextView
+                android:id="@+id/Date_column"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="AverageSpeed"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:textColor="#ffff"/>
+
+
+        </TableRow>
+
+
+    </TableLayout>
 
 
 
-</LinearLayout>
+
+
+</RelativeLayout>
 
 
 

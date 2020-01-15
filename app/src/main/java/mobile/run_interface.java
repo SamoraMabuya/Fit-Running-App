@@ -41,7 +41,7 @@ import mobile.apps.R;
 import static mobile.settings.GetInfo;
 
 
-public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener, RadioGroup.OnCheckedChangeListener {
+public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener {
 
     RunoraDatabaseHelper Runora_database;
 
@@ -149,16 +149,16 @@ public class run_interface extends AppCompatActivity implements LocationListener
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(run_interface.this,
                         Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                        && ContextCompat.checkSelfPermission(run_interface.this,
-                        Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                        ContextCompat.checkSelfPermission(run_interface.this,
+                        Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     RequestPermissions();
                 } else if (!active) {
                     if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             && ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                             && ContextCompat.checkSelfPermission(run_interface.this,
-                            Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED ) {
+                            Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
                         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 0, run_interface.this);
                         createLocationRequest();
@@ -253,21 +253,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     }
 
 
-    private void createLocationRequest() {
-        locationRequest = LocationRequest.create();
-        locationRequest.setInterval(5000);
-        locationRequest.setFastestInterval(5000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-    }
 
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        RadioButton activeButton = (RadioButton) findViewById(checkedId);
-        if (activeButton.getId() == R.id.miles_btn) {
-            distanceInMiles();
-        }
-    }
 
     public void LocationAlert() {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -291,6 +277,13 @@ public class run_interface extends AppCompatActivity implements LocationListener
             AlertDialog alertDialog = dialogbuilder.create();
             alertDialog.show();
         }
+    }
+
+    private void createLocationRequest() {
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(5000);
+        locationRequest.setFastestInterval(5000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
 
@@ -442,8 +435,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
     private void SaveData() {
         new AlertDialog.Builder(this)
                 .setTitle("Save Activity To History")
-                .setMessage("Would you like to save your activity?.")
-                .setPositiveButton("Yes, Save Activity", new DialogInterface.OnClickListener() {
+                .setMessage("Would you like to save your activity?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Calendar calendar = Calendar.getInstance();
                         String current_date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
@@ -461,7 +454,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
                     }
                 })
-                .setNegativeButton("No, Don't Save Activity", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

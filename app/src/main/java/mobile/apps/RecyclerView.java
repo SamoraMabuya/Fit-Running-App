@@ -1,74 +1,27 @@
 package mobile.apps;
 
-import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RecyclerView extends androidx.recyclerview.widget.RecyclerView {
+import mobile.RecycleAdapter;
+import mobile.RunoraDatabaseHelper;
 
-    private AdapterDataObserver adapterDataObserver = new AdapterDataObserver() {
-        @Override
-        public void onChanged() {
-        }
+public class RecyclerView extends AppCompatActivity {
 
-        @Override
-        public void onItemRangeChanged(int positionStart, int itemCount) {
-        }
-
-        @Override
-        public void onItemRangeChanged(int positionStart, int itemCount, @Nullable Object payload) {
-        }
-
-        @Override
-        public void onItemRangeInserted(int positionStart, int itemCount) {
-        }
-
-        @Override
-        public void onItemRangeRemoved(int positionStart, int itemCount) {
-        }
-
-        @Override
-        public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
-        }
-    };
-
-
-    public RecyclerView(@NonNull Context context) {
-        super(context);
-    }
-
-    public RecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    public RecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
-    public static void ShowAvailable(androidx.recyclerview.widget.RecyclerView recyclerView) {
-    }
-    public static void NoActivity(View showEmptyActivity) {
-
-}
+    private SQLiteDatabase sqLiteDatabase;
+    private RecycleAdapter recycleAdapter;
+    private TextView EmptyTextView;
 
 
     @Override
-    public void setAdapter(Adapter adapter) {
-        super.setAdapter(adapter);
-        if (adapter != null) {
-            adapter.registerAdapterDataObserver(adapterDataObserver);
-            
-        }
-        
-        adapterDataObserver.onChanged();
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.recycler_view_layout);
+
 
 
     }
-
-
+}

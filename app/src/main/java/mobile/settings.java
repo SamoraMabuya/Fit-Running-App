@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +19,7 @@ import mobile.apps.R;
 
 import static android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
 
-public class settings extends AppCompatActivity {
+public class settings extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Button go_back_btn, music_btn, history_btn;
 
@@ -37,6 +41,9 @@ public class settings extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
+    Spinner themeSpinner;
+
+
 
 
     @Override
@@ -56,6 +63,10 @@ public class settings extends AppCompatActivity {
         OffButton = (RadioButton) findViewById(R.id.OffButton);
         CountDownBtnGroup = (RadioGroup) findViewById(R.id.CountDownBtnGroup);
         history_btn = (Button) findViewById(R.id.history_btn);
+        themeSpinner = findViewById(R.id.themeSpinner);
+
+
+
 
         history_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +129,7 @@ public class settings extends AppCompatActivity {
             public void onClick(View v) {
                 sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(ON,OnButton.isChecked());
+                editor.putBoolean(ON, OnButton.isChecked());
                 editor.apply();
             }
         });
@@ -136,5 +147,26 @@ public class settings extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         OnButton.setChecked(sharedPreferences.getBoolean("on", false));
         OffButton.setChecked(sharedPreferences.getBoolean("off", true));
+
+
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(settings. this, R.array.themeOptions, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        themeSpinner.setOnItemSelectedListener(this);
+
+
+    }
+
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

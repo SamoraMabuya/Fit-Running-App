@@ -63,4 +63,10 @@
     <string name="on">On</string>
     <string name="off">Off</string>
     <string name="gobackbutton">gobackbutton</string>
+    <string name="your_history_is_empty">Your History Is Empty</string>
+
+    <string-array name="themeOptions">
+        <item>Marble Blue</item>
+        <item>Light</item>
+    </string-array>
 </resources>

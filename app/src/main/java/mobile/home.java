@@ -26,8 +26,6 @@ import androidx.core.content.ContextCompat;
 import mobile.apps.DisplayHistory;
 import mobile.apps.R;
 
-import static android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
-import static android.provider.MediaStore.INTENT_ACTION_MEDIA_SEARCH;
 
 public class home extends AppCompatActivity implements LocationListener, com.google.android.gms.location.LocationListener {
 

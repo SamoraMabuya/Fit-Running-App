@@ -7,11 +7,11 @@
     tools:context=".RecyclerView">
 
 
-
     <ImageView
         android:id="@+id/mainbackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/HistoryTab"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="2dp"
@@ -21,16 +21,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/road_run"
-        tools:ignore="contentDescription"
-        android:layout_below="@id/HistoryTab"/>
+        tools:ignore="contentDescription" />
 
     <ImageView
         android:id="@+id/overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/run_interface_background"
+        android:layout_above="@id/bottom_banner"
         android:layout_below="@id/HistoryTab"
-        android:layout_above="@id/bottom_banner"/>
+        android:background="@drawable/run_interface_background" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/HistoryTab"
@@ -70,9 +70,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     <LinearLayout
@@ -188,24 +186,25 @@
 
     </LinearLayout>
 
-    <include
-
-        android:id="@+id/empty_recycleview"
-        android:layout="@layout/empty_recycleview">
-
-    </include>
-
+    <TextView
+        android:id="@+id/EmptyActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:text="@string/your_history_is_empty"
+        android:textColor="#ffff"
+        android:textSize="16sp" />
 
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/Recycle_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_banner"
         android:layout_below="@id/HistoryTab"
-        android:layout_above="@id/bottom_banner">
+        app:layoutManager="LinearLayoutManager"/>
 
-
-    </androidx.recyclerview.widget.RecyclerView>
 
 
 

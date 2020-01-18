@@ -9,27 +9,6 @@
     tools:context="history">
 
 
-<!--    <ImageView-->
-<!--        android:id="@+id/mainbackground"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_marginTop="2dp"-->
-<!--        android:layout_marginEnd="-203dp"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@drawable/road_run"-->
-<!--        tools:ignore="contentDescription" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/overlay"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="@drawable/run_interface_background"/>-->
-
 
 
     <TableLayout

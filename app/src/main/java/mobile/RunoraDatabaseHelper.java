@@ -6,9 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
-import java.util.Date;
 
 public class RunoraDatabaseHelper extends SQLiteOpenHelper {
 
@@ -19,6 +16,7 @@ public class RunoraDatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_2 = "Elapsed_Time";
     public static final String COL_3 = "Total_Distance";
     public static final String ROW_1 = "Date";
+    public static String insertData;
 
 
     public RunoraDatabaseHelper(Context context) {

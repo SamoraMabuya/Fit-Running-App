@@ -23,5 +23,19 @@
         <item name="android:textColor">#ffff</item>
     </style>
 
+    <style name="spinnerTheme" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:textSize"> 15sp </item>
+        <item name="android:textColor">#ffff</item>
+        <item name="android:backgroundTint">@color/colorAccent</item>
+        <item name="android:paddingEnd">10dp</item>
+
+
+
+
+
+
+    </style>
+
+
 
 </resources>

@@ -23,11 +23,10 @@ import mobile.settings;
 public class DisplayHistory extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    View ShowEmptyActivity;
+    TextView EmptyActivity;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<RetrieveRunnerActivity> arrayList = new ArrayList<>();
-    TextView EmptyActivity;
 
     Button returnButton;
     Button history_btn;
@@ -37,48 +36,52 @@ public class DisplayHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_view_layout);
         recyclerView = (RecyclerView) findViewById(R.id.Recycle_layout);
+        EmptyActivity = (TextView) findViewById(R.id.EmptyActivity);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         RunoraDatabaseHelper runoraDatabaseHelper = new RunoraDatabaseHelper(this);
         SQLiteDatabase sqLiteDatabase = runoraDatabaseHelper.getReadableDatabase();
 
-        final Cursor cursor = runoraDatabaseHelper.RetrieveDataFromDatabase(sqLiteDatabase);
+        Cursor cursor = runoraDatabaseHelper.RetrieveDataFromDatabase(sqLiteDatabase);
 
-        cursor.moveToFirst();
-        do {
+        while (cursor.moveToFirst()) {
             RetrieveRunnerActivity retrieveRunnerActivity = new RetrieveRunnerActivity(cursor.getString(1), cursor.getString(2), (cursor.getString(3)));
             arrayList.add(retrieveRunnerActivity);
-        } while (cursor.moveToNext());
-        runoraDatabaseHelper.close();
+            adapter = new RecycleAdapter(arrayList);
+            recyclerView.setAdapter(adapter);
+            EmptyActivity.setVisibility(View.INVISIBLE);
+            cursor.moveToNext();
+        }
+        if (cursor.getCount() <= 0) {
+            EmptyActivity.setVisibility(View.VISIBLE);
 
 
-        adapter = new RecycleAdapter(arrayList);
-        recyclerView.setAdapter(adapter);
 
 
-        returnButton = (Button) findViewById(R.id.returnButton);
-        history_btn = (Button) findViewById(R.id.history_btn);
-        recyclerView = (RecyclerView) findViewById(R.id.Recycle_layout);
-        ShowEmptyActivity = findViewById(R.id.empty_recycleview);
-        mobile.apps.RecyclerView.ShowAvailable(recyclerView);
-        mobile.apps.RecyclerView.NoActivity(ShowEmptyActivity);
 
 
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DisplayHistory.this, home.class);
-                startActivity(intent);
-            }
-        });
+            returnButton = (Button) findViewById(R.id.returnButton);
+            history_btn = (Button) findViewById(R.id.history_btn);
 
-        history_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DisplayHistory.this, settings.class);
-                startActivity(intent);
-            }
-        });
+
+            returnButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(DisplayHistory.this, home.class);
+                    startActivity(intent);
+                }
+            });
+
+            history_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(DisplayHistory.this, settings.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 }
+
+

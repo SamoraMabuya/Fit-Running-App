@@ -25,9 +25,9 @@
         android:id="@+id/ovelay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/gradient_background"
+        android:layout_above="@id/bottom_banner"
         android:layout_below="@id/SettingsTab"
-        android:layout_above="@id/bottom_banner"/>
+        android:src="@drawable/gradient_background" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/SettingsTab"
@@ -116,25 +116,24 @@
                     android:id="@+id/miles_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/miles"
-                    android:textColor="#ffff"
                     android:gravity="start"
-                    android:paddingTop="30dp"
                     android:paddingStart="-30dp"
-                    android:paddingEnd="35dp"/>
+                    android:paddingTop="30dp"
+                    android:paddingEnd="35dp"
+                    android:text="@string/miles"
+                    android:textColor="#ffff" />
 
                 <RadioButton
                     android:id="@+id/kilometer_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/km"
                     android:checked="true"
-                    android:textColor="#ffff"
                     android:gravity="start"
-                    android:paddingTop="30dp"
                     android:paddingStart="-25dp"
-                    android:paddingEnd="35dp"/>
-
+                    android:paddingTop="30dp"
+                    android:paddingEnd="35dp"
+                    android:text="@string/km"
+                    android:textColor="#ffff" />
 
 
             </RadioGroup>
@@ -183,25 +182,24 @@
                     android:id="@+id/OnButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/on"
-                    android:textColor="#ffff"
                     android:gravity="start"
-                    android:paddingTop="30dp"
                     android:paddingStart="-25dp"
-                    android:paddingEnd="50dp"/>
+                    android:paddingTop="30dp"
+                    android:paddingEnd="50dp"
+                    android:text="@string/on"
+                    android:textColor="#ffff" />
 
                 <RadioButton
                     android:id="@+id/OffButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/off"
                     android:checked="true"
-                    android:textColor="#ffff"
                     android:gravity="start"
-                    android:paddingTop="30dp"
                     android:paddingStart="-25dp"
-                    android:paddingEnd="35dp"/>
-
+                    android:paddingTop="30dp"
+                    android:paddingEnd="35dp"
+                    android:text="@string/off"
+                    android:textColor="#ffff" />
 
 
             </RadioGroup>
@@ -210,54 +208,151 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/countdown.section"
+            android:id="@+id/ActivtyThemeSection"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/white_solid"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/CountDownSection">
 
+            <TextView
+                android:id="@+id/ActivityThemeText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/next_art_semibold"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="0dp"
+                android:text="Activity Theme"
+                android:textColor="#ffff"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/themeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="130dp"
+                android:layout_marginEnd="0dp"
+                android:entries="@array/themeOptions"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                android:theme="@style/spinnerTheme"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/ActivityThemeText"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/incoming.call"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/StartAlarmSection"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/white_solid"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/countdown.section">
+            app:layout_constraintTop_toBottomOf="@id/ActivtyThemeSection"
+            tools:layout_editor_absoluteX="0dp">
+
+            <TextView
+                android:id="@+id/StartAlarmText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/next_art_semibold"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="0dp"
+                android:text="Activity Alarm"
+                android:textColor="#ffff"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/StartAlarmButtons"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:gravity="end"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
+                <RadioButton
+                    android:id="@+id/StartAlarmOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:paddingStart="-25dp"
+                    android:paddingTop="30dp"
+                    android:paddingEnd="50dp"
+                    android:text="@string/on"
+                    android:textColor="#ffff" />
+
+                <RadioButton
+                    android:id="@+id/StartAlarmOff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:gravity="start"
+                    android:paddingStart="-25dp"
+                    android:paddingTop="30dp"
+                    android:paddingEnd="35dp"
+                    android:text="@string/off"
+                    android:textColor="#ffff" />
 
 
-        </LinearLayout>
+            </RadioGroup>
 
-        <LinearLayout
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/Help"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/white_solid"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/incoming.call">
+            app:layout_constraintTop_toBottomOf="@+id/StartAlarmSection">
 
             <TextView
+                android:id="@+id/LangaugeText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="180dp"
                 android:fontFamily="@font/next_art_semibold"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="0dp"
-                android:text="Help"
+                android:text="Language"
                 android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/LanguageSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="130dp"
+                android:layout_marginEnd="0dp"
+                android:entries="@array/themeOptions"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                android:theme="@style/spinnerTheme"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/LangaugeText"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

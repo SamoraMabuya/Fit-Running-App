@@ -42,26 +42,27 @@ public class DisplayHistory extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         RunoraDatabaseHelper runoraDatabaseHelper = new RunoraDatabaseHelper(this);
         SQLiteDatabase sqLiteDatabase = runoraDatabaseHelper.getReadableDatabase();
-
         Cursor cursor = runoraDatabaseHelper.RetrieveDataFromDatabase(sqLiteDatabase);
 
-        while (cursor.moveToFirst()) {
-            RetrieveRunnerActivity retrieveRunnerActivity = new RetrieveRunnerActivity(cursor.getString(1), cursor.getString(2), (cursor.getString(3)));
-            arrayList.add(retrieveRunnerActivity);
-            adapter = new RecycleAdapter(arrayList);
-            recyclerView.setAdapter(adapter);
-            EmptyActivity.setVisibility(View.INVISIBLE);
-            cursor.moveToNext();
-        }
-        if (cursor.getCount() <= 0) {
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                RetrieveRunnerActivity retrieveRunnerActivity = new RetrieveRunnerActivity(cursor.getString(1), cursor.getString(2), (cursor.getString(3)));
+                arrayList.add(retrieveRunnerActivity);
+                adapter = new RecycleAdapter(arrayList);
+                recyclerView.setAdapter(adapter);
+                EmptyActivity.setVisibility(View.INVISIBLE);
+            }
+            while
+                  (cursor.moveToNext());
+
+        } else
             EmptyActivity.setVisibility(View.VISIBLE);
 
 
 
-
-
-
-            returnButton = (Button) findViewById(R.id.returnButton);
+        returnButton = (Button) findViewById(R.id.returnButton);
             history_btn = (Button) findViewById(R.id.history_btn);
 
 
@@ -82,6 +83,6 @@ public class DisplayHistory extends AppCompatActivity {
             });
         }
     }
-}
+
 
 

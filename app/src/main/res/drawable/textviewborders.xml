@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <item
         android:left="3dp"
         android:right="3dp"
@@ -10,6 +9,10 @@
 
         <shape android:shape="rectangle">
             <solid android:color="#00A31A1A"/>
+            <gradient
+                android:angle="360"/>
+            <solid
+                android:color="#2F3C4F"/>
 
             <stroke
                 android:width="1dp"
@@ -17,8 +20,7 @@
         </shape>
 
 
-</item>
-
+    </item>
 
 
 

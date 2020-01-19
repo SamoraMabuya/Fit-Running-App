@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/history_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,17 +14,39 @@
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="5dp">
 
-        <TextView
-            android:id="@+id/date_heading"
-            android:layout_width="match_parent"
+        <TableRow
+            android:id="@+id/date_row"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="Day, Month, th, Year"
-            android:textAlignment="center"
-            android:textColor="#ffff"
-            android:background="@drawable/date_background"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/textviewborders"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+
+            <TextView
+                android:id="@+id/date_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_span="3"
+                android:textAlignment="center"
+                android:layout_alignParentTop="true"
+                android:text="Day, Month, th, Year"
+                android:textColor="#ffff"
+                android:background="@drawable/date_background"/>
+
+
+
+        </TableRow>
+
+
+
 
         <TableRow
             android:id="@+id/col_headings"
@@ -32,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="-5dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/textviewborders"
@@ -44,19 +66,19 @@
                 android:id="@+id/Duration_col"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="Duration"
                 android:textAlignment="center"
-                android:padding="5dp"
                 android:textColor="#ffff"/>
 
             <TextView
                 android:id="@+id/Distance_col"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Distance"
-                android:textAlignment="center"
                 android:background="@drawable/textviewborder_side"
                 android:padding="5dp"
+                android:text="Distance"
+                android:textAlignment="center"
                 android:textColor="#ffff"/>
 
 
@@ -64,9 +86,9 @@
                 android:id="@+id/AvegrageSpeedCol"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="Avg Speed"
                 android:textAlignment="center"
-                android:padding="5dp"
                 android:textColor="#ffff"/>
 
 
@@ -77,14 +99,14 @@
         <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_below="@id/col_headings"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_below="@id/col_headings"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="-6dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/textviewborders_no_top"
+            android:orientation="horizontal"
             android:textColor="#ffff">
 
 
@@ -92,29 +114,29 @@
                 android:id="@+id/Duration_column"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="Duration"
                 android:textAlignment="center"
-                android:padding="5dp"
                 android:textColor="#ffff"/>
 
             <TextView
                 android:id="@+id/Distance_column"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Distance"
-                android:textAlignment="center"
                 android:background="@drawable/textviewborders_no_top"
                 android:padding="5dp"
+                android:text="Distance"
+                android:textAlignment="center"
                 android:textColor="#ffff"/>
 
 
             <TextView
-                android:id="@+id/Date_column"
+                android:id="@+id/avg_spd_col"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="AverageSpeed"
                 android:textAlignment="center"
-                android:padding="5dp"
                 android:textColor="#ffff"/>
 
 

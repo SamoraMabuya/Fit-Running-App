@@ -1,23 +1,16 @@
 package mobile;
 
-import android.app.AlertDialog;
-import android.app.LauncherActivity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import mobile.apps.R;
 
@@ -84,11 +77,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
         holder.Duration_column.setText(String.valueOf(retrieveRunnerActivity.getElapsed_time()));
         holder.Distance_column.setText(String.valueOf(retrieveRunnerActivity.getTotal_distance()));
         holder.date_heading.setText(String.valueOf(retrieveRunnerActivity.getDate()));
+        holder.Entry_column.setText(String.valueOf(retrieveRunnerActivity.getId()));
         holder.deleteButton.getContext();
-        holder.itemView.getId();
 
     }
-
 
 
     @Override
@@ -99,11 +91,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
         ImageView deleteButton;
-        TextView Duration_column, Distance_column, date_heading;
+        TextView Duration_column, Distance_column, date_heading, Entry_column;
         RecyclerViewHolder RVH;
         RunoraDatabaseHelper Runora_database;
         RetrieveRunnerActivity retrieveRunnerActivity;
-
 
 
         RecyclerViewHolder(final View view, final OnItemClickListener listener, final Context mycontext, final ArrayList arrayList) {
@@ -112,13 +103,12 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
             Duration_column = (TextView) view.findViewById(R.id.Duration_column);
             Distance_column = (TextView) view.findViewById(R.id.Distance_column);
             date_heading = (TextView) view.findViewById(R.id.date_heading);
+            Entry_column = (TextView) view.findViewById(R.id.Entry_column);
             deleteButton = (ImageView) view.findViewById(R.id.deleteButton);
             deleteButton.setTag(deleteListener);
             final RecycleAdapter this_adapter = new RecycleAdapter(mycontext);
             final RecycleAdapter adapter = new RecycleAdapter(arrayList);
             Runora_database = new RunoraDatabaseHelper(mycontext);
-
-
 
 
             deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -127,9 +117,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
                     if (listener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            Runora_database.DeleteData(Distance_column.getText().toString());
-                            Runora_database.DeleteData(Duration_column.getText().toString());
-                            Runora_database.DeleteData(date_heading.getText().toString());
+
+                            Runora_database.DeleteData(Entry_column.getText().toString());
 
 
                             listener.onDeleteClick(position);
@@ -139,27 +128,6 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
 
                         }
                     }
-                }
-
-
-
-                public void deleteActivity() {
-                    new AlertDialog.Builder(context)
-                            .setMessage("Delete Activity Permanently?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int position) {
-                                    Toast.makeText(context, "Activity Deleted", Toast.LENGTH_LONG).show();
-
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-
-                            });
-
                 }
             });
         }

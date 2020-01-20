@@ -8,7 +8,7 @@ public class RetrieveRunnerActivity {
     private String date;
     private String Id;
 
-    public RetrieveRunnerActivity(String elapsed_time, String total_distance, String date) {
+    public RetrieveRunnerActivity(String elapsed_time, String total_distance, String date, String Id) {
         this.setElapsed_time(elapsed_time);
         this.setTotal_distance(total_distance);
         this.setDate(date);

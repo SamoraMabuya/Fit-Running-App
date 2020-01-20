@@ -1,6 +1,8 @@
 package mobile.apps;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,7 +72,9 @@ public class DisplayHistory extends AppCompatActivity {
 
         if (cursor.moveToFirst()) {
             do {
-                RetrieveRunnerActivity retrieveRunnerActivity = new RetrieveRunnerActivity(cursor.getString(1), cursor.getString(2), (cursor.getString(3)));
+                RetrieveRunnerActivity retrieveRunnerActivity = new RetrieveRunnerActivity
+                        (cursor.getString(1), cursor.getString(2),
+                                (cursor.getString(3)), (cursor.getString(0)));
                 arrayList.add(retrieveRunnerActivity);
 
                 EmptyActivity.setVisibility(View.INVISIBLE);
@@ -84,8 +89,6 @@ public class DisplayHistory extends AppCompatActivity {
 
         adapter = new RecycleAdapter(arrayList);
         recyclerView.setAdapter(adapter);
-
-
 
 
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -115,8 +118,6 @@ public class DisplayHistory extends AppCompatActivity {
             private void deleteItems(int position) {
                 arrayList.remove(position);
                 adapter.notifyItemRemoved(position);
-                runoraDatabaseHelper.DeleteData(COL_2);
-                adapter.notifyDataSetChanged();
 
             }
         });

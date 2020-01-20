@@ -63,8 +63,8 @@ public class RunoraDatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public void DeleteData(String elapsed_time) {
-         this.getWritableDatabase().delete("runora_user_table", "elapsed_time ='" + elapsed_time + "'", null);
+    public void DeleteData(String Id) {
+         this.getWritableDatabase().delete("runora_user_table", "Id ='" + Id + "'", null);
     }
 }
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:gravity="center"
     tools:context="history">
 
 
@@ -31,7 +32,7 @@
                 android:layout_height="37dp"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_span="3">
+                android:layout_span="4">
 
                 <TextView
                     android:id="@+id/date_heading"
@@ -76,19 +77,29 @@
             android:orientation="horizontal"
             android:padding="0dp">
 
+            <TextView
+                android:id="@+id/Entry_col"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textviewborder_side"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:text="Entry"
+                android:textColor="#ffff"/>
+
 
             <TextView
                 android:id="@+id/Duration_col"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Duration"
+                android:text="Time"
                 android:textAlignment="center"
                 android:textColor="#ffff" />
 
             <TextView
                 android:id="@+id/Distance_col"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textviewborder_side"
                 android:padding="5dp"
@@ -99,10 +110,10 @@
 
             <TextView
                 android:id="@+id/AvegrageSpeedCol"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Avg Speed"
+                android:text="Avg Spd"
                 android:textAlignment="center"
                 android:textColor="#ffff" />
 
@@ -123,33 +134,43 @@
             android:orientation="horizontal"
             android:textColor="#ffff">
 
+            <TextView
+                android:id="@+id/Entry_column"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:background="@drawable/centerblockborder"
+                android:text="0"
+                android:textColor="#ffff"/>
+
 
             <TextView
                 android:id="@+id/Duration_column"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Duration"
+                android:text="00:00"
                 android:textAlignment="center"
                 android:textColor="#ffff" />
 
             <TextView
                 android:id="@+id/Distance_column"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/centerblockborder"
                 android:padding="5dp"
-                android:text="Distance"
+                android:text="0.00 km"
                 android:textAlignment="center"
                 android:textColor="#ffff" />
 
 
             <TextView
                 android:id="@+id/avg_spd_col"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="AverageSpeed"
+                android:text="0.00 kph"
                 android:textAlignment="center"
                 android:textColor="#ffff" />
 

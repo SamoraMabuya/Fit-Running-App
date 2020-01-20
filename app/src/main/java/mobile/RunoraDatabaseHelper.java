@@ -59,10 +59,15 @@ public class RunoraDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2, elapsed_time);
         contentValues.put(COL_3, total_distance);
         contentValues.put(ROW_1, current_date);
-        db.update(TABLE_NAME, contentValues, "elapsed_time = ?", new String[] { elapsed_time });
+        db.update(TABLE_NAME, contentValues, "elapsed_time = ?", new String[]{elapsed_time});
         return true;
+    }
 
-
+    public void DeleteData(String elapsed_time) {
+         this.getWritableDatabase().delete("runora_user_table", "elapsed_time ='" + elapsed_time + "'", null);
     }
 }
+
+
+
 

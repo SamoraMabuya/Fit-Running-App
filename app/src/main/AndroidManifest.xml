@@ -59,8 +59,13 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".history">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity android:name=".RecyclerView" />
-        <activity android:name=".history" />
         <activity android:name="mobile.run_interface">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

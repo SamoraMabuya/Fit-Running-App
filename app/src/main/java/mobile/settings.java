@@ -1,5 +1,6 @@
 package mobile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,16 +11,16 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import mobile.apps.DisplayHistory;
 import mobile.apps.R;
 
-import static android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
-
-public class settings extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class settings extends AppCompatActivity {
 
     Button go_back_btn, music_btn, history_btn;
 
@@ -38,12 +39,18 @@ public class settings extends AppCompatActivity implements AdapterView.OnItemSel
     public static String OFF = "off";
     public static String DBG = "distancebtn_group";
 
-    SharedPreferences sharedPreferences;
-    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
+    public static String LIGHT = "Ligth1";
+    public static String MARBLE_BLUE = "marble_blue";
 
     Spinner themeSpinner;
 
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences LastSelectedItem;
+    SharedPreferences.Editor editor;
+
+
+    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
 
     @Override
@@ -54,6 +61,7 @@ public class settings extends AppCompatActivity implements AdapterView.OnItemSel
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
 
+
         go_back_btn = (Button) findViewById(R.id.go_back_btn);
         music_btn = (Button) findViewById(R.id.music_btn);
         distancebtn_group = findViewById(R.id.distance_btn_group);
@@ -63,14 +71,21 @@ public class settings extends AppCompatActivity implements AdapterView.OnItemSel
         OffButton = (RadioButton) findViewById(R.id.OffButton);
         CountDownBtnGroup = (RadioGroup) findViewById(R.id.CountDownBtnGroup);
         history_btn = (Button) findViewById(R.id.history_btn);
-        themeSpinner = findViewById(R.id.themeSpinner);
+        themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
 
-
+        LastSelectedItem = getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
 
 
         history_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(MILESBTN, miles_btn.isChecked());
+                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                editor.putBoolean(ON, OnButton.isChecked());
+                editor.putBoolean(OFF, OffButton.isChecked());
+                editor.apply();
                 Intent intent = new Intent(settings.this, DisplayHistory.class);
                 startActivity(intent);
             }
@@ -80,12 +95,14 @@ public class settings extends AppCompatActivity implements AdapterView.OnItemSel
         go_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int LastSelection = LastSelectedItem.getInt("LastSelection", 0);
                 sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(MILESBTN, miles_btn.isChecked());
                 editor.putBoolean(KMBTN, kilometer_btn.isChecked());
                 editor.putBoolean(ON, OnButton.isChecked());
                 editor.putBoolean(OFF, OffButton.isChecked());
+                editor.putInt("LastSelection", LastSelection);
                 editor.apply();
                 Intent intent = new Intent(getApplicationContext(), home.class);
                 startActivity(intent);
@@ -94,6 +111,13 @@ public class settings extends AppCompatActivity implements AdapterView.OnItemSel
         music_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(MILESBTN, miles_btn.isChecked());
+                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                editor.putBoolean(ON, OnButton.isChecked());
+                editor.putBoolean(OFF, OffButton.isChecked());
+                editor.apply();
                 Intent intent = new Intent(CATEGORY_APP_MUSIC);
                 startActivity(intent);
 
@@ -150,23 +174,32 @@ public class settings extends AppCompatActivity implements AdapterView.OnItemSel
 
 
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(settings. this, R.array.themeOptions, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        themeSpinner.setOnItemSelectedListener(this);
+        int LastSelection = LastSelectedItem.getInt("LastSelection", 0);
+        editor = LastSelectedItem.edit();
 
 
-    }
+        ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter.createFromResource(settings. this, R.array.theme_array, android.R.layout.simple_spinner_item);
+        themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        themeSpinner.setAdapter(themeAdapter);
+        themeSpinner.setSelection(LastSelection);
 
 
+        themeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                editor.putInt("LastSelection", position).apply();
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+            }
 
-    }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
     }
 }
+
+

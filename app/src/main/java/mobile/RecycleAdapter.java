@@ -78,6 +78,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
         holder.Distance_column.setText(String.valueOf(retrieveRunnerActivity.getTotal_distance()));
         holder.date_heading.setText(String.valueOf(retrieveRunnerActivity.getDate()));
         holder.Entry_column.setText(String.valueOf(retrieveRunnerActivity.getId()));
+        holder.avg_spd_column.setText(String.valueOf(retrieveRunnerActivity.getAverage_speed()));
         holder.deleteButton.getContext();
 
     }
@@ -91,7 +92,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
         ImageView deleteButton;
-        TextView Duration_column, Distance_column, date_heading, Entry_column;
+        TextView Duration_column, Distance_column, date_heading, Entry_column, avg_spd_column;
         RecyclerViewHolder RVH;
         RunoraDatabaseHelper Runora_database;
         RetrieveRunnerActivity retrieveRunnerActivity;
@@ -105,10 +106,12 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
             date_heading = (TextView) view.findViewById(R.id.date_heading);
             Entry_column = (TextView) view.findViewById(R.id.Entry_column);
             deleteButton = (ImageView) view.findViewById(R.id.deleteButton);
+            avg_spd_column = (TextView) view.findViewById(R.id.avg_spd_column);
             deleteButton.setTag(deleteListener);
             final RecycleAdapter this_adapter = new RecycleAdapter(mycontext);
             final RecycleAdapter adapter = new RecycleAdapter(arrayList);
             Runora_database = new RunoraDatabaseHelper(mycontext);
+
 
 
             deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -117,18 +120,15 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
                     if (listener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-
                             Runora_database.DeleteData(Entry_column.getText().toString());
-
-
                             listener.onDeleteClick(position);
-                            arrayList.remove(arrayList.remove(itemView));
                             adapter.notifyDataSetChanged();
 
 
                         }
                     }
                 }
+
             });
         }
     }

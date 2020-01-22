@@ -2,6 +2,7 @@ package mobile;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -85,6 +86,10 @@ public class run_interface extends AppCompatActivity implements LocationListener
     private static final int AccessCode = 48;
     public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
+    Context context;
+
+    String current_date;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,9 +154,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(run_interface.this,
                         Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) &&
-                        locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER )
-                        && ContextCompat.checkSelfPermission(run_interface.this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) &&
+                         ContextCompat.checkSelfPermission(run_interface.this,
                         Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                     RequestPermissions();
                 } else if (!active) {
@@ -197,6 +201,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
                             play_button.setVisibility(View.VISIBLE);
                             locationManager.removeUpdates(run_interface.this);
                             SaveData();
+                            AverageSpeed_km();
 
                         }
                     });
@@ -356,9 +361,16 @@ public class run_interface extends AppCompatActivity implements LocationListener
         final Boolean MetricUnit = sharedPreferences.getBoolean(settings.KMBTN, true);
         if (MetricUnit) {
             distanceInkilometers();
+            AverageSpeed_km();
         } else
             distanceInMiles();
     }
+
+    private void ToggleTheme() {
+
+
+    }
+
 
     private void StartCountDown() {
         countDownTimer = new CountDownTimer(TimeLeft, 1000) {
@@ -448,10 +460,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 .setMessage("Would you like to save your activity?.")
                 .setPositiveButton("Yes, Save Activity", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Calendar calendar = Calendar.getInstance();
-                        String current_date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-                        boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date);
-                        boolean dataUpdate = Runora_database.updateData(timer.getText().toString(), distance_counter.getText().toString(), current_date);
+                        CalenderDate();
+                        boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
+                        boolean dataUpdate = Runora_database.updateData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
                         if (dataSaved && dataUpdate)
                             Toast.makeText(run_interface.this, "Activity Saved To History", Toast.LENGTH_LONG).show();
                         start_location = null;
@@ -479,9 +490,18 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 })
                 .create().show();
     }
+    public void CalenderDate() {
+        Calendar calendar = Calendar.getInstance();
+        current_date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
-    public void AverageSpeed() {
-        average_speed = distance / SystemClock.elapsedRealtime() - timer.getBase();
+    }
+
+    public void AverageSpeed_km() {
+        update = SystemClock.elapsedRealtime() - timer.getBase();
+        average_speed = distance / update;
+
+
+
     }
 }
 

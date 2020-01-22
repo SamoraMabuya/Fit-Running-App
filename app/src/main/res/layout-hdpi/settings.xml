@@ -234,12 +234,10 @@
                 android:id="@+id/themeSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="130dp"
-                android:layout_marginEnd="0dp"
-                android:entries="@array/themeOptions"
+                android:layout_marginStart="150dp"
+                android:entries="@array/theme_array"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
-                android:theme="@style/spinnerTheme"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/ActivityThemeText"
@@ -336,13 +334,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatSpinner
+            <Spinner
                 android:id="@+id/LanguageSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="130dp"
                 android:layout_marginEnd="0dp"
-                android:entries="@array/themeOptions"
+                android:entries="@array/theme_array"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 android:theme="@style/spinnerTheme"
@@ -384,7 +382,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:background="@drawable/invisible_button"
-                android:drawableTop="@drawable/ic_man_user"
+                android:drawableTop="@drawable/ic_notepad"
                 android:paddingTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -393,7 +391,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile"
+                android:text="About"
                 android:textColor="#ffff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

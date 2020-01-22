@@ -16,6 +16,7 @@ public class RunoraDatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_2 = "Elapsed_Time";
     public static final String COL_3 = "Total_Distance";
     public static final String ROW_1 = "Date";
+    public static final String COL_4 = "Avg_Spd";
     public static String insertData;
 
 
@@ -26,7 +27,7 @@ public class RunoraDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (Id INTEGER PRIMARY KEY AUTOINCREMENT, Elapsed_Time INTEGER,  Total_Distance INTEGER, Date String )");
+        db.execSQL("create table " + TABLE_NAME + " (Id INTEGER PRIMARY KEY AUTOINCREMENT, Elapsed_Time INTEGER,  Total_Distance INTEGER, Date String, Avg_Spd INTEGER)");
 
     }
 
@@ -37,12 +38,13 @@ public class RunoraDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean insertData(String elapsed_time, String total_distance, String current_date) {
+    public boolean insertData(String elapsed_time, String total_distance, String current_date, Double avgSpeed) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(ROW_1, current_date);
         contentValues.put(COL_2, elapsed_time);
         contentValues.put(COL_3, total_distance);
-        contentValues.put(ROW_1, current_date);
+        contentValues.put(COL_4, avgSpeed);
         long result = db.insert(TABLE_NAME, null, contentValues);
         return result != -1;
     }
@@ -53,18 +55,19 @@ public class RunoraDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public boolean updateData(String elapsed_time, String total_distance, String current_date) {
+    public boolean updateData(String elapsed_time, String total_distance, String current_date, Double avgSpeed) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(ROW_1, current_date);
         contentValues.put(COL_2, elapsed_time);
         contentValues.put(COL_3, total_distance);
-        contentValues.put(ROW_1, current_date);
+        contentValues.put(COL_4, avgSpeed);
         db.update(TABLE_NAME, contentValues, "elapsed_time = ?", new String[]{elapsed_time});
         return true;
     }
 
     public void DeleteData(String Id) {
-         this.getWritableDatabase().delete("runora_user_table", "Id ='" + Id + "'", null);
+         this.getWritableDatabase().delete(TABLE_NAME, "Id ='" + Id + "'", null);
     }
 }
 

@@ -22,8 +22,6 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:orientation="horizontal"
             android:background="@drawable/date_background">
 
@@ -40,19 +38,19 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:padding="5dp"
-                    android:text="Day, Month, th, Year"
+                    android:text="WhatIsDay, Monthary, ##th, Year"
+                    android:textSize="12sp"
                     android:textColor="#ffff"
-                    android:layout_marginStart="85dp"/>
+                    android:layout_marginStart="100dp"/>
 
                 <ImageView
                     android:id="@+id/deleteButton"
                     android:layout_width="70dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_trash_can"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="60dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="90dp"
                     android:text="Delete"
-                    android:textSize="12sp"
                     android:textColor="#ffff"/>
 
 
@@ -70,9 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="-5dp"
-            android:layout_marginEnd="10dp"
             android:background="@drawable/textviewborders"
             android:orientation="horizontal"
             android:padding="0dp">
@@ -127,9 +123,7 @@
             android:layout_below="@id/col_headings"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="-6dp"
-            android:layout_marginEnd="10dp"
             android:background="@drawable/textviewborders_no_top"
             android:orientation="horizontal"
             android:textColor="#ffff">
@@ -142,6 +136,7 @@
                 android:textAlignment="center"
                 android:background="@drawable/centerblockborder"
                 android:text="0"
+                android:textSize="12sp"
                 android:textColor="#ffff"/>
 
 
@@ -152,7 +147,8 @@
                 android:padding="5dp"
                 android:text="00:00"
                 android:textAlignment="center"
-                android:textColor="#ffff" />
+                android:textColor="#ffff"
+                android:textSize="12sp"/>
 
             <TextView
                 android:id="@+id/Distance_column"
@@ -162,17 +158,19 @@
                 android:padding="5dp"
                 android:text="0.00 km"
                 android:textAlignment="center"
-                android:textColor="#ffff" />
+                android:textColor="#ffff"
+                android:textSize="12sp"/>
 
 
             <TextView
-                android:id="@+id/avg_spd_col"
+                android:id="@+id/avg_spd_column"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="0.00 kph"
+                android:text="0.00"
                 android:textAlignment="center"
-                android:textColor="#ffff" />
+                android:textColor="#ffff"
+                android:textSize="12sp"/>
 
 
         </TableRow>

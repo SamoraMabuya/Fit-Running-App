@@ -50,7 +50,7 @@
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:background="@drawable/circle_buttons"
-                android:drawableTop="@drawable/ic_man_user"
+                android:drawableTop="@drawable/ic_notepad"
                 android:paddingTop="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +61,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/profile_btn"
                 android:fontFamily="@font/next_art_semibold"
-                android:text="@string/profile"
+                android:text="About"
                 android:textColor="#EBEBEB"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,8 +84,8 @@
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:background="@drawable/circle_buttons"
-                android:drawableTop="@drawable/ic_notepad"
-                android:paddingTop="5dp"
+                android:drawableTop="@drawable/ic_maintenance"
+                android:paddingTop="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -1,18 +1,14 @@
 package mobile.apps;
 
-import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,10 +22,6 @@ import mobile.RunoraDatabaseHelper;
 import mobile.home;
 import mobile.settings;
 
-import static mobile.RunoraDatabaseHelper.COL_1;
-import static mobile.RunoraDatabaseHelper.COL_2;
-import static mobile.RunoraDatabaseHelper.TABLE_NAME;
-
 public class DisplayHistory extends AppCompatActivity {
 
     RunoraDatabaseHelper Runora_database;
@@ -41,10 +33,14 @@ public class DisplayHistory extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     ArrayList<RetrieveRunnerActivity> arrayList = new ArrayList<>();
 
-    Button returnButton, history_btn;
+    Button returnButton, history_btn, music_btn;
     ImageView deleteButton;
 
+    Context context;
+
     RetrieveRunnerActivity retrieveRunnerActivity;
+
+    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
 
     @Override
@@ -67,6 +63,7 @@ public class DisplayHistory extends AppCompatActivity {
 
         returnButton = (Button) findViewById(R.id.returnButton);
         history_btn = (Button) findViewById(R.id.history_btn);
+        music_btn = (Button) findViewById(R.id.music_btn);
         deleteButton = (ImageView) findViewById(R.id.deleteButton);
 
 
@@ -74,7 +71,7 @@ public class DisplayHistory extends AppCompatActivity {
             do {
                 RetrieveRunnerActivity retrieveRunnerActivity = new RetrieveRunnerActivity
                         (cursor.getString(1), cursor.getString(2),
-                                (cursor.getString(3)), (cursor.getString(0)));
+                                (cursor.getString(3)), (cursor.getString(0)), cursor.getString(4));
                 arrayList.add(retrieveRunnerActivity);
 
                 EmptyActivity.setVisibility(View.INVISIBLE);
@@ -106,6 +103,16 @@ public class DisplayHistory extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        music_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CATEGORY_APP_MUSIC);
+                startActivity(intent);
+            }
+        });
+
 
         adapter.setItemListener(new RecycleAdapter.OnItemClickListener() {
             @Override

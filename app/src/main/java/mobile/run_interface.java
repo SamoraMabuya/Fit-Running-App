@@ -17,6 +17,7 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -60,6 +61,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     long update;
     TextView distance_counter, SpdInmph, SpdInkmh, CountDownTimerView;
     Button play_button, pause_button, stop_btn, homebutton, musicButton;
+    ImageView overlayscreen;
 
     Chronometer timer;
     CountDownTimer countDownTimer;
@@ -116,6 +118,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
         homebutton = (Button) findViewById(R.id.homebutton);
         musicButton = (Button) findViewById(R.id.musicButton);
         themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
+        overlayscreen = (ImageView) findViewById(R.id.overlayScreen);
+
 
 
 
@@ -224,14 +228,11 @@ public class run_interface extends AppCompatActivity implements LocationListener
                     .setMessage("Please allow permission access to proceed.")
                     .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            if (Build.VERSION.SDK_INT >= 29) {
                                 ActivityCompat.requestPermissions(run_interface.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                                                 Manifest.permission.READ_PHONE_STATE}, AccessCode);
                             }
-                        }
                     })
                     .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                         @Override
@@ -245,7 +246,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                             Manifest.permission.READ_PHONE_STATE}, AccessCode);
         }
     }
@@ -255,7 +255,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == AccessCode) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                LocationAlert();
+                LocationCall();
 
             } else {
                 Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
@@ -281,7 +281,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
         }
     }
 
-    public void LocationAlert() {
+    public void LocationCall() {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
             dialogbuilder.setMessage(" Enable GPS To Continue")
@@ -376,12 +376,18 @@ public class run_interface extends AppCompatActivity implements LocationListener
         final SharedPreferences LastSelectedItem = getApplicationContext().getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
         int LastSelection = LastSelectedItem.getInt("LastSelection", 0);
         if (LastSelection == 1) {
-            homebutton.setBackgroundResource(R.drawable.light_theme_buttons);
+            LightTheme();
 
         }
+    }
 
-
-
+    private void LightTheme() {
+        overlayscreen.setBackgroundResource(R.drawable.light_theme);
+        homebutton.setBackgroundResource(R.drawable.light_theme_buttons);
+        play_button.setBackgroundResource(R.drawable.light_theme_buttons);
+        pause_button.setBackgroundResource(R.drawable.light_theme_buttons);
+        stop_btn.setBackgroundResource(R.drawable.light_theme_buttons);
+        musicButton.setBackgroundResource(R.drawable.light_theme_buttons);
 
 
     }

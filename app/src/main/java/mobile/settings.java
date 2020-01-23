@@ -91,16 +91,11 @@ public class settings extends AppCompatActivity {
             }
         });
 
-
         go_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int Myposition = themeSpinner.getSelectedItemPosition();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(MILESBTN, miles_btn.isChecked());
-                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
-                editor.putBoolean(ON, OnButton.isChecked());
-                editor.putBoolean(OFF, OffButton.isChecked());
                 editor.putInt("LastSelection", Myposition);
                 editor.apply();
                 Intent intent = new Intent(getApplicationContext(), home.class);
@@ -188,7 +183,6 @@ public class settings extends AppCompatActivity {
         themeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int Myposition = themeSpinner.getSelectedItemPosition();
                 editor.putInt("LastSelection", position);
                 editor.apply();
 

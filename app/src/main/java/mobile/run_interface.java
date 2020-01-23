@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,6 +91,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     String current_date;
 
+    Spinner themeSpinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,9 +115,12 @@ public class run_interface extends AppCompatActivity implements LocationListener
         distancebtn_group = findViewById(R.id.distance_btn_group);
         homebutton = (Button) findViewById(R.id.homebutton);
         musicButton = (Button) findViewById(R.id.musicButton);
+        themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
+
 
 
         CountDownSwitch();
+        ToggleTheme();
 
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -367,9 +373,20 @@ public class run_interface extends AppCompatActivity implements LocationListener
     }
 
     private void ToggleTheme() {
+        final SharedPreferences LastSelectedItem = getApplicationContext().getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
+        int LastSelection = LastSelectedItem.getInt("LastSelection", 0);
+        if (LastSelection == 1) {
+            homebutton.setBackgroundResource(R.drawable.light_theme_buttons);
+
+        }
+
+
+
 
 
     }
+
+
 
 
     private void StartCountDown() {
@@ -402,6 +419,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 active = false;
                 AutoStartActivity();
                 CountDownTimerView.setVisibility(View.GONE);
+                ToggleTheme();
 
                 homebutton.setEnabled(true);
                 homebutton.setBackgroundResource(R.drawable.resume_button);

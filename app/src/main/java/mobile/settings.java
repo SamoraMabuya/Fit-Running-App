@@ -95,14 +95,13 @@ public class settings extends AppCompatActivity {
         go_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int LastSelection = LastSelectedItem.getInt("LastSelection", 0);
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                int Myposition = themeSpinner.getSelectedItemPosition();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(MILESBTN, miles_btn.isChecked());
                 editor.putBoolean(KMBTN, kilometer_btn.isChecked());
                 editor.putBoolean(ON, OnButton.isChecked());
                 editor.putBoolean(OFF, OffButton.isChecked());
-                editor.putInt("LastSelection", LastSelection);
+                editor.putInt("LastSelection", Myposition);
                 editor.apply();
                 Intent intent = new Intent(getApplicationContext(), home.class);
                 startActivity(intent);
@@ -185,10 +184,14 @@ public class settings extends AppCompatActivity {
         themeSpinner.setSelection(LastSelection);
 
 
+
         themeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                editor.putInt("LastSelection", position).apply();
+                int Myposition = themeSpinner.getSelectedItemPosition();
+                editor.putInt("LastSelection", position);
+                editor.apply();
+
 
 
             }

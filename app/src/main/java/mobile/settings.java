@@ -14,9 +14,6 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import mobile.apps.DisplayHistory;
 import mobile.apps.R;
 
@@ -58,6 +55,8 @@ public class settings extends AppCompatActivity {
         setContentView(R.layout.settings);
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+        LastSelectedItem = getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
+
 
         go_back_btn = (Button) findViewById(R.id.go_back_btn);
         music_btn = (Button) findViewById(R.id.music_btn);
@@ -74,14 +73,16 @@ public class settings extends AppCompatActivity {
         StartAlarmOn = (RadioButton) findViewById(R.id.StartAlarmOn);
         StartAlarmOff = (RadioButton) findViewById(R.id.StartAlarmOff);
 
+        final int Myposition = themeSpinner.getSelectedItemPosition();
+        final int lingoPosition = LanguageSpinner.getSelectedItemPosition();
 
-        LastSelectedItem = getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
+        final int LastSelection = LastSelectedItem.getInt("LastSelection", 0);
+        editor = LastSelectedItem.edit();
+
 
         go_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int Myposition = themeSpinner.getSelectedItemPosition();
-                int lingoPosition = LanguageSpinner.getSelectedItemPosition();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(MILESBTN, miles_btn.isChecked());
                 editor.putBoolean(KMBTN, kilometer_btn.isChecked());
@@ -100,7 +101,6 @@ public class settings extends AppCompatActivity {
         history_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int Myposition = themeSpinner.getSelectedItemPosition();
                 sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(MILESBTN, miles_btn.isChecked());
@@ -110,6 +110,7 @@ public class settings extends AppCompatActivity {
                 editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
                 editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
                 editor.putInt("LastSelection", Myposition);
+                editor.putInt("LastSelection", lingoPosition);
                 editor.apply();
                 Intent intent = new Intent(settings.this, DisplayHistory.class);
                 startActivity(intent);
@@ -119,7 +120,6 @@ public class settings extends AppCompatActivity {
         music_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int Myposition = themeSpinner.getSelectedItemPosition();
                 sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(MILESBTN, miles_btn.isChecked());
@@ -129,6 +129,7 @@ public class settings extends AppCompatActivity {
                 editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
                 editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
                 editor.putInt("LastSelection", Myposition);
+                editor.putInt("LastSelection", lingoPosition);
                 editor.apply();
                 Intent intent = new Intent(CATEGORY_APP_MUSIC);
                 startActivity(intent);
@@ -160,8 +161,6 @@ public class settings extends AppCompatActivity {
         miles_btn.setChecked(sharedPreferences.getBoolean("miles_btn", false));
 
 
-
-
         OnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,8 +183,6 @@ public class settings extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         OnButton.setChecked(sharedPreferences.getBoolean("on", false));
         OffButton.setChecked(sharedPreferences.getBoolean("off", true));
-
-
 
 
         StartAlarmOn.setOnClickListener(new View.OnClickListener() {
@@ -213,17 +210,11 @@ public class settings extends AppCompatActivity {
         StartAlarmOff.setChecked(sharedPreferences.getBoolean("start_alarm_off", false));
 
 
-
-        int LastSelection = LastSelectedItem.getInt("LastSelection", 0);
-        editor = LastSelectedItem.edit();
-
-
-        ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter.createFromResource(settings. this, R.array.theme_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter.createFromResource(settings.this, R.array.theme_array, android.R.layout.simple_spinner_item);
         themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
         themeSpinner.setAdapter(themeAdapter);
         themeSpinner.setSelection(LastSelection);
-
 
 
         themeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -231,7 +222,6 @@ public class settings extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 editor.putInt("LastSelection", position);
                 editor.apply();
-
 
 
             }
@@ -242,7 +232,7 @@ public class settings extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<CharSequence> lingoAdapter = ArrayAdapter.createFromResource(settings. this, R.array.Language_Options, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> lingoAdapter = ArrayAdapter.createFromResource(settings.this, R.array.Language_Options, android.R.layout.simple_spinner_item);
         lingoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
         LanguageSpinner.setAdapter(lingoAdapter);

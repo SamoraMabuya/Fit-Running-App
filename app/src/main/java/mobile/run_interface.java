@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -89,7 +90,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     private static final int AccessCode = 48;
     public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
-    Context context;
+    int count_down_voice;
 
     String current_date;
 
@@ -119,6 +120,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
         musicButton = (Button) findViewById(R.id.musicButton);
         themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
         overlayscreen = (ImageView) findViewById(R.id.overlayScreen);
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.count_down_voice);
 
 
         CountDownSwitch();
@@ -160,13 +162,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
         play_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(run_interface.this,
-                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) &&
-                        ContextCompat.checkSelfPermission(run_interface.this,
-                                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                    RequestPermissions();
-                } else if (!active) {
+                if (!active) {
                     if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             && ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -178,10 +174,12 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         timer.setBase(SystemClock.elapsedRealtime() - update);
                         timer.start();
                         play_button.setVisibility(View.GONE);
+                        pause_button.setVisibility(View.VISIBLE);
                         active = true;
-                    } else {
+                } else {
+                        RequestPermissions(); {
+                        }
                         play_button.setVisibility(View.VISIBLE);
-                        pause_button.setVisibility(View.GONE);
                         active = false;
 
                     }
@@ -195,7 +193,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
                                 play_button.setVisibility(View.VISIBLE);
                                 update = SystemClock.elapsedRealtime() - timer.getBase();
                                 locationManager.removeUpdates(run_interface.this);
-
                             }
                         }
                     });
@@ -203,11 +200,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
                     stop_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            timer.stop();
-                            active = false;
-                            update = 0;
-                            play_button.setVisibility(View.VISIBLE);
-                            locationManager.removeUpdates(run_interface.this);
                             SaveData();
                             AverageSpeed_km();
 
@@ -229,6 +221,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
                             ActivityCompat.requestPermissions(run_interface.this,
                                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                             Manifest.permission.ACCESS_COARSE_LOCATION,
+                                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                                             Manifest.permission.READ_PHONE_STATE}, AccessCode);
                         }
                     })
@@ -244,6 +237,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                             Manifest.permission.READ_PHONE_STATE}, AccessCode);
         }
     }
@@ -385,9 +379,17 @@ public class run_interface extends AppCompatActivity implements LocationListener
         pause_button.setBackgroundResource(R.drawable.light_theme_buttons);
         stop_btn.setBackgroundResource(R.drawable.light_theme_buttons);
         musicButton.setBackgroundResource(R.drawable.light_theme_buttons);
-
-
     }
+
+    public void VoiceCountdown() {
+        final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.count_down_voice);
+        boolean VoiceSwitch = sharedPreferences.getBoolean(settings.START_ALARM_ON, true);
+        if (VoiceSwitch) {
+            mediaPlayer.start();
+        }
+    }
+
 
 
     private void StartCountDown() {
@@ -455,14 +457,17 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void CountDownSwitch() {
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        final boolean TimerSwitch = sharedPreferences.getBoolean(settings.OFF, true);
+        final boolean TimerSwitch = sharedPreferences.getBoolean(settings.ON, false);
         if (TimerSwitch) {
-            CountDownTimerView.setVisibility(View.GONE);
-        } else
             StartCountDown();
+                VoiceCountdown();
+        } else
+            CountDownTimerView.setVisibility(View.GONE);
+
+        }
 
 
-    }
+
 
     private void AutoStartActivity() {
         if (Build.VERSION.SDK_INT >= 23) {
@@ -490,6 +495,12 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         current_speed = 0;
                         distance_counter.setText(new DecimalFormat("0.00").format(distance));
                         timer.setBase(SystemClock.elapsedRealtime());
+                        locationManager.removeUpdates(run_interface.this);
+                        timer.stop();
+                        active = false;
+                        update = 0;
+                        play_button.setVisibility(View.VISIBLE);
+
 
 
                     }
@@ -504,6 +515,11 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         current_speed = 0;
                         distance_counter.setText(new DecimalFormat("0.00").format(distance));
                         timer.setBase(SystemClock.elapsedRealtime());
+                        locationManager.removeUpdates(run_interface.this);
+                        timer.stop();
+                        active = false;
+                        update = 0;
+                        play_button.setVisibility(View.VISIBLE);
 
                     }
                 })

@@ -26,24 +26,23 @@ public class settings extends AppCompatActivity {
 
     RadioGroup distancebtn_group;
     RadioGroup CountDownBtnGroup;
+    RadioGroup StartAlarmButtons;
     RadioButton miles_btn;
     RadioButton kilometer_btn;
     RadioButton OnButton;
     RadioButton OffButton;
-    RadioGroup radioGroup;
+    RadioButton StartAlarmOn;
+    RadioButton StartAlarmOff;
 
     public static String GetInfo = "GetInfo";
     public static String MILESBTN = "miles_btn";
     public static String KMBTN = "kilometer_btn";
     public static String ON = "on";
     public static String OFF = "off";
-    public static String DBG = "distancebtn_group";
-
-    public static String LIGHT = "Ligth1";
-    public static String MARBLE_BLUE = "marble_blue";
+    public static String START_ALARM_ON = "start_alarm_on";
+    public static String START_ALARM_OFF = "start_alarm_off";
 
     Spinner themeSpinner;
-
 
     SharedPreferences sharedPreferences;
     SharedPreferences LastSelectedItem;
@@ -58,9 +57,7 @@ public class settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-
 
         go_back_btn = (Button) findViewById(R.id.go_back_btn);
         music_btn = (Button) findViewById(R.id.music_btn);
@@ -72,45 +69,63 @@ public class settings extends AppCompatActivity {
         CountDownBtnGroup = (RadioGroup) findViewById(R.id.CountDownBtnGroup);
         history_btn = (Button) findViewById(R.id.history_btn);
         themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
+        StartAlarmButtons = (RadioGroup) findViewById(R.id.StartAlarmButtons);
+        StartAlarmOn = (RadioButton) findViewById(R.id.StartAlarmOn);
+        StartAlarmOff = (RadioButton) findViewById(R.id.StartAlarmOff);
+
 
         LastSelectedItem = getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
-
-
-        history_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(MILESBTN, miles_btn.isChecked());
-                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
-                editor.putBoolean(ON, OnButton.isChecked());
-                editor.putBoolean(OFF, OffButton.isChecked());
-                editor.apply();
-                Intent intent = new Intent(settings.this, DisplayHistory.class);
-                startActivity(intent);
-            }
-        });
 
         go_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int Myposition = themeSpinner.getSelectedItemPosition();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(MILESBTN, miles_btn.isChecked());
+                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                editor.putBoolean(ON, OnButton.isChecked());
+                editor.putBoolean(OFF, OffButton.isChecked());
+                editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
+                editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
                 editor.putInt("LastSelection", Myposition);
                 editor.apply();
                 Intent intent = new Intent(getApplicationContext(), home.class);
                 startActivity(intent);
+                
             }
         });
-        music_btn.setOnClickListener(new View.OnClickListener() {
+        history_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                int Myposition = themeSpinner.getSelectedItemPosition();
                 sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(MILESBTN, miles_btn.isChecked());
                 editor.putBoolean(KMBTN, kilometer_btn.isChecked());
                 editor.putBoolean(ON, OnButton.isChecked());
                 editor.putBoolean(OFF, OffButton.isChecked());
+                editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
+                editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
+                editor.putInt("LastSelection", Myposition);
+                editor.apply();
+                Intent intent = new Intent(settings.this, DisplayHistory.class);
+                startActivity(intent);
+
+            }
+        });
+        music_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int Myposition = themeSpinner.getSelectedItemPosition();
+                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(MILESBTN, miles_btn.isChecked());
+                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                editor.putBoolean(ON, OnButton.isChecked());
+                editor.putBoolean(OFF, OffButton.isChecked());
+                editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
+                editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
+                editor.putInt("LastSelection", Myposition);
                 editor.apply();
                 Intent intent = new Intent(CATEGORY_APP_MUSIC);
                 startActivity(intent);
@@ -142,10 +157,11 @@ public class settings extends AppCompatActivity {
         miles_btn.setChecked(sharedPreferences.getBoolean("miles_btn", false));
 
 
+
+
         OnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(ON, OnButton.isChecked());
                 editor.apply();
@@ -165,6 +181,33 @@ public class settings extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         OnButton.setChecked(sharedPreferences.getBoolean("on", false));
         OffButton.setChecked(sharedPreferences.getBoolean("off", true));
+
+
+
+
+        StartAlarmOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
+                editor.apply();
+            }
+        });
+
+        StartAlarmOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
+                editor.apply();
+            }
+        });
+
+        sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+        StartAlarmOn.setChecked(sharedPreferences.getBoolean("start_alarm_on", true));
+        StartAlarmOff.setChecked(sharedPreferences.getBoolean("start_alarm_off", false));
 
 
 

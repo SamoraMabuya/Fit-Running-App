@@ -107,7 +107,8 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
                                 ActivityCompat.requestPermissions(home.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                                        Manifest.permission.READ_PHONE_STATE}, PermissionCode);
+                                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                                Manifest.permission.READ_PHONE_STATE}, PermissionCode);
                             }
 
                     })
@@ -123,6 +124,7 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                 Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                                 Manifest.permission.READ_PHONE_STATE}, PermissionCode);
             }
         }

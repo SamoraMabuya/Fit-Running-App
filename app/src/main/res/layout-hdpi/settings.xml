@@ -40,14 +40,12 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/bottom_banner"
-            android:fontFamily="@font/next_art_semibold"
+            android:fontFamily="@font/raleway_medium"
             android:paddingTop="20dp"
             android:text="@string/settings"
             android:textAlignment="center"
-            android:textAllCaps="false"
             android:textColor="#ffffff"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +57,8 @@
             android:layout_marginEnd="210dp"
             android:background="@drawable/returnbuttonresource"
             android:drawableTop="@drawable/ic_left_arrow"
-            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/Settings"
             app:layout_constraintStart_toStartOf="@+id/Settings"
@@ -86,17 +85,16 @@
             tools:layout_editor_absoluteX="0dp">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/DistanceTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/next_art_semibold"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="18sp"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="0dp"
                 android:text="@string/Distance"
                 android:textColor="#ffff"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,6 +119,8 @@
                     android:paddingTop="30dp"
                     android:paddingEnd="35dp"
                     android:text="@string/miles"
+                    android:fontFamily="@font/raleway_medium"
+                    android:textSize="14sp"
                     android:textColor="#ffff" />
 
                 <RadioButton
@@ -133,7 +133,9 @@
                     android:paddingTop="30dp"
                     android:paddingEnd="35dp"
                     android:text="@string/km"
-                    android:textColor="#ffff" />
+                    android:textColor="#ffff"
+                    android:fontFamily="@font/raleway_medium"
+                    android:textSize="14sp"/>
 
 
             </RadioGroup>
@@ -155,14 +157,13 @@
                 android:id="@+id/CountDownText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/next_art_semibold"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="18sp"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="0dp"
-                android:text="CountDown"
+                android:text="@string/countdown"
                 android:textColor="#ffff"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -187,7 +188,9 @@
                     android:paddingTop="30dp"
                     android:paddingEnd="50dp"
                     android:text="@string/on"
-                    android:textColor="#ffff" />
+                    android:textColor="#ffff"
+                    android:fontFamily="@font/raleway_medium"
+                    android:textSize="14sp"/>
 
                 <RadioButton
                     android:id="@+id/OffButton"
@@ -199,7 +202,9 @@
                     android:paddingTop="30dp"
                     android:paddingEnd="35dp"
                     android:text="@string/off"
-                    android:textColor="#ffff" />
+                    android:textColor="#ffff"
+                    android:fontFamily="@font/raleway_medium"
+                    android:textSize="14sp"/>
 
 
             </RadioGroup>
@@ -219,14 +224,13 @@
                 android:id="@+id/ActivityThemeText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/next_art_semibold"
+                android:fontFamily="@font/raleway_medium"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="0dp"
-                android:text="Activity Theme"
+                android:text="@string/activity_theme"
                 android:textColor="#ffff"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -241,7 +245,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/ActivityThemeText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:theme="@style/spinnerTheme"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -259,14 +264,13 @@
                 android:id="@+id/StartAlarmText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/next_art_semibold"
+                android:fontFamily="@font/raleway_medium"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="0dp"
-                android:text="Activity Alarm"
+                android:text="@string/activity_alarm"
                 android:textColor="#ffff"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -292,7 +296,9 @@
                     android:paddingTop="30dp"
                     android:paddingEnd="50dp"
                     android:text="@string/on"
-                    android:textColor="#ffff" />
+                    android:textColor="#ffff"
+                    android:fontFamily="@font/raleway_medium"
+                    android:textSize="14sp"/>
 
                 <RadioButton
                     android:id="@+id/StartAlarmOff"
@@ -303,7 +309,9 @@
                     android:paddingTop="30dp"
                     android:paddingEnd="35dp"
                     android:text="@string/off"
-                    android:textColor="#ffff" />
+                    android:textColor="#ffff"
+                    android:fontFamily="@font/raleway_medium"
+                    android:textSize="14sp"/>
 
 
             </RadioGroup>
@@ -323,18 +331,17 @@
                 android:id="@+id/LangaugeText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/next_art_semibold"
+                android:fontFamily="@font/raleway_medium"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="0dp"
-                android:text="Language"
+                android:text="@string/language"
                 android:textColor="#ffff"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/LanguageSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -391,8 +398,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="About"
+                android:text="@string/about"
                 android:textColor="#ffff"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_btn" />
@@ -425,8 +434,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="History"
+                android:text="@string/history"
                 android:textColor="#ffff"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/history_btn" />
@@ -458,8 +469,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Music"
+                android:text="@string/music"
                 android:textColor="#ffff"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/music_btn" />

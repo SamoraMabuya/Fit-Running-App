@@ -42,7 +42,7 @@ public class settings extends AppCompatActivity {
     public static String START_ALARM_ON = "start_alarm_on";
     public static String START_ALARM_OFF = "start_alarm_off";
 
-    Spinner themeSpinner;
+    Spinner themeSpinner, LanguageSpinner;
 
     SharedPreferences sharedPreferences;
     SharedPreferences LastSelectedItem;
@@ -69,6 +69,7 @@ public class settings extends AppCompatActivity {
         CountDownBtnGroup = (RadioGroup) findViewById(R.id.CountDownBtnGroup);
         history_btn = (Button) findViewById(R.id.history_btn);
         themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
+        LanguageSpinner = (Spinner) findViewById(R.id.LanguageSpinner);
         StartAlarmButtons = (RadioGroup) findViewById(R.id.StartAlarmButtons);
         StartAlarmOn = (RadioButton) findViewById(R.id.StartAlarmOn);
         StartAlarmOff = (RadioButton) findViewById(R.id.StartAlarmOff);
@@ -80,6 +81,7 @@ public class settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int Myposition = themeSpinner.getSelectedItemPosition();
+                int lingoPosition = LanguageSpinner.getSelectedItemPosition();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(MILESBTN, miles_btn.isChecked());
                 editor.putBoolean(KMBTN, kilometer_btn.isChecked());
@@ -88,10 +90,11 @@ public class settings extends AppCompatActivity {
                 editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
                 editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
                 editor.putInt("LastSelection", Myposition);
+                editor.putInt("LastSelection", lingoPosition);
                 editor.apply();
                 Intent intent = new Intent(getApplicationContext(), home.class);
                 startActivity(intent);
-                
+
             }
         });
         history_btn.setOnClickListener(new View.OnClickListener() {
@@ -231,6 +234,25 @@ public class settings extends AppCompatActivity {
 
 
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ArrayAdapter<CharSequence> lingoAdapter = ArrayAdapter.createFromResource(settings. this, R.array.Language_Options, android.R.layout.simple_spinner_item);
+        lingoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        LanguageSpinner.setAdapter(lingoAdapter);
+        LanguageSpinner.setSelection(LastSelection);
+
+        LanguageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                editor.putInt("LastSelection", position);
+                editor.apply();
             }
 
             @Override

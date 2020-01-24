@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Run.app</string>
+    <string name="app_name" translatable="false">Runora</string>
     <string name="small_screen_size">Small Screen Size Layout</string>
     <string name="normal_screen_size">Normal Screen Size Layout</string>
     <string name="large_screen_size">Large Screen Size Layout</string>
@@ -9,17 +9,7 @@
     <string name="sw480">The smallest width of the screen is greater than or equal to 480dp</string>
     <string name="LOG_IN">Log In</string>
     <string name="sourcecodepromedium">sourcecodepro_medium</string>
-    <string name="create_account_button">Create Account</string>
-    <string name="every_word">EVERY</string>
-    <string name="step_word">STEP</string>
     <string name="counts_word">COUNTS</string>
-    <string name="logo">EVERY </string>
-    <string name="name">\u0020\u0020\u0020Name</string>
-    <string name="email">\u0020\u0020\u0020Email</string>
-    <string name="password">\u0020\u0020\u0020Password</string>
-    <string name="confirm_password">\u0020\u0020\u0020Confirm Password</string>
-    <string name="forgot_password">Forgot Password?</string>
-    <string name="create_account">create account</string>
     <string name="Settings">settings</string>
     <string name="history">History</string>
     <string name="settings">Settings</string>
@@ -27,7 +17,6 @@
     <string name="goals">Goals</string>
     <string name="music">Music</string>
     <string name="enable_gps">Enable GPS</string>
-    <string name="begin_running">Begin Running</string>
     <string name="runora">Runora</string>
     <string name="ca_runora">Runora</string>
     <string name="start_running">Run</string>
@@ -45,7 +34,7 @@
     <string name="Distance">Distance</string>
     <string name="meters">Miles</string>
     <string name="spd_in_mph">Spd in mph</string>
-    <string name="spd_in_km_h">Spd_in_km/h</string>
+    <string name="spd_in_km_h">Spd in km/h</string>
 
     <string-array name="feedback_time">
         <item> No feedback </item>
@@ -56,7 +45,7 @@
         <item> 25 min </item>
         <item> 30 min </item>
     </string-array>
-    <string name="title_activity_countdowntimer">Countdowntimer</string>
+    <string name="title_activity_countdowntimer" translatable="false">Countdowntimer</string>
     <string name="kilometers">Kilometers</string>
     <string name="km">Km</string>
     <string name="miles">Miles</string>
@@ -64,9 +53,19 @@
     <string name="off">Off</string>
     <string name="gobackbutton">gobackbutton</string>
     <string name="your_history_is_empty">Your History Is Empty</string>
+    <string name="countdown">Countdown</string>
+    <string name="activity_theme">Activity Theme</string>
+    <string name="activity_alarm">Voice Countdown</string>
+    <string name="language">Language</string>
+    <string name="about">About</string>
 
     <string-array name="theme_array">
         <item> Marble Blue  </item>
         <item> Purple Grape </item>
+    </string-array>
+
+    <string-array name="Language_Options">
+        <item> English </item>
+        <item> German </item>
     </string-array>
 </resources>

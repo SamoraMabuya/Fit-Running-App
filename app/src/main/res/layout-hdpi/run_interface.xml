@@ -47,8 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:text="@string/_00_00"
             android:textColor="#F1ECEC"
-            android:textSize="30sp" />
+            android:textSize="30sp"/>
 
         <TextView
             android:id="@+id/timer_label"
@@ -56,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:singleLine="true"
+            android:fontFamily="@font/raleway_medium"
             android:text="@string/time"
             android:textColor="#E7E3E3"
             android:textSize="20sp" />
@@ -83,7 +85,7 @@
             android:layout_gravity="center"
             android:text="@string/_0_00"
             android:textColor="#F8F7F7"
-            android:textSize="30sp" />
+            android:textSize="30sp"/>
 
 
         <TextView
@@ -93,7 +95,8 @@
             android:layout_gravity="center"
             android:text="@string/distance"
             android:textColor="#F0E7E7"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/raleway_medium"/>
 
     </LinearLayout>
 
@@ -116,10 +119,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
             android:text="@string/curr_0_00"
             android:textColor="#F8F7F7"
-            android:textSize="30sp" />
+            android:textSize="30sp"/>
 
 
         <TextView
@@ -128,7 +130,8 @@
             android:layout_gravity="center"
             android:text="@string/spd_in_mph"
             android:textColor="#F0E7E7"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/raleway_medium"/>
 
     </LinearLayout>
 
@@ -153,7 +156,7 @@
             android:layout_gravity="center"
             android:text="@string/_0_00"
             android:textColor="#F8F7F7"
-            android:textSize="30sp" />
+            android:textSize="30sp"/>
 
 
         <TextView
@@ -163,7 +166,8 @@
             android:layout_gravity="center"
             android:text="@string/spd_in_km_h"
             android:textColor="#F0E7E7"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/raleway_medium"/>
 
     </LinearLayout>
 
@@ -259,6 +263,7 @@
         android:textSize="60sp"
         android:background="@drawable/countdowntimer_background"
         android:paddingTop="110dp"
-        android:paddingStart="70dp"/>
+        android:paddingStart="70dp"
+        android:paddingEnd="0dp"/>
 
 </RelativeLayout>

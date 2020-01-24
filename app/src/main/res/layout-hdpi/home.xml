@@ -39,8 +39,8 @@
             android:id="@+id/profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="150dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absolutey="346dp">
@@ -60,9 +60,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/profile_btn"
-                android:fontFamily="@font/next_art_semibold"
-                android:text="About"
+                android:fontFamily="@font/raleway_medium"
+                android:text="@string/about"
                 android:textColor="#EBEBEB"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_btn" />
@@ -74,8 +75,8 @@
             android:id="@+id/settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -95,9 +96,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/settings_btn"
-                android:fontFamily="@font/next_art_semibold"
+                android:fontFamily="@font/raleway_medium"
                 android:text="@string/settings"
                 android:textColor="#EBEBEB"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/settings_btn" />
@@ -105,52 +107,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/goals"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="160dp"-->
-<!--            android:layout_marginBottom="160dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
-
-<!--            <Button-->
-<!--                android:id="@+id/goals_btn"-->
-<!--                android:layout_width="100dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:background="@drawable/circle_buttons"-->
-<!--                android:drawableTop="@drawable/ic_trophy"-->
-<!--                android:paddingTop="5dp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.0"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/goals_btntext"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/goals_btn"-->
-<!--                android:fontFamily="@font/next_art_semibold"-->
-<!--                android:text="@string/goals"-->
-<!--                android:textColor="#EBEBEB"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/goals_btn" />-->
-
-
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="160dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -170,7 +133,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/history_btn"
-                android:fontFamily="@font/next_art_semibold"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="18sp"
                 android:text="@string/history"
                 android:textColor="#EBEBEB"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -184,8 +148,8 @@
             android:id="@+id/music"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="160dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -206,9 +170,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/music_btn"
-                android:fontFamily="@font/next_art_semibold"
+                android:fontFamily="@font/raleway_medium"
                 android:text="@string/music"
                 android:textColor="#EBEBEB"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/music_btn" />
@@ -223,10 +188,11 @@
             android:layout_height="40dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/start_running"
-            android:fontFamily="@font/days_one"
-            android:textSize="18sp"
-            android:textStyle="italic"
+            android:fontFamily="@font/raleway_medium"
+            android:textSize="20sp"
             android:text="@string/start_running"
+            android:textAllCaps="false"
+            android:textStyle="italic"
             android:textColor="#F1F1F1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

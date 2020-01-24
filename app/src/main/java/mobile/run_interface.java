@@ -90,7 +90,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
     private static final int AccessCode = 48;
     public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
-    int count_down_voice;
 
     String current_date;
 
@@ -101,6 +100,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.run_interface);
+
+
 
         Runora_database = new RunoraDatabaseHelper(this);
 
@@ -121,7 +122,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
         overlayscreen = (ImageView) findViewById(R.id.overlayScreen);
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.count_down_voice);
-
 
         CountDownSwitch();
         ToggleTheme();
@@ -344,7 +344,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
     }
 
     private void distanceInkilometers() {
-
         distance = distance + (start_location.distanceTo(end_location) / 1000);
         start_location = end_location;
         distance_counter.setText(new DecimalFormat("0.00").format(distance) + " km");

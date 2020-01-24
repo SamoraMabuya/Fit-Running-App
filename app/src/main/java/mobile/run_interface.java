@@ -121,8 +121,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         overlayscreen = (ImageView) findViewById(R.id.overlayScreen);
 
 
-
-
         CountDownSwitch();
         ToggleTheme();
 
@@ -165,15 +163,15 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 if (ContextCompat.checkSelfPermission(run_interface.this,
                         Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(run_interface.this,
                         Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) &&
-                         ContextCompat.checkSelfPermission(run_interface.this,
-                        Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                        ContextCompat.checkSelfPermission(run_interface.this,
+                                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                     RequestPermissions();
                 } else if (!active) {
                     if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             && ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                             && ContextCompat.checkSelfPermission(run_interface.this,
-                            Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED ) {
+                            Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
                         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 0, run_interface.this);
                         createLocationRequest();
@@ -228,11 +226,11 @@ public class run_interface extends AppCompatActivity implements LocationListener
                     .setMessage("Please allow permission access to proceed.")
                     .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                                ActivityCompat.requestPermissions(run_interface.this,
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                                                Manifest.permission.ACCESS_COARSE_LOCATION,
-                                                Manifest.permission.READ_PHONE_STATE}, AccessCode);
-                            }
+                            ActivityCompat.requestPermissions(run_interface.this,
+                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                                            Manifest.permission.READ_PHONE_STATE}, AccessCode);
+                        }
                     })
                     .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                         @Override
@@ -349,7 +347,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         distance_counter.setText(new DecimalFormat("0.00").format(distance) + "Miles");
 
 
-
     }
 
     private void distanceInkilometers() {
@@ -391,8 +388,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
 
     }
-
-
 
 
     private void StartCountDown() {
@@ -514,6 +509,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 })
                 .create().show();
     }
+
     public void CalenderDate() {
         Calendar calendar = Calendar.getInstance();
         current_date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
@@ -523,7 +519,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
     public void AverageSpeed_km() {
         update = SystemClock.elapsedRealtime() - timer.getBase();
         average_speed = distance / update;
-
 
 
     }

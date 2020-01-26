@@ -15,6 +15,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -201,7 +205,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         @Override
                         public void onClick(View v) {
                             SaveData();
-                            AverageSpeed_km();
 
                         }
                     });
@@ -336,17 +339,30 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
 
     private void distanceInMiles() {
+        String miles = "mi";
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        SpannableString spannableString = new SpannableString(miles);
+        spannableString.setSpan(new RelativeSizeSpan(0.50f), 0 , 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE );
         distance = distance + (start_location.distanceTo(end_location) * 0.00062137);
         start_location = end_location;
-        distance_counter.setText(new DecimalFormat("0.00").format(distance) + "Miles");
+        builder.append(new DecimalFormat("0.00 ").format(distance));
+        builder.append(spannableString);
+        distance_counter.setText(builder);
+
 
 
     }
 
     private void distanceInkilometers() {
+        String kilometers = "km";
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        SpannableString spannableString = new SpannableString(kilometers);
+        spannableString.setSpan(new RelativeSizeSpan(0.50f), 0 , 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE );
         distance = distance + (start_location.distanceTo(end_location) / 1000);
         start_location = end_location;
-        distance_counter.setText(new DecimalFormat("0.00").format(distance) + " km");
+        builder.append(new DecimalFormat("0.00 ").format(distance));
+        builder.append(spannableString);
+        distance_counter.setText(builder);
 
 
     }
@@ -357,7 +373,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         final Boolean MetricUnit = sharedPreferences.getBoolean(settings.KMBTN, true);
         if (MetricUnit) {
             distanceInkilometers();
-            AverageSpeed_km();
         } else
             distanceInMiles();
     }
@@ -469,19 +484,20 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
 
     private void AutoStartActivity() {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             play_button.performContextClick();
-            View playButton = findViewById(R.id.play_button);
+        }
+        View playButton = findViewById(R.id.play_button);
             playButton.performClick();
 
         }
-    }
+
 
     private void SaveData() {
         new AlertDialog.Builder(this)
                 .setTitle("Save Activity To History")
                 .setMessage("Would you like to save your activity?.")
-                .setPositiveButton("Yes, Save Activity", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         CalenderDate();
                         boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
@@ -504,7 +520,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
                     }
                 })
-                .setNegativeButton("No, Don't Save Activity", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -531,12 +547,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     }
 
-    public void AverageSpeed_km() {
-        update = SystemClock.elapsedRealtime() - timer.getBase();
-        average_speed = distance / update;
-
-
-    }
 }
 
 

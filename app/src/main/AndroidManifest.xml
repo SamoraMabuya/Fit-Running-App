@@ -83,7 +83,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="mobile.settings">
+        <activity android:name="mobile.settings"
+            android:label="Run.app"
+            android:configChanges="locale">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

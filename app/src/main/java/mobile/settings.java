@@ -3,7 +3,10 @@ package mobile;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
 
 import mobile.apps.DisplayHistory;
 import mobile.apps.R;
@@ -72,6 +77,7 @@ public class settings extends AppCompatActivity {
         StartAlarmButtons = (RadioGroup) findViewById(R.id.StartAlarmButtons);
         StartAlarmOn = (RadioButton) findViewById(R.id.StartAlarmOn);
         StartAlarmOff = (RadioButton) findViewById(R.id.StartAlarmOff);
+
 
         final int Myposition = themeSpinner.getSelectedItemPosition();
         final int lingoPosition = LanguageSpinner.getSelectedItemPosition();
@@ -210,8 +216,9 @@ public class settings extends AppCompatActivity {
         StartAlarmOff.setChecked(sharedPreferences.getBoolean("start_alarm_off", false));
 
 
-        ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter.createFromResource(settings.this, R.array.theme_array, android.R.layout.simple_spinner_item);
-        themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter.createFromResource
+                (this, R.array.theme_array, R.layout.spinner_selected_text);
+        themeAdapter.setDropDownViewResource(R.layout.spinner_drop_down);
 
         themeSpinner.setAdapter(themeAdapter);
         themeSpinner.setSelection(LastSelection);
@@ -232,8 +239,9 @@ public class settings extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<CharSequence> lingoAdapter = ArrayAdapter.createFromResource(settings.this, R.array.Language_Options, android.R.layout.simple_spinner_item);
-        lingoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> lingoAdapter = ArrayAdapter.createFromResource
+                (this, R.array.Language_Options, R.layout.spinner_selected_text);
+        lingoAdapter.setDropDownViewResource(R.layout.spinner_drop_down);
 
         LanguageSpinner.setAdapter(lingoAdapter);
         LanguageSpinner.setSelection(LastSelection);
@@ -243,15 +251,31 @@ public class settings extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 editor.putInt("LastSelection", position);
                 editor.apply();
+
+                if (position == 0) {
+                    setLang("en");
+                } else if(position == 1) {
+                    setLang("de");
+                }
+
             }
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
+
         });
+    }
+
+    private void setLang(String lang) {
+        Locale locale = new Locale(lang);
+        Resources resources = getResources();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        Configuration configuration = resources.getConfiguration();
+        configuration.locale = locale;
+        resources.updateConfiguration(configuration, displayMetrics);
 
     }
 }
-
-

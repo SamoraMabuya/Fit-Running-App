@@ -3,10 +3,7 @@
     <string name="small_screen_size">Small Screen Size Layout</string>
     <string name="normal_screen_size">Normal Screen Size Layout</string>
     <string name="large_screen_size">Large Screen Size Layout</string>
-    <string name="xlarge_screen_size">Extra Large Screen Size Layout</string>
     <string name="main_layout">Main Layout</string>
-    <string name="sw320">The smallest width of the screen is greater than or equal to 320dp</string>
-    <string name="sw480">The smallest width of the screen is greater than or equal to 480dp</string>
     <string name="LOG_IN">Log In</string>
     <string name="sourcecodepromedium">sourcecodepro_medium</string>
     <string name="counts_word">COUNTS</string>
@@ -14,27 +11,26 @@
     <string name="history">History</string>
     <string name="settings">Settings</string>
     <string name="profile">Profile</string>
-    <string name="goals">Goals</string>
     <string name="music">Music</string>
     <string name="enable_gps">Enable GPS</string>
-    <string name="runora">Runora</string>
-    <string name="ca_runora">Runora</string>
+    <string name="runora" translatable="false">Runora</string>
+    <string name="ca_runora" translatable="false">Runora</string>
     <string name="start_running">Run</string>
-    <string name="_00_00">00:00</string>
+    <string name="_00_00" translatable="false">00:00</string>
     <string name="time">Time</string>
     <string name="distance">Distance</string>
-    <string name="todo">TODO</string>
-    <string name="_0_00">0.00</string>
-    <string name="avg_spd">Avg Spd</string>
-    <string name="distance_0_00">0.000</string>
-    <string name="curr_0_00">0.00</string>
-    <string name="curr_spd">Curr Spd</string>
+    <string name="todo" translatable="false">TODO</string>
+    <string name="_0_00" translatable="false">0.00</string>
+    <string name="avg_spd" translatable="false">Avg Spd</string>
+    <string name="distance_0_00" translatable="false">0.000</string>
+    <string name="curr_0_00" translatable="false">0.00</string>
+    <string name="curr_spd" translatable="false">Curr Spd</string>
     <string name="Reg">Registering.</string>
     <string name="settings_title">Settings</string>
     <string name="Distance">Distance</string>
     <string name="meters">Miles</string>
-    <string name="spd_in_mph">Spd in mph</string>
-    <string name="spd_in_km_h">Spd in km/h</string>
+    <string name="spd_in_mph" translatable="false">Spd in mph</string>
+    <string name="spd_in_km_h" translatable="false">Spd in km/h</string>
 
     <string-array name="feedback_time">
         <item> No feedback </item>
@@ -47,7 +43,7 @@
     </string-array>
     <string name="title_activity_countdowntimer" translatable="false">Countdowntimer</string>
     <string name="kilometers">Kilometers</string>
-    <string name="km">Km</string>
+    <string name="km" translatable="false">Km</string>
     <string name="miles">Miles</string>
     <string name="on">On</string>
     <string name="off">Off</string>
@@ -58,6 +54,12 @@
     <string name="activity_alarm">Voice Countdown</string>
     <string name="language">Language</string>
     <string name="about">About</string>
+    <string name="history_table_date">WhatIsDay, Monthary, ##th, Year</string>
+    <string name="delete">Delete</string>
+    <string name="entry">Entry</string>
+    <string name="_0">0</string>
+    <string name="_0_00_km">0.00 km</string>
+    <string name="marble_blue">Marble Blue</string>
 
     <string-array name="theme_array">
         <item> Marble Blue  </item>

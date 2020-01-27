@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#7E2828"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/runner_image_intro_page_compressed" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/AboutHeadingTab"
+        android:src="@drawable/run_interface_background" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/AboutHeadingTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/AboutHeading"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bottom_banner"
+            android:fontFamily="@font/raleway_medium"
+            android:paddingTop="20dp"
+            android:text="About"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/return_btn"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="200dp"
+            android:background="@drawable/returnbuttonresource"
+            android:drawableTop="@drawable/ic_left_arrow"
+            android:paddingStart="15dp"
+            android:paddingEnd="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/AboutHeading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/appFeaturesheading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/raleway_medium"
+        android:gravity="center_horizontal"
+        android:text="App Features"
+        android:textColor="#ffff"
+        android:textSize="18sp"
+        android:layout_below="@+id/AboutHeadingTab"/>
+
+    <View
+        android:id="@+id/firstLine"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/appFeaturesheading"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp"
+        android:background="#ffff" />
+
+    <TextView
+        android:id="@+id/feature1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstLine"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="#ffff"
+        android:textSize="14sp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="1. Change metirc units. "/>
+
+    <TextView
+        android:id="@+id/feature2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feature1"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="#ffff"
+        android:textSize="14sp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="2. 10 second countdown timer: Find in settings."/>
+
+    <TextView
+        android:id="@+id/feature3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feature2"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="#ffff"
+        android:textSize="14sp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="3. Change activity themes: 2 themes available."/>
+
+    <TextView
+        android:id="@+id/feature4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feature3"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="#ffff"
+        android:textSize="14sp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="4. Count down with voice: Countdown must be turned on for voice countdown to work."/>
+
+    <TextView
+        android:id="@+id/feature5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feature4"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="#ffff"
+        android:textSize="12sp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="5. App supports English and German."/>
+
+    <TextView
+        android:id="@+id/feature6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feature5"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="#ffff"
+        android:textSize="12sp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="6. Save activity option and access in history interface."/>
+
+    <TextView
+        android:id="@+id/feature7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feature6"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="#ffff"
+        android:textSize="12sp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="7. Access music player from any section."/>
+
+    <TextView
+        android:id="@+id/Contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feature7"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:text="Contact Developer"
+        android:textColor="#ffff"
+        android:textSize="18sp"
+        android:fontFamily="@font/raleway_medium"
+        android:gravity="center"/>
+
+    <View
+        android:id="@+id/secondLine"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/Contact"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp"
+        android:background="#ffff" />
+
+
+
+</RelativeLayout>

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7E2828"
     android:orientation="vertical">
 
     <ImageView
@@ -12,11 +11,6 @@
         android:scaleType="centerCrop"
         android:src="@drawable/runner_image_intro_page_compressed" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/AboutHeadingTab"
-        android:src="@drawable/run_interface_background" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/AboutHeadingTab"
@@ -39,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/return_btn"
+            android:id="@+id/return_home"
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:layout_marginEnd="200dp"
@@ -55,147 +49,326 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <TextView
-        android:id="@+id/appFeaturesheading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="80dp"
-        android:fontFamily="@font/raleway_medium"
-        android:gravity="center_horizontal"
-        android:text="App Features"
-        android:textColor="#ffff"
-        android:textSize="18sp"
-        android:layout_below="@+id/AboutHeadingTab"/>
-
-    <View
-        android:id="@+id/firstLine"
+    <ScrollView
+        android:id="@+id/AboutScrollView"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_below="@id/appFeaturesheading"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="50dp"
-        android:background="#ffff" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/AboutHeadingTab"
+        android:layout_above="@id/bottom_banner_section"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
 
-    <TextView
-        android:id="@+id/feature1"
+        <RelativeLayout
+            android:id="@+id/OverLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/run_interface_background">
+
+
+            <TextView
+                android:id="@+id/appFeaturesheading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/raleway_medium"
+                android:gravity="center_horizontal"
+                android:text="App Features"
+                android:textColor="#ffff"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/firstLine"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@id/appFeaturesheading"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="50dp"
+                android:background="#ffff" />
+
+            <TextView
+                android:id="@+id/feature1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/firstLine"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/raleway_medium"
+                android:text="1. Change metirc units. "
+                android:textColor="#ffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/feature2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feature1"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/raleway_medium"
+                android:text="2. 10 second countdown timer: Find in settings."
+                android:textColor="#ffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/feature3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feature2"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/raleway_medium"
+                android:text="3. Change activity themes: 2 themes available."
+                android:textColor="#ffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/feature4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feature3"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/raleway_medium"
+                android:text="4. Count down with voice: Countdown must be turned on for voice countdown to work."
+                android:textColor="#ffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/feature5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feature4"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/raleway_medium"
+                android:text="5. App supports English and German."
+                android:textColor="#ffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/feature6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feature5"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/raleway_medium"
+                android:text="6. Save activity option and access in history interface."
+                android:textColor="#ffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/feature7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feature6"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/raleway_medium"
+                android:text="7. Access music player from any section."
+                android:textColor="#ffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/Contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feature7"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/raleway_medium"
+                android:gravity="center"
+                android:text="Contact Developer"
+                android:textColor="#ffff"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/secondLine"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@id/Contact"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="50dp"
+                android:background="#ffff" />
+
+            <TextView
+                android:id="@+id/contact_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondLine"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/raleway_medium"
+                android:textColor="#ffff"
+                android:textSize="14sp"
+                android:text="Email: mrmabuyasamora@gmail.com \n\nAddress:  Country Club Way,  Pierre Van Ryneveld, Centurion, Gauteng, 0157" />
+
+            <View
+                android:id="@+id/thirdLine"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@id/contact_info"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="50dp"
+                android:background="#ffff"/>
+
+
+            <TextView
+                android:id="@+id/inquiries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/thirdLine"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/raleway_medium"
+                android:textColor="#ffff"
+                android:textSize="14sp"
+                android:text="All inquiries can be sent to the email above. Users may also report issues to the same email. \n\n"/>
+
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_banner_section"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/firstLine"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textColor="#ffff"
-        android:textSize="14sp"
-        android:fontFamily="@font/raleway_medium"
-        android:text="1. Change metirc units. "/>
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/bottom_banner"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <TextView
-        android:id="@+id/feature2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/feature1"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textColor="#ffff"
-        android:textSize="14sp"
-        android:fontFamily="@font/raleway_medium"
-        android:text="2. 10 second countdown timer: Find in settings."/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/setting_btn_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/feature3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/feature2"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textColor="#ffff"
-        android:textSize="14sp"
-        android:fontFamily="@font/raleway_medium"
-        android:text="3. Change activity themes: 2 themes available."/>
+            <Button
+                android:id="@+id/settings_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/invisible_button"
+                android:drawableTop="@drawable/ic_preference2"
+                android:paddingTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/feature4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/feature3"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textColor="#ffff"
-        android:textSize="14sp"
-        android:fontFamily="@font/raleway_medium"
-        android:text="4. Count down with voice: Countdown must be turned on for voice countdown to work."/>
+            <TextView
+                android:id="@+id/setting_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_medium"
+                android:text="@string/settings"
+                android:textColor="#ffff"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_button" />
 
-    <TextView
-        android:id="@+id/feature5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/feature4"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textColor="#ffff"
-        android:textSize="12sp"
-        android:fontFamily="@font/raleway_medium"
-        android:text="5. App supports English and German."/>
 
-    <TextView
-        android:id="@+id/feature6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/feature5"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textColor="#ffff"
-        android:textSize="12sp"
-        android:fontFamily="@font/raleway_medium"
-        android:text="6. Save activity option and access in history interface."/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/feature7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/feature6"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textColor="#ffff"
-        android:textSize="12sp"
-        android:fontFamily="@font/raleway_medium"
-        android:text="7. Access music player from any section."/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/History_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/Contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/feature7"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp"
-        android:text="Contact Developer"
-        android:textColor="#ffff"
-        android:textSize="18sp"
-        android:fontFamily="@font/raleway_medium"
-        android:gravity="center"/>
 
-    <View
-        android:id="@+id/secondLine"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_below="@id/Contact"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="50dp"
-        android:background="#ffff" />
+            <Button
+                android:id="@+id/history_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/invisible_button"
+                android:drawableTop="@drawable/ic_running2"
+                android:paddingTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/history_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_medium"
+                android:text="@string/history"
+                android:textColor="#ffff"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/history_btn" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/music_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/music_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/invisible_button"
+                android:drawableTop="@drawable/ic_headphones2"
+                android:paddingTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/musicText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_medium"
+                android:text="@string/music"
+                android:textColor="#ffff"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/music_btn" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

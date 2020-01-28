@@ -86,14 +86,14 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profile_button"
+            android:id="@+id/AboutBtnSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/profile_btn"
+                android:id="@+id/About_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentStart="true"
@@ -111,10 +111,10 @@
                 android:fontFamily="@font/raleway_medium"
                 android:text="@string/about"
                 android:textColor="#ffff"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/About_btn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -145,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_medium"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:text="@string/settings"
                 android:textColor="#ffff"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -180,7 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_medium"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:text="@string/music"
                 android:textColor="#ffff"
                 app:layout_constraintEnd_toEndOf="parent"

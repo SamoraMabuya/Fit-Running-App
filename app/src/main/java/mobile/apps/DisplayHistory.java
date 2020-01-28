@@ -33,7 +33,7 @@ public class DisplayHistory extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     ArrayList<RetrieveRunnerActivity> arrayList = new ArrayList<>();
 
-    Button returnButton, history_btn, music_btn;
+    Button returnButton, history_btn, music_btn, About_btn;
     ImageView deleteButton;
 
     Context context;
@@ -64,6 +64,7 @@ public class DisplayHistory extends AppCompatActivity {
         returnButton = (Button) findViewById(R.id.returnButton);
         history_btn = (Button) findViewById(R.id.history_btn);
         music_btn = (Button) findViewById(R.id.music_btn);
+        About_btn = (Button) findViewById(R.id.About_btn);
         deleteButton = (ImageView) findViewById(R.id.deleteButton);
 
 
@@ -109,6 +110,14 @@ public class DisplayHistory extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CATEGORY_APP_MUSIC);
+                startActivity(intent);
+            }
+        });
+
+        About_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DisplayHistory.this, About.class);
                 startActivity(intent);
             }
         });

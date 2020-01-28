@@ -19,13 +19,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 
+import mobile.apps.About;
 import mobile.apps.DisplayHistory;
 import mobile.apps.R;
 
 public class settings extends AppCompatActivity {
 
-    Button go_back_btn, music_btn, history_btn;
-
+    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
+    public static String GetInfo = "GetInfo";
+    public static String MILESBTN = "miles_btn";
+    public static String KMBTN = "kilometer_btn";
+    public static String ON = "on";
+    public static String OFF = "off";
+    public static String START_ALARM_ON = "start_alarm_on";
+    public static String START_ALARM_OFF = "start_alarm_off";
+    Button go_back_btn, music_btn, history_btn, AboutButton;
     RadioGroup distancebtn_group;
     RadioGroup CountDownBtnGroup;
     RadioGroup StartAlarmButtons;
@@ -35,24 +43,10 @@ public class settings extends AppCompatActivity {
     RadioButton OffButton;
     RadioButton StartAlarmOn;
     RadioButton StartAlarmOff;
-
-    public static String GetInfo = "GetInfo";
-    public static String MILESBTN = "miles_btn";
-    public static String KMBTN = "kilometer_btn";
-    public static String ON = "on";
-    public static String OFF = "off";
-    public static String START_ALARM_ON = "start_alarm_on";
-    public static String START_ALARM_OFF = "start_alarm_off";
-
     Spinner themeSpinner, LanguageSpinner;
-
     SharedPreferences sharedPreferences;
     SharedPreferences LastSelectedItem;
     SharedPreferences.Editor editor;
-
-
-    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +59,7 @@ public class settings extends AppCompatActivity {
 
         go_back_btn = (Button) findViewById(R.id.go_back_btn);
         music_btn = (Button) findViewById(R.id.music_btn);
+        AboutButton = (Button) findViewById(R.id.AboutButton);
         distancebtn_group = findViewById(R.id.distance_btn_group);
         miles_btn = (RadioButton) findViewById(R.id.miles_btn);
         kilometer_btn = (RadioButton) findViewById(R.id.kilometer_btn);
@@ -142,6 +137,28 @@ public class settings extends AppCompatActivity {
 
             }
         });
+
+        AboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(MILESBTN, miles_btn.isChecked());
+                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                editor.putBoolean(ON, OnButton.isChecked());
+                editor.putBoolean(OFF, OffButton.isChecked());
+                editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
+                editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
+                editor.putInt("LastSelection", Myposition);
+                editor.putInt("LastSelection", lingoPosition);
+                editor.apply();
+                Intent intent = new Intent(settings.this, About.class);
+                startActivity(intent);
+
+            }
+        });
+
+
         kilometer_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -254,7 +271,7 @@ public class settings extends AppCompatActivity {
 
                 if (position == 0) {
                     setLang("en");
-                } else if(position == 1) {
+                } else if (position == 1) {
                     setLang("de");
                 }
 

@@ -114,12 +114,12 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         });
 
         music_btn.setOnClickListener(new View.OnClickListener() {
-                                         @Override
-                                         public void onClick(View v) {
-                                             Intent intent = new Intent(CATEGORY_APP_MUSIC);
-                                             startActivity(intent);
-                                         }
-                                     });
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CATEGORY_APP_MUSIC);
+                startActivity(intent);
+            }
+        });
 
         about_image_view.setOnClickListener(new View.OnClickListener() {
             @Override

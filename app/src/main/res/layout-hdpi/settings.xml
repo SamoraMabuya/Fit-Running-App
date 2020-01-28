@@ -384,14 +384,14 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profile_button"
+            android:id="@+id/about_section"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/profile_btn"
+                android:id="@+id/AboutButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentStart="true"
@@ -409,10 +409,10 @@
                 android:fontFamily="@font/raleway_medium"
                 android:text="@string/about"
                 android:textColor="#ffff"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/AboutButton" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -445,7 +445,7 @@
                 android:fontFamily="@font/raleway_medium"
                 android:text="@string/history"
                 android:textColor="#ffff"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/history_btn" />
@@ -480,7 +480,7 @@
                 android:fontFamily="@font/raleway_medium"
                 android:text="@string/music"
                 android:textColor="#ffff"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/music_btn" />

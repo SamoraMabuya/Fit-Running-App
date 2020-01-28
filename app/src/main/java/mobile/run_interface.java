@@ -106,7 +106,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         setContentView(R.layout.run_interface);
 
 
-
         Runora_database = new RunoraDatabaseHelper(this);
 
         distance_counter = (TextView) findViewById(R.id.distance_counter);
@@ -166,40 +165,60 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
         play_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (!active) {
-                    if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                            && ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                            && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                            && ContextCompat.checkSelfPermission(run_interface.this,
-                            Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-                        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
-                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 0, run_interface.this);
-                        createLocationRequest();
-                        timer.setBase(SystemClock.elapsedRealtime() - update);
-                        timer.start();
-                        play_button.setVisibility(View.GONE);
-                        pause_button.setVisibility(View.VISIBLE);
-                        active = true;
-                } else {
-                        RequestPermissions(); {
-                        }
-                        play_button.setVisibility(View.VISIBLE);
-                        active = false;
+                ResumeRunnable resumeRunnable = new ResumeRunnable();
+                new Thread(resumeRunnable).start();
+            }
 
+
+            class ResumeRunnable implements Runnable {
+                @Override
+                public void run() {
+                    if (!active) {
+                        if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                                && ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                                && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                                && ContextCompat.checkSelfPermission(run_interface.this,
+                                Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
+                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 0, run_interface.this);
+                            createLocationRequest();
+                            timer.setBase(SystemClock.elapsedRealtime() - update);
+                            timer.start();
+                            play_button.setVisibility(View.GONE);
+                            pause_button.setVisibility(View.VISIBLE);
+                            active = true;
+                        } else {
+                            RequestPermissions();
+                            {
+                            }
+                            play_button.setVisibility(View.VISIBLE);
+                            active = false;
+
+                        }
                     }
 
                     pause_button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (active) {
-                                timer.stop();
-                                active = false;
-                                play_button.setVisibility(View.VISIBLE);
-                                update = SystemClock.elapsedRealtime() - timer.getBase();
-                                locationManager.removeUpdates(run_interface.this);
+                            PauseRunnable pauseRunnable = new PauseRunnable();
+                            new Thread(pauseRunnable).start();
+                        }
+
+                        class PauseRunnable implements Runnable {
+                            @Override
+                            public void run() {
+                                if (active) {
+                                    timer.stop();
+                                    active = false;
+                                    play_button.setVisibility(View.VISIBLE);
+                                    update = SystemClock.elapsedRealtime() - timer.getBase();
+                                    locationManager.removeUpdates(run_interface.this);
+
+                                }
                             }
                         }
                     });
+
 
                     stop_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -342,13 +361,12 @@ public class run_interface extends AppCompatActivity implements LocationListener
         String miles = "mi";
         SpannableStringBuilder builder = new SpannableStringBuilder();
         SpannableString spannableString = new SpannableString(miles);
-        spannableString.setSpan(new RelativeSizeSpan(0.50f), 0 , 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE );
+        spannableString.setSpan(new RelativeSizeSpan(0.50f), 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         distance = distance + (start_location.distanceTo(end_location) * 0.00062137);
         start_location = end_location;
         builder.append(new DecimalFormat("0.00 ").format(distance));
         builder.append(spannableString);
         distance_counter.setText(builder);
-
 
 
     }
@@ -357,7 +375,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
         String kilometers = "km";
         SpannableStringBuilder builder = new SpannableStringBuilder();
         SpannableString spannableString = new SpannableString(kilometers);
-        spannableString.setSpan(new RelativeSizeSpan(0.50f), 0 , 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE );
+        spannableString.setSpan(new RelativeSizeSpan(0.50f), 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         distance = distance + (start_location.distanceTo(end_location) / 1000);
         start_location = end_location;
         builder.append(new DecimalFormat("0.00 ").format(distance));
@@ -403,7 +421,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
             mediaPlayer.start();
         }
     }
-
 
 
     private void StartCountDown() {
@@ -474,13 +491,11 @@ public class run_interface extends AppCompatActivity implements LocationListener
         final boolean TimerSwitch = sharedPreferences.getBoolean(settings.ON, false);
         if (TimerSwitch) {
             StartCountDown();
-                VoiceCountdown();
+            VoiceCountdown();
         } else
             CountDownTimerView.setVisibility(View.GONE);
 
-        }
-
-
+    }
 
 
     private void AutoStartActivity() {
@@ -488,63 +503,77 @@ public class run_interface extends AppCompatActivity implements LocationListener
             play_button.performContextClick();
         }
         View playButton = findViewById(R.id.play_button);
-            playButton.performClick();
+        playButton.performClick();
 
-        }
+    }
 
 
     private void SaveData() {
-        new AlertDialog.Builder(this)
-                .setTitle("Save Activity To History")
-                .setMessage("Would you like to save your activity?.")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        CalenderDate();
-                        boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
-                        boolean dataUpdate = Runora_database.updateData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
-                        if (dataSaved && dataUpdate)
-                            Toast.makeText(run_interface.this, "Activity Saved To History", Toast.LENGTH_LONG).show();
-                        start_location = null;
-                        end_location = null;
-                        distance = 0;
-                        current_speed = 0;
-                        distance_counter.setText(new DecimalFormat("0.00").format(distance));
-                        timer.setBase(SystemClock.elapsedRealtime());
-                        locationManager.removeUpdates(run_interface.this);
-                        timer.stop();
-                        active = false;
-                        update = 0;
-                        play_button.setVisibility(View.VISIBLE);
+        SaveDataRunnable saveDataRunnable = new SaveDataRunnable();
+        new Thread(saveDataRunnable);
+
+    }
+
+    class SaveDataRunnable implements Runnable {
+        @Override
+        public void run() {
+            new AlertDialog.Builder(run_interface.this)
+                    .setTitle("Save Activity To History")
+                    .setMessage("Would you like to save your activity?.")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            CalenderDate();
+                            boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
+                            boolean dataUpdate = Runora_database.updateData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
+                            if (dataSaved && dataUpdate)
+                                Toast.makeText(run_interface.this, "Activity Saved To History", Toast.LENGTH_LONG).show();
+                            StopActivity();
 
 
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            StopActivity();
 
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        start_location = null;
-                        end_location = null;
-                        distance = 0;
-                        current_speed = 0;
-                        distance_counter.setText(new DecimalFormat("0.00").format(distance));
-                        timer.setBase(SystemClock.elapsedRealtime());
-                        locationManager.removeUpdates(run_interface.this);
-                        timer.stop();
-                        active = false;
-                        update = 0;
-                        play_button.setVisibility(View.VISIBLE);
+                        }
+                    })
+                    .create().show();
 
-                    }
-                })
-                .create().show();
+        }
     }
 
     public void CalenderDate() {
         Calendar calendar = Calendar.getInstance();
         current_date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
+    }
+
+    public void StopActivity() {
+        StopRunnable stopRunnable = new StopRunnable();
+        new Thread(stopRunnable);
+
+
+    }
+
+    class StopRunnable implements Runnable {
+        @Override
+        public void run() {
+            start_location = null;
+            end_location = null;
+            distance = 0;
+            current_speed = 0;
+            distance_counter.setText(new DecimalFormat("0.00").format(distance));
+            timer.setBase(SystemClock.elapsedRealtime());
+            locationManager.removeUpdates(run_interface.this);
+            timer.stop();
+            active = false;
+            update = 0;
+            play_button.setVisibility(View.VISIBLE);
+
+        }
     }
 
 }

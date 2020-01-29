@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import mobile.home;
 import mobile.settings;
 
@@ -13,7 +14,7 @@ public class About extends AppCompatActivity {
 
     Button return_home, settings_button, history_btn, music_btn;
 
-    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
+    String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
 
     @Override
@@ -21,40 +22,98 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about);
 
-        return_home = (Button) findViewById(R.id.return_home);
-        settings_button = (Button) findViewById(R.id.settings_button);
-        history_btn = (Button) findViewById(R.id.history_btn);
-        music_btn = (Button) findViewById(R.id.music_btn);
+        return_home = findViewById(R.id.return_home);
+        settings_button = findViewById(R.id.settings_button);
+        history_btn = findViewById(R.id.history_btn);
+        music_btn = findViewById(R.id.music_btn);
 
         return_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(About.this, home.class);
-                startActivity(intent);
+                ReturnHomeRunnable returnHomeRunnable = new ReturnHomeRunnable();
+                new Thread(returnHomeRunnable).start();
+            }
+
+
+            class ReturnHomeRunnable implements Runnable {
+                @Override
+                public void run() {
+                    return_home.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(About.this, home.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
         settings_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(About.this, settings.class);
-                startActivity(intent);
+                SettingsButtonRunnable settingsButtonRunnable = new SettingsButtonRunnable();
+                new Thread(settingsButtonRunnable).start();
+
+            }
+
+            class SettingsButtonRunnable implements Runnable {
+                @Override
+                public void run() {
+                    settings_button.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(About.this, settings.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
         history_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(About.this, DisplayHistory.class);
-                startActivity(intent);
+                HistoryBtnRunnable historyBtnRunnable = new HistoryBtnRunnable();
+                new Thread(historyBtnRunnable).start();
 
             }
+
+            class HistoryBtnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    history_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(About.this, DisplayHistory.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+            }
         });
+
         music_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CATEGORY_APP_MUSIC);
-                startActivity(intent);
+                MusicBtnRunnable musicBtnRunnable = new MusicBtnRunnable();
+                new Thread(musicBtnRunnable).start();
+
+            }
+
+            class MusicBtnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    music_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(CATEGORY_APP_MUSIC);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
     }
 }
+
+

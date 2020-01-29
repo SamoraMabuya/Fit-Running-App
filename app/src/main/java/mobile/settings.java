@@ -31,8 +31,8 @@ public class settings extends AppCompatActivity {
     public static String KMBTN = "kilometer_btn";
     public static String ON = "on";
     public static String OFF = "off";
-    public static String START_ALARM_ON = "start_alarm_on";
-    public static String START_ALARM_OFF = "start_alarm_off";
+    public static String VoiceON = "voiceOn";
+    public static String VoiceOff = "VoiceOff";
     Button go_back_btn, music_btn, history_btn, AboutButton;
     RadioGroup distancebtn_group;
     RadioGroup CountDownBtnGroup;
@@ -41,8 +41,8 @@ public class settings extends AppCompatActivity {
     RadioButton kilometer_btn;
     RadioButton OnButton;
     RadioButton OffButton;
-    RadioButton StartAlarmOn;
-    RadioButton StartAlarmOff;
+    RadioButton VoiceCountOn;
+    RadioButton VoiceCountOff;
     Spinner themeSpinner, LanguageSpinner;
     SharedPreferences sharedPreferences;
     SharedPreferences LastSelectedItem;
@@ -57,21 +57,21 @@ public class settings extends AppCompatActivity {
         LastSelectedItem = getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
 
 
-        go_back_btn = (Button) findViewById(R.id.go_back_btn);
-        music_btn = (Button) findViewById(R.id.music_btn);
-        AboutButton = (Button) findViewById(R.id.AboutButton);
+        go_back_btn = findViewById(R.id.go_back_btn);
+        music_btn = findViewById(R.id.music_btn);
+        AboutButton = findViewById(R.id.AboutButton);
         distancebtn_group = findViewById(R.id.distance_btn_group);
-        miles_btn = (RadioButton) findViewById(R.id.miles_btn);
-        kilometer_btn = (RadioButton) findViewById(R.id.kilometer_btn);
-        OnButton = (RadioButton) findViewById(R.id.OnButton);
-        OffButton = (RadioButton) findViewById(R.id.OffButton);
-        CountDownBtnGroup = (RadioGroup) findViewById(R.id.CountDownBtnGroup);
-        history_btn = (Button) findViewById(R.id.history_btn);
-        themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
-        LanguageSpinner = (Spinner) findViewById(R.id.LanguageSpinner);
-        StartAlarmButtons = (RadioGroup) findViewById(R.id.StartAlarmButtons);
-        StartAlarmOn = (RadioButton) findViewById(R.id.StartAlarmOn);
-        StartAlarmOff = (RadioButton) findViewById(R.id.StartAlarmOff);
+        miles_btn = findViewById(R.id.miles_btn);
+        kilometer_btn = findViewById(R.id.kilometer_btn);
+        OnButton = findViewById(R.id.OnButton);
+        OffButton = findViewById(R.id.OffButton);
+        CountDownBtnGroup = findViewById(R.id.CountDownBtnGroup);
+        history_btn = findViewById(R.id.history_btn);
+        themeSpinner = findViewById(R.id.themeSpinner);
+        LanguageSpinner = findViewById(R.id.LanguageSpinner);
+        StartAlarmButtons = findViewById(R.id.StartAlarmButtons);
+        VoiceCountOn = findViewById(R.id.VoiceCountOn);
+        VoiceCountOff = findViewById(R.id.VoiceCountOff);
 
 
         final int Myposition = themeSpinner.getSelectedItemPosition();
@@ -84,77 +84,132 @@ public class settings extends AppCompatActivity {
         go_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(MILESBTN, miles_btn.isChecked());
-                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
-                editor.putBoolean(ON, OnButton.isChecked());
-                editor.putBoolean(OFF, OffButton.isChecked());
-                editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
-                editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
-                editor.putInt("LastSelection", Myposition);
-                editor.putInt("LastSelection", lingoPosition);
-                editor.apply();
-                Intent intent = new Intent(getApplicationContext(), home.class);
-                startActivity(intent);
+                GoBackBtnRunnable goBackBtnRunnable = new GoBackBtnRunnable();
+                new Thread(goBackBtnRunnable).start();
+            }
 
+            class GoBackBtnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    go_back_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(MILESBTN, miles_btn.isChecked());
+                            editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                            editor.putBoolean(ON, OnButton.isChecked());
+                            editor.putBoolean(OFF, OffButton.isChecked());
+                            editor.putBoolean(VoiceON, VoiceCountOn.isChecked());
+                            editor.putBoolean(VoiceOff, VoiceCountOff.isChecked());
+                            editor.putInt("LastSelection", Myposition);
+                            editor.putInt("LastSelection", lingoPosition);
+                            editor.apply();
+                            Intent intent = new Intent(getApplicationContext(), home.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
+
         history_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(MILESBTN, miles_btn.isChecked());
-                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
-                editor.putBoolean(ON, OnButton.isChecked());
-                editor.putBoolean(OFF, OffButton.isChecked());
-                editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
-                editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
-                editor.putInt("LastSelection", Myposition);
-                editor.putInt("LastSelection", lingoPosition);
-                editor.apply();
-                Intent intent = new Intent(settings.this, DisplayHistory.class);
-                startActivity(intent);
+                HistoryBtnRunnable historyBtnRunnable = new HistoryBtnRunnable();
+                new Thread(historyBtnRunnable).start();
 
+            }
+
+            class HistoryBtnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    history_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(MILESBTN, miles_btn.isChecked());
+                            editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                            editor.putBoolean(ON, OnButton.isChecked());
+                            editor.putBoolean(OFF, OffButton.isChecked());
+                            editor.putBoolean(VoiceON, VoiceCountOn.isChecked());
+                            editor.putBoolean(VoiceOff, VoiceCountOff.isChecked());
+                            editor.putInt("LastSelection", Myposition);
+                            editor.putInt("LastSelection", lingoPosition);
+                            editor.apply();
+                            Intent intent = new Intent(getApplicationContext(), DisplayHistory.class);
+                            startActivity(intent);
+
+                        }
+                    });
+                }
             }
         });
         music_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(MILESBTN, miles_btn.isChecked());
-                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
-                editor.putBoolean(ON, OnButton.isChecked());
-                editor.putBoolean(OFF, OffButton.isChecked());
-                editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
-                editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
-                editor.putInt("LastSelection", Myposition);
-                editor.putInt("LastSelection", lingoPosition);
-                editor.apply();
-                Intent intent = new Intent(CATEGORY_APP_MUSIC);
-                startActivity(intent);
+                MusicBtnRunnable musicBtnRunnable = new MusicBtnRunnable();
+                new Thread(musicBtnRunnable).start();
 
+            }
+
+            class MusicBtnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    music_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(MILESBTN, miles_btn.isChecked());
+                            editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                            editor.putBoolean(ON, OnButton.isChecked());
+                            editor.putBoolean(OFF, OffButton.isChecked());
+                            editor.putBoolean(VoiceON, VoiceCountOn.isChecked());
+                            editor.putBoolean(VoiceOff, VoiceCountOff.isChecked());
+                            editor.putInt("LastSelection", Myposition);
+                            editor.putInt("LastSelection", lingoPosition);
+                            editor.apply();
+                            Intent intent = new Intent(CATEGORY_APP_MUSIC);
+                            startActivity(intent);
+                        }
+                    });
+
+                }
             }
         });
 
         AboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(MILESBTN, miles_btn.isChecked());
-                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
-                editor.putBoolean(ON, OnButton.isChecked());
-                editor.putBoolean(OFF, OffButton.isChecked());
-                editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
-                editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
-                editor.putInt("LastSelection", Myposition);
-                editor.putInt("LastSelection", lingoPosition);
-                editor.apply();
-                Intent intent = new Intent(settings.this, About.class);
-                startActivity(intent);
+                AboutButtonRunnable aboutButtonRunnable = new AboutButtonRunnable();
+                new Thread(aboutButtonRunnable).start();
 
+            }
+
+
+            class AboutButtonRunnable implements Runnable {
+                @Override
+                public void run() {
+                    AboutButton.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(MILESBTN, miles_btn.isChecked());
+                            editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                            editor.putBoolean(ON, OnButton.isChecked());
+                            editor.putBoolean(OFF, OffButton.isChecked());
+                            editor.putBoolean(VoiceON, VoiceCountOn.isChecked());
+                            editor.putBoolean(VoiceOff, VoiceCountOff.isChecked());
+                            editor.putInt("LastSelection", Myposition);
+                            editor.putInt("LastSelection", lingoPosition);
+                            editor.apply();
+                            Intent intent = new Intent(settings.this, About.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
@@ -162,75 +217,154 @@ public class settings extends AppCompatActivity {
         kilometer_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(KMBTN, kilometer_btn.isChecked());
-                editor.apply();
+                KilometerBtnRunnable kilometerBtnRunnable = new KilometerBtnRunnable();
+                new Thread(kilometerBtnRunnable).start();
 
+            }
+
+            class KilometerBtnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    kilometer_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+                            editor.apply();
+                        }
+                    });
+                }
             }
         });
         miles_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(MILESBTN, miles_btn.isChecked());
-                editor.apply();
+                MilesBtnRunnable milesBtnRunnable = new MilesBtnRunnable();
+                new Thread(milesBtnRunnable).start();
+            }
+
+            class MilesBtnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    miles_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(MILESBTN, miles_btn.isChecked());
+                            editor.apply();
+
+                        }
+                    });
+                }
             }
         });
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        kilometer_btn.setChecked(sharedPreferences.getBoolean("kilometer_btn", true));
-        miles_btn.setChecked(sharedPreferences.getBoolean("miles_btn", false));
+        kilometer_btn.setChecked(sharedPreferences.getBoolean(KMBTN, true));
+        miles_btn.setChecked(sharedPreferences.getBoolean(MILESBTN, false));
 
 
         OnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(ON, OnButton.isChecked());
-                editor.apply();
+                OnButtonRunnable onButtonRunnable = new OnButtonRunnable();
+                new Thread(onButtonRunnable).start();
+            }
+
+            class OnButtonRunnable implements Runnable {
+                @Override
+                public void run() {
+                    OnButton.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(ON, OnButton.isChecked());
+                            editor.apply();
+                        }
+                    });
+                }
             }
         });
 
         OffButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(OFF, OffButton.isChecked());
-                editor.apply();
+                OffButtonRunnable offButtonRunnable = new OffButtonRunnable();
+                new Thread(offButtonRunnable).start();
+            }
+
+            class OffButtonRunnable implements Runnable {
+                @Override
+                public void run() {
+                    OffButton.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(OFF, OffButton.isChecked());
+                            editor.apply();
+                        }
+                    });
+                }
             }
         });
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        OnButton.setChecked(sharedPreferences.getBoolean("on", false));
-        OffButton.setChecked(sharedPreferences.getBoolean("off", true));
+        OnButton.setChecked(sharedPreferences.getBoolean(ON, false));
+        OffButton.setChecked(sharedPreferences.getBoolean(OFF, true));
 
 
-        StartAlarmOn.setOnClickListener(new View.OnClickListener() {
+        VoiceCountOn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(START_ALARM_ON, StartAlarmOn.isChecked());
-                editor.apply();
+                VoiceCountOnRunnable voiceCountOnRunnable = new VoiceCountOnRunnable();
+                new Thread(voiceCountOnRunnable).start();
+            }
+
+            class VoiceCountOnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    VoiceCountOn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(VoiceON, VoiceCountOn.isChecked());
+                            editor.apply();
+                        }
+                    });
+                }
             }
         });
 
-        StartAlarmOff.setOnClickListener(new View.OnClickListener() {
+
+        VoiceCountOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(START_ALARM_OFF, StartAlarmOff.isChecked());
-                editor.apply();
+                VoiceCountOffRunnable voiceCountOffRunnable = new VoiceCountOffRunnable();
+                new Thread(voiceCountOffRunnable).start();
+            }
+
+            class VoiceCountOffRunnable implements Runnable {
+                @Override
+                public void run() {
+                    VoiceCountOff.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(VoiceOff, VoiceCountOff.isChecked());
+                            editor.apply();
+                        }
+                    });
+                }
             }
         });
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        StartAlarmOn.setChecked(sharedPreferences.getBoolean("start_alarm_on", true));
-        StartAlarmOff.setChecked(sharedPreferences.getBoolean("start_alarm_off", false));
+        VoiceCountOn.setChecked(sharedPreferences.getBoolean(VoiceON, true));
+        VoiceCountOff.setChecked(sharedPreferences.getBoolean(VoiceOff, false));
 
 
         ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter.createFromResource

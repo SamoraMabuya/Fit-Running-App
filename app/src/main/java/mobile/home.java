@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -41,9 +42,7 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
     Button history_btn, music_btn, settings_btn, start_btn, about_btn;
 
 
-    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
-
-    String show_date;
+    String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
 
     @Override
@@ -51,20 +50,18 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
-        start_btn = (Button) findViewById(R.id.start_btn);
-        history_btn = (Button) findViewById(R.id.history_btn);
-        music_btn = (Button) findViewById(R.id.music_btn);
-        settings_btn = (Button) findViewById(R.id.settings_btn);
-        about_btn = (Button) findViewById(R.id.about_btn);
+        start_btn = findViewById(R.id.start_btn);
+        history_btn = findViewById(R.id.history_btn);
+        music_btn = findViewById(R.id.music_btn);
+        settings_btn = findViewById(R.id.settings_btn);
+        about_btn = findViewById(R.id.about_btn);
 
+        music_IV_btn = findViewById(R.id.music_imageview_btn);
+        settings_IV_btn = findViewById(R.id.settings_imageview_btn);
+        history_IV_btn = findViewById(R.id.history_imageview_btn);
+        about_image_view = findViewById(R.id.about_imageView);
 
-        music_IV_btn = (ImageView) findViewById(R.id.music_imageview_btn);
-        settings_IV_btn = (ImageView) findViewById(R.id.settings_imageview_btn);
-        history_IV_btn = (ImageView) findViewById(R.id.history_imageview_btn);
-        about_image_view = (ImageView) findViewById(R.id.about_imageView);
-
-
-        HomePageDate = (TextView) findViewById(R.id.HomePageDate);
+        HomePageDate = findViewById(R.id.HomePageDate);
 
         CalenderDate();
 
@@ -74,16 +71,45 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         history_IV_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(home.this, DisplayHistory.class));
+                HistoryIVRunnable historyIVRunnable = new HistoryIVRunnable();
+                new Thread(historyIVRunnable).start();
+            }
 
+
+            class HistoryIVRunnable implements Runnable {
+                @Override
+                public void run() {
+                    history_IV_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(home.this, DisplayHistory.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
         history_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(home.this, DisplayHistory.class));
+                HistoryRunnable historyRunnable = new HistoryRunnable();
+                new Thread(historyRunnable).start();
 
+            }
+
+            class HistoryRunnable implements Runnable {
+                @Override
+                public void run() {
+                    history_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(home.this, DisplayHistory.class);
+                            startActivity(intent);
+
+                        }
+                    });
+                }
             }
         });
 
@@ -91,65 +117,157 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         settings_IV_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(home.this, settings.class);
-                startActivity(intent);
+                SettingsIVRunnable historyRunnable = new SettingsIVRunnable();
+                new Thread(historyRunnable).start();
+            }
+
+            class SettingsIVRunnable implements Runnable {
+                @Override
+                public void run() {
+                    settings_IV_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(home.this, settings.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
         settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(home.this, settings.class);
-                startActivity(intent);
+                SettingsRunnable settingsRunnable = new SettingsRunnable();
+                new Thread(settingsRunnable).start();
 
+            }
+
+            class SettingsRunnable implements Runnable {
+                @Override
+                public void run() {
+                    settings_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(home.this, settings.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
         music_IV_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CATEGORY_APP_MUSIC);
-                startActivity(intent);
+                MusicIVRunnable musicIVRunnable = new MusicIVRunnable();
+                new Thread(musicIVRunnable).start();
+
+            }
+
+            class MusicIVRunnable implements Runnable {
+                @Override
+                public void run() {
+                    music_IV_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(CATEGORY_APP_MUSIC);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
-
         music_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CATEGORY_APP_MUSIC);
-                startActivity(intent);
+                MusicRunnable musicRunnable = new MusicRunnable();
+                new Thread(musicRunnable).start();
+
+            }
+
+            class MusicRunnable implements Runnable {
+                @Override
+                public void run() {
+                    music_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(CATEGORY_APP_MUSIC);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
         about_image_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home.this, About.class);
-                startActivity(intent);
+                AboutIVRunnable aboutIVRunnable = new AboutIVRunnable();
+                new Thread(aboutIVRunnable).start();
+
+            }
+
+            class AboutIVRunnable implements Runnable {
+                @Override
+                public void run() {
+                    about_image_view.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(home.this, About.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
-
         about_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home.this, About.class);
-                startActivity(intent);
+                AboutRunnable aboutRunnable = new AboutRunnable();
+                new Thread(aboutRunnable).start();
 
             }
-        });
 
+            class AboutRunnable implements Runnable {
+                @Override
+                public void run() {
+                    about_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(home.this, About.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+            }
+        });
 
         start_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(home.this,
-                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(home.this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                        && ContextCompat.checkSelfPermission(home.this,
-                        Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    startRun_interface();
-                } else {
-                    LocationPermissionRequest();
+                StartRunnable startRunnable = new StartRunnable();
+                new Thread(startRunnable).start();
+            }
+
+
+            class StartRunnable implements Runnable {
+                @Override
+                public void run() {
+                    start_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (ContextCompat.checkSelfPermission(home.this,
+                                    Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(home.this,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                                    && ContextCompat.checkSelfPermission(home.this,
+                                    Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                                startRun_interface();
+                            } else {
+                                LocationPermissionRequest();
+                            }
+                        }
+                    });
                 }
             }
         });
@@ -163,10 +281,16 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
                     .setMessage("Please allow permission access to proceed.")
                     .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                ActivityCompat.requestPermissions(home.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                                Manifest.permission.READ_PHONE_STATE}, PermissionCode);
+                            }
                             ActivityCompat.requestPermissions(home.this,
                                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                             Manifest.permission.ACCESS_COARSE_LOCATION,
-                                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                                             Manifest.permission.READ_PHONE_STATE}, PermissionCode);
                         }
 
@@ -180,10 +304,16 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
                     .create().show();
 
         } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                Manifest.permission.READ_PHONE_STATE}, PermissionCode);
+            }
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                             Manifest.permission.READ_PHONE_STATE}, PermissionCode);
         }
     }

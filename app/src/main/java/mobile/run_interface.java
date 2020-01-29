@@ -49,7 +49,7 @@ import mobile.apps.R;
 import static mobile.settings.GetInfo;
 
 
-public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener, RadioGroup.OnCheckedChangeListener {
+public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener {
 
     RunoraDatabaseHelper Runora_database;
 
@@ -57,9 +57,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
     LocationManager locationManager;
     LocationRequest locationRequest;
     Location start_location, end_location, curr_location;
-    private static final int Permission_Request_Code = 100;
-    boolean NetworkEnabled = false;
-    boolean GPSEnabled = false;
 
 
     boolean active;
@@ -73,8 +70,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     private static final long StartTime = 11000;
 
     private long TimeLeft = StartTime;
-    boolean StartCountDown = false;
-    boolean CountDownProcess = false;
+
 
     double distance = 0;
     double current_speed;
@@ -86,13 +82,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
     RadioButton kilometer_btn;
 
 
-    public static final String MILESBTN = "miles_btn";
-    public static final String KMBTN = "kilometer_btn";
-    public static final String Shared_info = "info";
-    public static String DBG = "distancebtn_group";
-
     private static final int AccessCode = 48;
-    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
+    String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
 
     String current_date;
@@ -108,23 +99,22 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
         Runora_database = new RunoraDatabaseHelper(this);
 
-        distance_counter = (TextView) findViewById(R.id.distance_counter);
-        play_button = (Button) findViewById(R.id.play_button);
-        pause_button = (Button) findViewById(R.id.pause_button);
-        stop_btn = (Button) findViewById(R.id.stop_btn);
-        SpdInmph = (TextView) findViewById(R.id.spdInmph);
-        SpdInkmh = (TextView) findViewById(R.id.speedInkmh);
-        CountDownTimerView = (TextView) findViewById(R.id.CountDownTimerView);
-        timer = (Chronometer) findViewById(R.id.timer);
-        distancebtn_group = (RadioGroup) findViewById(R.id.distance_btn_group);
-        miles_btn = (RadioButton) findViewById(R.id.miles_btn);
-        kilometer_btn = (RadioButton) findViewById(R.id.kilometer_btn);
+        distance_counter = findViewById(R.id.distance_counter);
+        play_button = findViewById(R.id.play_button);
+        pause_button = findViewById(R.id.pause_button);
+        stop_btn = findViewById(R.id.stop_btn);
+        SpdInmph = findViewById(R.id.spdInmph);
+        SpdInkmh = findViewById(R.id.speedInkmh);
+        CountDownTimerView = findViewById(R.id.CountDownTimerView);
+        timer = findViewById(R.id.timer);
         distancebtn_group = findViewById(R.id.distance_btn_group);
-        homebutton = (Button) findViewById(R.id.homebutton);
-        musicButton = (Button) findViewById(R.id.musicButton);
-        themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
-        overlayscreen = (ImageView) findViewById(R.id.overlayScreen);
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.count_down_voice);
+        miles_btn = findViewById(R.id.miles_btn);
+        kilometer_btn = findViewById(R.id.kilometer_btn);
+        distancebtn_group = findViewById(R.id.distance_btn_group);
+        homebutton = findViewById(R.id.homebutton);
+        musicButton = findViewById(R.id.musicButton);
+        themeSpinner = findViewById(R.id.themeSpinner);
+        overlayscreen = findViewById(R.id.overlayScreen);
 
         CountDownSwitch();
         ToggleTheme();
@@ -140,25 +130,52 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 if ((SystemClock.elapsedRealtime() - timer.getBase()) >= 86400000) {
                     chronometer.setBase(SystemClock.elapsedRealtime());
                 }
-
             }
         });
+
+
         musicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CATEGORY_APP_MUSIC);
-                startActivity(intent);
+                MusicRunnable musicRunnable = new MusicRunnable();
+                new Thread(musicRunnable).start();
+
             }
 
+            class MusicRunnable implements Runnable {
+                @Override
+                public void run() {
+                    musicButton.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(CATEGORY_APP_MUSIC);
+                            startActivity(intent);
+                        }
 
+                    });
+                }
+            }
         });
 
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(run_interface.this, home.class);
-                startActivity(intent);
+                HomeRunnnable homeRunnnable = new HomeRunnnable();
+                new Thread(homeRunnnable).start();
 
+            }
+
+            class HomeRunnnable implements Runnable {
+                @Override
+                public void run() {
+                    homebutton.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(run_interface.this, home.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
@@ -173,30 +190,33 @@ public class run_interface extends AppCompatActivity implements LocationListener
             class ResumeRunnable implements Runnable {
                 @Override
                 public void run() {
-                    if (!active) {
-                        if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                                && ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                                && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                                && ContextCompat.checkSelfPermission(run_interface.this,
-                                Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-                            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
-                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 0, run_interface.this);
-                            createLocationRequest();
-                            timer.setBase(SystemClock.elapsedRealtime() - update);
-                            timer.start();
-                            play_button.setVisibility(View.GONE);
-                            pause_button.setVisibility(View.VISIBLE);
-                            active = true;
-                        } else {
-                            RequestPermissions();
-                            {
+                    play_button.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!active) {
+                                if (ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                                        && ContextCompat.checkSelfPermission(run_interface.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                                        && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                                        && ContextCompat.checkSelfPermission(run_interface.this,
+                                        Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 0, run_interface.this);
+                                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, run_interface.this);
+                                    createLocationRequest();
+                                    timer.setBase(SystemClock.elapsedRealtime() - update);
+                                    timer.start();
+                                    play_button.setVisibility(View.GONE);
+                                    pause_button.setVisibility(View.VISIBLE);
+                                    active = true;
+                                } else {
+                                    RequestPermissions();
+                                    {
+                                    }
+                                    play_button.setVisibility(View.VISIBLE);
+                                    active = false;
+                                }
                             }
-                            play_button.setVisibility(View.VISIBLE);
-                            active = false;
-
                         }
-                    }
-
+                    });
                     pause_button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -207,14 +227,19 @@ public class run_interface extends AppCompatActivity implements LocationListener
                         class PauseRunnable implements Runnable {
                             @Override
                             public void run() {
-                                if (active) {
-                                    timer.stop();
-                                    active = false;
-                                    play_button.setVisibility(View.VISIBLE);
-                                    update = SystemClock.elapsedRealtime() - timer.getBase();
-                                    locationManager.removeUpdates(run_interface.this);
+                                pause_button.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (active) {
+                                            timer.stop();
+                                            active = false;
+                                            play_button.setVisibility(View.VISIBLE);
+                                            update = SystemClock.elapsedRealtime() - timer.getBase();
+                                            locationManager.removeUpdates(run_interface.this);
 
-                                }
+                                        }
+                                    }
+                                });
                             }
                         }
                     });
@@ -223,8 +248,22 @@ public class run_interface extends AppCompatActivity implements LocationListener
                     stop_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            SaveData();
+                            StopRunnable stopRunnable = new StopRunnable();
+                            new Thread(stopRunnable).start();
 
+
+                        }
+
+                        class StopRunnable implements Runnable {
+                            @Override
+                            public void run() {
+                                stop_btn.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        SaveData();
+                                    }
+                                });
+                            }
                         }
                     });
                 }
@@ -240,10 +279,16 @@ public class run_interface extends AppCompatActivity implements LocationListener
                     .setMessage("Please allow permission access to proceed.")
                     .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                ActivityCompat.requestPermissions(run_interface.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                                Manifest.permission.READ_PHONE_STATE}, AccessCode);
+                            }
                             ActivityCompat.requestPermissions(run_interface.this,
                                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                             Manifest.permission.ACCESS_COARSE_LOCATION,
-                                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                                             Manifest.permission.READ_PHONE_STATE}, AccessCode);
                         }
                     })
@@ -256,10 +301,16 @@ public class run_interface extends AppCompatActivity implements LocationListener
                     .create().show();
 
         } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                Manifest.permission.READ_PHONE_STATE}, AccessCode);
+            }
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                             Manifest.permission.READ_PHONE_STATE}, AccessCode);
         }
     }
@@ -281,19 +332,11 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void createLocationRequest() {
         locationRequest = LocationRequest.create();
-        locationRequest.setInterval(5000);
-        locationRequest.setFastestInterval(5000);
+        locationRequest.setInterval(3000);
+        locationRequest.setFastestInterval(2000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        RadioButton activeButton = (RadioButton) findViewById(checkedId);
-        if (activeButton.getId() == R.id.miles_btn) {
-            distanceInMiles();
-        }
-    }
 
     public void LocationCall() {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -382,13 +425,12 @@ public class run_interface extends AppCompatActivity implements LocationListener
         builder.append(spannableString);
         distance_counter.setText(builder);
 
-
     }
 
 
     private void ChooseMetricUnits() {
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-        final Boolean MetricUnit = sharedPreferences.getBoolean(settings.KMBTN, true);
+        final boolean MetricUnit = sharedPreferences.getBoolean(settings.KMBTN, true);
         if (MetricUnit) {
             distanceInkilometers();
         } else
@@ -416,7 +458,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
     public void VoiceCountdown() {
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.count_down_voice);
-        boolean VoiceSwitch = sharedPreferences.getBoolean(settings.START_ALARM_ON, true);
+        boolean VoiceSwitch = sharedPreferences.getBoolean(settings.VoiceON, true);
         if (VoiceSwitch) {
             mediaPlayer.start();
         }
@@ -509,41 +551,33 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
 
     private void SaveData() {
-        SaveDataRunnable saveDataRunnable = new SaveDataRunnable();
-        new Thread(saveDataRunnable);
+        new AlertDialog.Builder(run_interface.this)
+                .setTitle("Save Activity To History")
+                .setMessage("Would you like to save your activity?.")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        CalenderDate();
+                        boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
+                        boolean dataUpdate = Runora_database.updateData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
+                        if (dataSaved && dataUpdate)
+                            Toast.makeText(run_interface.this, "Activity Saved To History", Toast.LENGTH_LONG).show();
+                        StopActivity();
+
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        StopActivity();
+
+                    }
+                })
+                .create().show();
 
     }
 
-    class SaveDataRunnable implements Runnable {
-        @Override
-        public void run() {
-            new AlertDialog.Builder(run_interface.this)
-                    .setTitle("Save Activity To History")
-                    .setMessage("Would you like to save your activity?.")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            CalenderDate();
-                            boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
-                            boolean dataUpdate = Runora_database.updateData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
-                            if (dataSaved && dataUpdate)
-                                Toast.makeText(run_interface.this, "Activity Saved To History", Toast.LENGTH_LONG).show();
-                            StopActivity();
-
-
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            StopActivity();
-
-                        }
-                    })
-                    .create().show();
-
-        }
-    }
 
     public void CalenderDate() {
         Calendar calendar = Calendar.getInstance();
@@ -552,31 +586,21 @@ public class run_interface extends AppCompatActivity implements LocationListener
     }
 
     public void StopActivity() {
-        StopRunnable stopRunnable = new StopRunnable();
-        new Thread(stopRunnable);
-
+        start_location = null;
+        end_location = null;
+        distance = 0;
+        current_speed = 0;
+        distance_counter.setText(new DecimalFormat("0.00").format(distance));
+        timer.setBase(SystemClock.elapsedRealtime());
+        locationManager.removeUpdates(run_interface.this);
+        timer.stop();
+        active = false;
+        update = 0;
+        play_button.setVisibility(View.VISIBLE);
 
     }
-
-    class StopRunnable implements Runnable {
-        @Override
-        public void run() {
-            start_location = null;
-            end_location = null;
-            distance = 0;
-            current_speed = 0;
-            distance_counter.setText(new DecimalFormat("0.00").format(distance));
-            timer.setBase(SystemClock.elapsedRealtime());
-            locationManager.removeUpdates(run_interface.this);
-            timer.stop();
-            active = false;
-            update = 0;
-            play_button.setVisibility(View.VISIBLE);
-
-        }
-    }
-
 }
+
 
 
 

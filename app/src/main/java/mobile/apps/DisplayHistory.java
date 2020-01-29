@@ -1,6 +1,5 @@
 package mobile.apps;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,14 +32,10 @@ public class DisplayHistory extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     ArrayList<RetrieveRunnerActivity> arrayList = new ArrayList<>();
 
-    Button returnButton, history_btn, music_btn, About_btn;
+    Button returnButton, music_btn, About_btn, settings_btn;
     ImageView deleteButton;
 
-    Context context;
-
-    RetrieveRunnerActivity retrieveRunnerActivity;
-
-    public static final String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
+    String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
 
     @Override
@@ -48,8 +43,8 @@ public class DisplayHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_view_layout);
 
-        recyclerView = (RecyclerView) findViewById(R.id.Recycle_layout);
-        EmptyActivity = (TextView) findViewById(R.id.EmptyActivity);
+        recyclerView = findViewById(R.id.Recycle_layout);
+        EmptyActivity = findViewById(R.id.EmptyActivity);
         Runora_database = new RunoraDatabaseHelper(this);
 
 
@@ -61,11 +56,11 @@ public class DisplayHistory extends AppCompatActivity {
         final Cursor cursor = runoraDatabaseHelper.RetrieveDataFromDatabase(sqLiteDatabase);
 
 
-        returnButton = (Button) findViewById(R.id.returnButton);
-        history_btn = (Button) findViewById(R.id.history_btn);
-        music_btn = (Button) findViewById(R.id.music_btn);
-        About_btn = (Button) findViewById(R.id.About_btn);
-        deleteButton = (ImageView) findViewById(R.id.deleteButton);
+        returnButton = findViewById(R.id.returnButton);
+        settings_btn = findViewById(R.id.settings_btn);
+        music_btn = findViewById(R.id.music_btn);
+        About_btn = findViewById(R.id.About_btn);
+        deleteButton = findViewById(R.id.deleteButton);
 
 
         if (cursor.moveToFirst()) {
@@ -92,16 +87,43 @@ public class DisplayHistory extends AppCompatActivity {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DisplayHistory.this, home.class);
-                startActivity(intent);
+                ReturnButtonRunnable returnButtonRunnable = new ReturnButtonRunnable();
+                new Thread(returnButtonRunnable).start();
+            }
+
+            class ReturnButtonRunnable implements Runnable {
+                @Override
+                public void run() {
+                    returnButton.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(DisplayHistory.this, home.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
-        history_btn.setOnClickListener(new View.OnClickListener() {
+        settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DisplayHistory.this, settings.class);
-                startActivity(intent);
+                SettingsBtnRunnable settingsBtnRunnable = new SettingsBtnRunnable();
+                new Thread(settingsBtnRunnable).start();
+
+            }
+
+            class SettingsBtnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    settings_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(DisplayHistory.this, settings.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
@@ -109,16 +131,43 @@ public class DisplayHistory extends AppCompatActivity {
         music_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CATEGORY_APP_MUSIC);
-                startActivity(intent);
+                MusicBtnRunnable musicBtnRunnable = new MusicBtnRunnable();
+                new Thread(musicBtnRunnable).start();
+
+            }
+
+            class MusicBtnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    music_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(CATEGORY_APP_MUSIC);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
         About_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DisplayHistory.this, About.class);
-                startActivity(intent);
+                AboutBtnRunnable aboutBtnRunnable = new AboutBtnRunnable();
+                new Thread(aboutBtnRunnable).start();
+            }
+
+            class AboutBtnRunnable implements Runnable {
+                @Override
+                public void run() {
+                    About_btn.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(DisplayHistory.this, About.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
@@ -128,14 +177,13 @@ public class DisplayHistory extends AppCompatActivity {
             public void onDeleteClick(int position) {
                 deleteItems(position);
 
-
             }
 
             private void deleteItems(int position) {
                 arrayList.remove(position);
                 adapter.notifyItemRemoved(position);
-
             }
         });
     }
 }
+

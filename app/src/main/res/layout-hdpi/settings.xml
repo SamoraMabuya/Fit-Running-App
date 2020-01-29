@@ -294,7 +294,7 @@
 
 
                 <RadioButton
-                    android:id="@+id/StartAlarmOn"
+                    android:id="@+id/VoiceCountOn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -308,7 +308,7 @@
                     android:textSize="14sp"/>
 
                 <RadioButton
-                    android:id="@+id/StartAlarmOff"
+                    android:id="@+id/VoiceCountOff"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/raleway_medium"

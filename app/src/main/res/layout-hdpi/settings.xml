@@ -27,7 +27,8 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_banner"
         android:layout_below="@id/SettingsTab"
-        android:src="@drawable/gradient_background" />
+        android:src="@drawable/gradient_background"
+        android:contentDescription="@string/todo" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/SettingsTab"

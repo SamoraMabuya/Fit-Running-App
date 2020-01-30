@@ -1,9 +1,13 @@
 package mobile.apps;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -67,7 +71,7 @@ public class DisplayHistory extends AppCompatActivity {
             do {
                 RetrieveRunnerActivity retrieveRunnerActivity = new RetrieveRunnerActivity
                         (cursor.getString(1), cursor.getString(2),
-                                (cursor.getString(3)), (cursor.getString(0)), cursor.getString(4));
+                                (cursor.getString(3)), (cursor.getString(0)));
                 arrayList.add(retrieveRunnerActivity);
 
                 EmptyActivity.setVisibility(View.INVISIBLE);
@@ -175,14 +179,18 @@ public class DisplayHistory extends AppCompatActivity {
         adapter.setItemListener(new RecycleAdapter.OnItemClickListener() {
             @Override
             public void onDeleteClick(int position) {
-                deleteItems(position);
+                       deleteItems(position);
 
-            }
+
+
+                    }
 
             private void deleteItems(int position) {
                 arrayList.remove(position);
                 adapter.notifyItemRemoved(position);
+
             }
+
         });
     }
 }

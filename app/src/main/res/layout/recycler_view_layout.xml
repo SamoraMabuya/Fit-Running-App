@@ -212,7 +212,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/bottom_banner"
         android:layout_below="@id/HistoryTab"
-        app:layoutManager="LinearLayoutManager"/>
+        app:layoutManager="LinearLayoutManager"
+        android:scrollbars="vertical"/>
 
 
 

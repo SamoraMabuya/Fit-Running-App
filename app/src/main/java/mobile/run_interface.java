@@ -74,8 +74,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     double distance = 0;
     double current_speed;
-    double average_speed;
-
 
     RadioGroup distancebtn_group;
     RadioButton miles_btn;
@@ -199,8 +197,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
                                         && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                                         && ContextCompat.checkSelfPermission(run_interface.this,
                                         Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-                                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 0, run_interface.this);
-                                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, run_interface.this);
+                                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, run_interface.this);
+                                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, run_interface.this);
                                     createLocationRequest();
                                     timer.setBase(SystemClock.elapsedRealtime() - update);
                                     timer.start();
@@ -332,8 +330,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void createLocationRequest() {
         locationRequest = LocationRequest.create();
-        locationRequest.setInterval(3000);
-        locationRequest.setFastestInterval(2000);
+        locationRequest.setInterval(1000);
+        locationRequest.setFastestInterval(1000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
@@ -557,8 +555,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         CalenderDate();
-                        boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
-                        boolean dataUpdate = Runora_database.updateData(timer.getText().toString(), distance_counter.getText().toString(), current_date, average_speed);
+                        boolean dataSaved = Runora_database.insertData(timer.getText().toString(), distance_counter.getText().toString(), current_date);
+                        boolean dataUpdate = Runora_database.updateData(timer.getText().toString(), distance_counter.getText().toString(), current_date);
                         if (dataSaved && dataUpdate)
                             Toast.makeText(run_interface.this, "Activity Saved To History", Toast.LENGTH_LONG).show();
                         StopActivity();
@@ -597,15 +595,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
         active = false;
         update = 0;
         play_button.setVisibility(View.VISIBLE);
-
     }
 }
-
-
-
-
-
-
 
 
 

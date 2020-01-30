@@ -7,25 +7,16 @@ public class RetrieveRunnerActivity {
     private String total_distance;
     private String date;
     private String Id;
-    private String avgSpeed;
 
-    public RetrieveRunnerActivity(String elapsed_time, String total_distance, String date, String Id, String avgSpeed) {
+    public RetrieveRunnerActivity(String elapsed_time, String total_distance, String date, String Id) {
         this.setElapsed_time(elapsed_time);
         this.setTotal_distance(total_distance);
         this.setDate(date);
         this.setId(Id);
-        this.setAverage_speed(avgSpeed);
 
 
     }
 
-    public String getAverage_speed() {
-        return avgSpeed;
-    }
-
-    public void setAverage_speed(String average_speed) {
-        this.avgSpeed = average_speed;
-    }
 
     public String getId() {
         return Id;

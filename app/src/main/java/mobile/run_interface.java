@@ -2,6 +2,7 @@ package mobile;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -51,7 +54,11 @@ import static mobile.settings.GetInfo;
 
 public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener {
 
+
     RunoraDatabaseHelper Runora_database;
+    TelephonyManager telephonyManager;
+    IncomingCall incomingCall = new IncomingCall();
+
 
     FusedLocationProviderClient fusionprovider;
     LocationManager locationManager;
@@ -113,13 +120,14 @@ public class run_interface extends AppCompatActivity implements LocationListener
         musicButton = findViewById(R.id.musicButton);
         themeSpinner = findViewById(R.id.themeSpinner);
         overlayscreen = findViewById(R.id.overlayScreen);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        fusionprovider = LocationServices.getFusedLocationProviderClient(run_interface.this);
+        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+
 
         CountDownSwitch();
         ToggleTheme();
-
-
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        fusionprovider = LocationServices.getFusedLocationProviderClient(run_interface.this);
 
 
         timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -595,6 +603,63 @@ public class run_interface extends AppCompatActivity implements LocationListener
         active = false;
         update = 0;
         play_button.setVisibility(View.VISIBLE);
+    }
+
+    PhoneStateListener phoneStateListener = new PhoneStateListener() {
+        @Override
+        public void onCallStateChanged(int state, String phoneNumber) {
+
+            if (state == TelephonyManager.CALL_STATE_RINGING || state == TelephonyManager.CALL_STATE_OFFHOOK) {
+                timer.stop();
+                active = false;
+                play_button.setVisibility(View.VISIBLE);
+                update = SystemClock.elapsedRealtime() - timer.getBase();
+                locationManager.removeUpdates(run_interface.this);
+            } else if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
+                timer.stop();
+                active = false;
+                play_button.setVisibility(View.VISIBLE);
+                update = SystemClock.elapsedRealtime() - timer.getBase();
+                locationManager.removeUpdates(run_interface.this);
+
+            }
+        }
+    };
+
+
+    public void ActiveApp() {
+        ComponentName componentName = new ComponentName(this, IncomingCall.class);
+        getPackageManager().setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
+
+    }
+
+    public void ClosedApp() {
+        ComponentName componentName = new ComponentName(this, IncomingCall.class);
+        getPackageManager().setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+        ClosedApp();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        ActiveApp();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+        ClosedApp();
     }
 }
 

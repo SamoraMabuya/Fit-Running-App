@@ -115,7 +115,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(final DialogInterface dialog, int
-                                            position) {
+                                            which) {
                                         Runora_database.DeleteData(Entry_column.getText().toString());
                                         adapter.notifyDataSetChanged();
                                         listener.onDeleteClick(getAdapterPosition());

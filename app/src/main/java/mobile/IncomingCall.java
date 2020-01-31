@@ -16,15 +16,16 @@ public class IncomingCall extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
-            showMessage(context, "Answer Call");
+            showMessage(context, "Activity Paused");
 
         } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
             showMessage(context, "Active Call");
 
         } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_IDLE)) {
-            showMessage(context, "Call Ended");
+            showMessage(context, "Resume Activity");
 
         }
+
     }
 
     void showMessage(Context context, String message) {
@@ -32,5 +33,7 @@ public class IncomingCall extends BroadcastReceiver {
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
+
 }
+
 

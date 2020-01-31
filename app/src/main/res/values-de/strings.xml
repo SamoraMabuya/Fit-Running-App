@@ -34,4 +34,5 @@
 <string name="title_activity_countdowntimer" translatable="false">Countdown-Zähler</string>
     <string name="delete">löschen</string>
     <string name="entry">Eintrag</string>
+    <string name="settings_home_pg"><font size="10"> Einstellungen</font> </string>
 </resources>

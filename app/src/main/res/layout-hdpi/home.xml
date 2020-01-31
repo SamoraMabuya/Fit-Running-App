@@ -127,7 +127,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/circle_buttons"
                 android:fontFamily="@font/raleway_medium"
-                android:text="@string/settings"
+                android:text="@string/settings_home_pg"
                 android:textAllCaps="false"
                 android:textColor="#EBEBEB"
                 android:textSize="12sp"

@@ -60,6 +60,7 @@
     <string name="_0">0</string>
     <string name="_0_00_km">0.00 km</string>
     <string name="marble_blue">Marble Blue</string>
+    <string name="settings_home_pg">Settings</string>
 
     <string-array name="theme_array">
         <item> Marble Blue  </item>

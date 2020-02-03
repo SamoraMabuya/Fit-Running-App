@@ -1,0 +1,89 @@
+<resources>
+<!--   textsize and speedgroups-->
+    <dimen name="run_interface_textsize">20sp</dimen>
+    <dimen name="numeric_textsize">28sp</dimen>
+    <dimen name="chronometerTextSize">60sp</dimen>
+    <dimen name="mph_group_layout_marginStart">20dp</dimen>
+    <dimen name="speed_group_layout_marginTop">20dp</dimen>
+    <dimen name="mph_group_layout_marginEnd">180dp</dimen>
+    <dimen name="speed_group_layout_marginBottom">210dp</dimen>
+    <dimen name="kmh_group_layout_marginStart">180dp</dimen>
+    <dimen name="kmh_group_layout_marginEnd">20dp</dimen>
+
+<!--    run interface left buttons-->
+    <dimen name="runInterface_buttonWidth">100dp</dimen>
+    <dimen name="runInterface_buttonHeight">40dp</dimen>
+    <dimen name="left_buttons_layout_marginStart">40dp</dimen>
+    <dimen name="playnpausebtn_layout_marginTop">340dp</dimen>
+    <dimen name="left_buttons_layout_marginEnd">0dp</dimen>
+    <dimen name="playnpausebtn_layout_marginBottom">0dp</dimen>
+    <dimen name="playnpausebtn_paddingTop">7dp</dimen>
+    <dimen name="housebtn_layout_marginTop">280dp</dimen>
+    <dimen name="housebtn_layout_marginBottom">0dp</dimen>
+    <dimen name="homebtn_paddingTop">5dp</dimen>
+
+<!--    run interface right buttons-->
+    <dimen name="right_buttons_layout_marginStart">0dp</dimen>
+    <dimen name="right_buttons_layout_marginEnd">40dp</dimen>
+    <dimen name="music_button_layout_marginTop">280dp</dimen>
+    <dimen name="music_button_layout_marginBottom">0dp</dimen>
+    <dimen name="musictbn_paddingTop">5dp</dimen>
+    <dimen name="stopbtn_layout_marginTop">340dp</dimen>
+    <dimen name="stopbtn_layout_marginBottom">0dp</dimen>
+    <dimen name="stopbtn_paddingTop">7dp</dimen>
+
+<!--    distancegroup-->
+    <dimen name="distanceGroup_marginStart">80dp</dimen>
+    <dimen name="distanceGroup_marginEnd">80dp</dimen>
+    <dimen name="distanceGroup_marginTop">100dp</dimen>
+    <dimen name="distanceGroup_marginBottom">0dp</dimen>
+
+<!--    timeGroup-->
+    <dimen name="timeGroup_marginStart">100dp</dimen>
+    <dimen name="timeGroup_marginEnd">100dp</dimen>
+    <dimen name="timeGroup_marginTop">200dp</dimen>
+    <dimen name="timeGroup_marginBottom">50dp</dimen>
+
+<!--    chronometer-->
+    <dimen name="CountDownTextView_paddingStart">70dp</dimen>
+    <dimen name="CountDownTextView_paddingTop">120dp</dimen>
+    <dimen name="CountDownTextView_paddingEnd">0dp</dimen>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

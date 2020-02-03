@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/history_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    tools:context="history">
+
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+
+        <TableRow
+            android:id="@+id/date_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/date_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_span="4">
+
+                <TextView
+                    android:id="@+id/date_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/history_table_date"
+                    android:textSize="13sp"
+                    android:textColor="#ffff"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="0dp"
+                    android:padding="5dp"/>
+
+                <ImageView
+                    android:id="@+id/deleteButton"
+                    android:layout_width="70dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_trash_can"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/delete"
+                    android:textColor="#ffff"/>
+
+
+            </LinearLayout>
+
+
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/col_headings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-5dp"
+            android:background="@drawable/textviewborders"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Entry_col"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textviewborder_side"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:text="@string/entry"
+                android:textColor="#ffff"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="12sp"/>
+
+
+            <TextView
+                android:id="@+id/Duration_col"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/time"
+                android:textAlignment="center"
+                android:textColor="#ffff"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/Distance_col"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textviewborder_side"
+                android:padding="5dp"
+                android:text="@string/Distance"
+                android:textAlignment="center"
+                android:textColor="#ffff"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="12sp"/>
+
+
+            <TextView
+                android:id="@+id/AvegrageSpeedCol"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/avg_spd"
+                android:textAlignment="center"
+                android:textColor="#ffff"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="12sp"/>
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-6dp"
+            android:background="@drawable/textviewborders_no_top"
+            android:orientation="horizontal"
+            android:textColor="#ffff">
+
+            <TextView
+                android:id="@+id/Entry_column"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:background="@drawable/centerblockborder"
+                android:text="@string/_0"
+                android:textSize="14sp"
+                android:textColor="#ffff"/>
+
+
+            <TextView
+                android:id="@+id/Duration_column"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/_00_00"
+                android:textAlignment="center"
+                android:textColor="#ffff"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/Distance_column"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/centerblockborder"
+                android:padding="5dp"
+                android:text="@string/_0_00_km"
+                android:textAlignment="center"
+                android:textColor="#ffff"
+                android:textSize="14sp"/>
+
+
+            <TextView
+                android:id="@+id/avg_spd_column"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/_0_00"
+                android:textAlignment="center"
+                android:textColor="#ffff"
+                android:textSize="14sp"/>
+
+
+        </TableRow>
+
+
+    </TableLayout>
+
+
+</RelativeLayout>
+
+
+
+
+
+
+
+

@@ -93,6 +93,8 @@
     <dimen name="bottome_banner_marginBottom">0dp</dimen>
 <!--    aboutBtnSectipn-->
     <dimen name="abs_layout_marginEnd">10dp</dimen>
+    <dimen name="icon_paddingStart">2dp</dimen>
+    <dimen name="icon_paddingEnd">0dp</dimen>
 <!--    about btn, settings btn, music btn -->
     <dimen name="historybtn_width">50dp</dimen>
     <dimen name="historybtn_height">50dp</dimen>
@@ -102,6 +104,72 @@
     <dimen name="history_layout_marginEnd">10dp</dimen>
 <!--    History Activity-->
     <dimen name="activity_textsize">16sp</dimen>
+
+<!--    About -->
+
+<!--    AboutHeading-->
+    <dimen name="about_heading_height">60dp</dimen>
+    <dimen name="about_heading_paddingTop">20dp</dimen>
+    <dimen name="about_heading_textsize">20sp</dimen>
+
+<!--    return home button-->
+    <dimen name="About_return_btn_width">60dp</dimen>
+    <dimen name="About_return_btn_height">30dp</dimen>
+    <dimen name="About_returnbtn_layout_marginEnd">200dp</dimen>
+    <dimen name="About_returnbtn_paddingStart">15dp</dimen>
+    <dimen name="About_returnbtn_paddingEnd">0dp</dimen>
+
+<!--    App feature heading-->
+    <dimen name="appfeatureHead_marginTop">40dp</dimen>
+    <dimen name="appfeatureHead_textsize">18sp</dimen>
+
+<!--    firstLine-->
+    <dimen name="firstLine_margin_height">0.5dp</dimen>
+    <dimen name="firstLine_marginStart">50dp</dimen>
+    <dimen name="firstLine_marginTop">5dp</dimen>
+    <dimen name="firstLine_marginEnd">50dp</dimen>
+
+    <!--    secondLine-->
+    <dimen name="secondLine_margin_height">0.5dp</dimen>
+    <dimen name="secondLine_marginStart">50dp</dimen>
+    <dimen name="secondLine_marginTop">5dp</dimen>
+    <dimen name="secondLine_marginEnd">50dp</dimen>
+
+    <!--    ThirdLine-->
+    <dimen name="thirdLine_margin_height">0.5dp</dimen>
+    <dimen name="thirdLine_marginStart">50dp</dimen>
+    <dimen name="thirdLine_marginTop">5dp</dimen>
+    <dimen name="thirdLine_marginEnd">50dp</dimen>
+
+<!--    feature1 -->
+    <dimen name="feature1_marginStart">20dp</dimen>
+    <dimen name="feature1_marginTop">20dp</dimen>
+    <dimen name="feature1_marginEnd">20dp</dimen>
+
+<!--    General-->
+    <dimen name="about_textsize">14sp</dimen>
+    <dimen name="features_marginStart">20dp</dimen>
+    <dimen name="features_marginTop">15dp</dimen>
+    <dimen name="features_marginEnd">20dp</dimen>
+
+<!--    contactinfo-->
+    <dimen name="contact_marginStart">20dp</dimen>
+    <dimen name="contact_marginTop">20dp</dimen>
+    <dimen name="contact_marginEnd">20dp</dimen>
+
+<!--    features-->
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -101,6 +101,8 @@
                 android:background="@drawable/invisible_button"
                 android:drawableTop="@drawable/ic_notepad2"
                 android:paddingTop="@dimen/historybtns_paddingTop"
+                android:paddingStart="@dimen/icon_paddingStart"
+                android:paddingEnd="@dimen/icon_paddingEnd"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

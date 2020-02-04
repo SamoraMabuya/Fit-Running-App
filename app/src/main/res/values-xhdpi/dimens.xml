@@ -93,7 +93,9 @@
     <dimen name="bottome_banner_marginBottom">0dp</dimen>
 <!--    aboutBtnSectipn-->
     <dimen name="abs_layout_marginEnd">30dp</dimen>
-<!--    about btn, settings btn, music btn -->
+    <dimen name="icon_paddingStart">2dp</dimen>
+    <dimen name="icon_paddingEnd">0dp</dimen>
+    <!--    about btn, settings btn, music btn -->
     <dimen name="historybtn_width">50dp</dimen>
     <dimen name="historybtn_height">50dp</dimen>
     <dimen name="historybtns_paddingTop">10dp</dimen>

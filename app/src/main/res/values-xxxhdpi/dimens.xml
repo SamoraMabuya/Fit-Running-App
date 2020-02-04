@@ -49,6 +49,35 @@
     <dimen name="CountDownTextView_paddingTop">150dp</dimen>
     <dimen name="CountDownTextView_paddingEnd">0dp</dimen>
 
+    <!--    recycler_view_layout-->
+    <dimen name="History_banner_layout_height">60dp</dimen>
+    <dimen name="history_paddingTop">20dp</dimen>
+    <dimen name="history_textsize">22sp</dimen>
+    <!--    return button-->
+    <dimen name="returnbtn_layout_width">60dp</dimen>
+    <dimen name="return_layout_height">30dp</dimen>
+    <dimen name="returnbtn_layout_marginEnd">210dp</dimen>
+    <dimen name="returnbtn_paddingStart">15dp</dimen>
+    <dimen name="returnbtn_paddingEnd">0dp</dimen>
+    <!--    bottom banner-->
+    <dimen name="bottom_banner_layout_height">80dp</dimen>
+    <dimen name="bottome_banner_layout_marginTop">0dp</dimen>
+    <dimen name="bottome_banner_marginBottom">0dp</dimen>
+    <!--    aboutBtnSectipn-->
+    <dimen name="abs_layout_marginEnd">30dp</dimen>
+    <dimen name="icon_paddingStart">2dp</dimen>
+    <dimen name="icon_paddingEnd">0dp</dimen>
+    <!--    about btn, settings btn, music btn -->
+    <dimen name="historybtn_width">50dp</dimen>
+    <dimen name="historybtn_height">50dp</dimen>
+    <dimen name="historybtns_paddingTop">10dp</dimen>
+    <dimen name="historybtnstextsize">16sp</dimen>
+    <dimen name="history_layout_marginStart">50dp</dimen>
+    <dimen name="history_layout_marginEnd">30dp</dimen>
+    <!--    History Activity-->
+    <dimen name="activity_textsize">18sp</dimen>
+
+
 
 
 

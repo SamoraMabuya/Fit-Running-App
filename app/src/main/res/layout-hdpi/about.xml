@@ -21,26 +21,26 @@
         <TextView
             android:id="@+id/AboutHeading"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/about_heading_height"
             android:background="@drawable/bottom_banner"
             android:fontFamily="@font/raleway_medium"
-            android:paddingTop="20dp"
-            android:text="About"
+            android:paddingTop="@dimen/about_heading_paddingTop"
+            android:text="@string/about"
             android:textAlignment="center"
             android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:textSize="@dimen/about_heading_textsize"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/return_home"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="200dp"
+            android:layout_width="@dimen/About_return_btn_width"
+            android:layout_height="@dimen/About_return_btn_height"
+            android:layout_marginEnd="@dimen/About_returnbtn_layout_marginEnd"
             android:background="@drawable/returnbuttonresource"
             android:drawableTop="@drawable/ic_left_arrow"
-            android:paddingStart="15dp"
-            android:paddingEnd="0dp"
+            android:paddingStart="@dimen/About_returnbtn_paddingStart"
+            android:paddingEnd="@dimen/About_returnbtn_paddingEnd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/AboutHeading"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,21 +72,21 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="@dimen/appfeatureHead_marginTop"
                 android:fontFamily="@font/raleway_medium"
                 android:gravity="center_horizontal"
-                android:text="App Features"
+                android:text="@string/app_features"
                 android:textColor="#ffff"
-                android:textSize="18sp" />
+                android:textSize="@dimen/appfeatureHead_textsize"/>
 
             <View
                 android:id="@+id/firstLine"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
+                android:layout_height="@dimen/firstLine_margin_height"
                 android:layout_below="@id/appFeaturesheading"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="50dp"
+                android:layout_marginStart="@dimen/firstLine_marginStart"
+                android:layout_marginTop="@dimen/firstLine_marginTop"
+                android:layout_marginEnd="@dimen/firstLine_marginEnd"
                 android:background="#ffff" />
 
             <TextView
@@ -94,91 +94,91 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/firstLine"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/feature1_marginStart"
+                android:layout_marginTop="@dimen/feature1_marginTop"
+                android:layout_marginEnd="@dimen/feature1_marginEnd"
                 android:fontFamily="@font/raleway_medium"
-                android:text="1. Change metirc units. "
+                android:text="@string/_1_change_metirc_units"
                 android:textColor="#ffff"
-                android:textSize="14sp" />
+                android:textSize="@dimen/about_textsize" />
 
             <TextView
                 android:id="@+id/feature2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/feature1"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/features_marginStart"
+                android:layout_marginTop="@dimen/features_marginTop"
+                android:layout_marginEnd="@dimen/features_marginEnd"
                 android:fontFamily="@font/raleway_medium"
                 android:text="2. 10 second countdown timer: Find in settings."
                 android:textColor="#ffff"
-                android:textSize="14sp" />
+                android:textSize="@dimen/about_textsize" />
 
             <TextView
                 android:id="@+id/feature3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/feature2"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/features_marginStart"
+                android:layout_marginTop="@dimen/features_marginTop"
+                android:layout_marginEnd="@dimen/features_marginEnd"
                 android:fontFamily="@font/raleway_medium"
                 android:text="3. Change activity themes: 2 themes available."
                 android:textColor="#ffff"
-                android:textSize="14sp" />
+                android:textSize="@dimen/about_textsize" />
 
             <TextView
                 android:id="@+id/feature4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/feature3"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/features_marginStart"
+                android:layout_marginTop="@dimen/features_marginTop"
+                android:layout_marginEnd="@dimen/features_marginEnd"
                 android:fontFamily="@font/raleway_medium"
                 android:text="4. Count down with voice: Countdown must be turned on for voice countdown to work."
                 android:textColor="#ffff"
-                android:textSize="14sp" />
+                android:textSize="@dimen/about_textsize" />
 
             <TextView
                 android:id="@+id/feature5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/feature4"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/features_marginStart"
+                android:layout_marginTop="@dimen/features_marginTop"
+                android:layout_marginEnd="@dimen/features_marginEnd"
                 android:fontFamily="@font/raleway_medium"
                 android:text="5. App supports English and German."
                 android:textColor="#ffff"
-                android:textSize="14sp" />
+                android:textSize="@dimen/about_textsize" />
 
             <TextView
                 android:id="@+id/feature6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/feature5"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/features_marginStart"
+                android:layout_marginTop="@dimen/features_marginTop"
+                android:layout_marginEnd="@dimen/features_marginEnd"
                 android:fontFamily="@font/raleway_medium"
                 android:text="6. Save activity option and access in history interface."
                 android:textColor="#ffff"
-                android:textSize="14sp" />
+                android:textSize="@dimen/about_textsize" />
 
             <TextView
                 android:id="@+id/feature7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/feature6"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/features_marginStart"
+                android:layout_marginTop="@dimen/features_marginTop"
+                android:layout_marginEnd="@dimen/features_marginEnd"
                 android:fontFamily="@font/raleway_medium"
                 android:text="7. Access music player from any section."
                 android:textColor="#ffff"
-                android:textSize="14sp" />
+                android:textSize="@dimen/about_textsize" />
 
             <TextView
                 android:id="@+id/Contact"
@@ -209,12 +209,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/secondLine"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/contact_marginStart"
+                android:layout_marginTop="@dimen/contact_marginTop"
+                android:layout_marginEnd="@dimen/contact_marginEnd"
                 android:fontFamily="@font/raleway_medium"
                 android:textColor="#ffff"
-                android:textSize="14sp"
+                android:textSize="@dimen/about_textsize"
                 android:text="Email: mrmabuyasamora@gmail.com \n\nAddress:  Country Club Way,  Pierre Van Ryneveld, Centurion, Gauteng, 0157" />
 
             <View
@@ -238,7 +238,7 @@
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/raleway_medium"
                 android:textColor="#ffff"
-                android:textSize="14sp"
+                android:textSize="@dimen/about_textsize"
                 android:text="All inquiries can be sent to the email above. Users may also report issues to the same email. \n\n"/>
 
 

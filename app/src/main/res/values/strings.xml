@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="day_month_00th_year">Day, Month, 00th, Year</string>
+    <string name="about">About</string>
+    <string name="app_features">App Features</string>
+    <string name="_1_change_metirc_units">1. Change metirc units.</string>
 </resources>

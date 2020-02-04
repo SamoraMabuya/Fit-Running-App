@@ -13,7 +13,7 @@
 <!--    run interface left buttons-->
     <dimen name="runInterface_buttonWidth">120dp</dimen>
     <dimen name="runInterface_buttonHeight">60dp</dimen>
-    <dimen name="left_buttons_layout_marginStart">60dp</dimen>
+    <dimen name="left_buttons_layout_marginStart">70dp</dimen>
     <dimen name="playnpausebtn_layout_marginTop">510dp</dimen>
     <dimen name="left_buttons_layout_marginEnd">0dp</dimen>
     <dimen name="playnpausebtn_layout_marginBottom">23dp</dimen>
@@ -24,7 +24,7 @@
 
 <!--    run interface right buttons-->
     <dimen name="right_buttons_layout_marginStart">0dp</dimen>
-    <dimen name="right_buttons_layout_marginEnd">60dp</dimen>
+    <dimen name="right_buttons_layout_marginEnd">70dp</dimen>
     <dimen name="music_button_layout_marginTop">430dp</dimen>
     <dimen name="music_button_layout_marginBottom">100dp</dimen>
     <dimen name="musictbn_paddingTop">10dp</dimen>
@@ -45,7 +45,7 @@
     <dimen name="timeGroup_marginBottom">50dp</dimen>
 
 <!--    chronometer-->
-    <dimen name="CountDownTextView_paddingStart">95dp</dimen>
+    <dimen name="CountDownTextView_paddingStart">90dp</dimen>
     <dimen name="CountDownTextView_paddingTop">150dp</dimen>
     <dimen name="CountDownTextView_paddingEnd">0dp</dimen>
 

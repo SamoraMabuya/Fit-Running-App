@@ -42,15 +42,15 @@
         <TextView
             android:id="@+id/History"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/History_banner_layout_height"
             android:background="@drawable/bottom_banner"
             android:fontFamily="@font/raleway_medium"
-            android:paddingTop="20dp"
+            android:paddingTop="@dimen/history_paddingTop"
             android:text="@string/history"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:textSize="@dimen/history_textsize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,13 +58,13 @@
 
         <Button
             android:id="@+id/returnButton"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="210dp"
+            android:layout_width="@dimen/returnbtn_layout_width"
+            android:layout_height="@dimen/return_layout_height"
+            android:layout_marginEnd="@dimen/returnbtn_layout_marginEnd"
             android:background="@drawable/returnbuttonresource"
             android:drawableTop="@drawable/ic_left_arrow"
-            android:paddingStart="15dp"
-            android:paddingEnd="0dp"
+            android:paddingStart="@dimen/returnbtn_paddingStart"
+            android:paddingEnd="@dimen/returnbtn_paddingEnd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/History"
             app:layout_constraintStart_toStartOf="@+id/History"
@@ -77,10 +77,10 @@
     <LinearLayout
         android:id="@+id/bottom_banner"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/bottom_banner_layout_height"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="@dimen/bottome_banner_layout_marginTop"
+        android:layout_marginBottom="@dimen/bottome_banner_marginBottom"
         android:background="@drawable/bottom_banner"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -89,29 +89,30 @@
             android:id="@+id/AboutBtnSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="@dimen/abs_layout_marginEnd"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/About_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/historybtn_width"
+                android:layout_height="@dimen/historybtn_height"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:background="@drawable/invisible_button"
                 android:drawableTop="@drawable/ic_notepad2"
-                android:paddingTop="10dp"
+                android:paddingTop="@dimen/historybtns_paddingTop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/aboutText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_medium"
                 android:text="@string/about"
                 android:textColor="#ffff"
-                android:textSize="14sp"
+                android:textSize="@dimen/historybtnstextsize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/About_btn" />
@@ -123,20 +124,20 @@
             android:id="@+id/SettingsGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="@dimen/history_layout_marginStart"
+            android:layout_marginEnd="@dimen/history_layout_marginEnd"
             android:orientation="vertical">
 
 
             <Button
                 android:id="@+id/settings_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/historybtn_width"
+                android:layout_height="@dimen/historybtn_height"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:background="@drawable/invisible_button"
                 android:drawableTop="@drawable/ic_preference2"
-                android:paddingTop="10dp"
+                android:paddingTop="@dimen/historybtns_paddingTop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -146,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_medium"
-                android:textSize="14sp"
+                android:textSize="@dimen/historybtnstextsize"
                 android:text="@string/settings"
                 android:textColor="#ffff"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -160,19 +161,19 @@
             android:id="@+id/music_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="@dimen/history_layout_marginStart"
             android:orientation="vertical">
 
 
             <Button
                 android:id="@+id/music_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/historybtn_width"
+                android:layout_height="@dimen/historybtn_height"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:background="@drawable/invisible_button"
                 android:drawableTop="@drawable/ic_headphones2"
-                android:paddingTop="10dp"
+                android:paddingTop="@dimen/historybtns_paddingTop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -181,7 +182,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_medium"
-                android:textSize="14sp"
+                android:textSize="@dimen/historybtnstextsize"
                 android:text="@string/music"
                 android:textColor="#ffff"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -203,7 +204,7 @@
         android:visibility="visible"
         android:text="@string/your_history_is_empty"
         android:textColor="#ffff"
-        android:textSize="16sp" />
+        android:textSize="@dimen/activity_textsize" />
 
     <androidx.recyclerview.widget.RecyclerView
 

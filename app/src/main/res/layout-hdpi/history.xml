@@ -25,35 +25,33 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="37dp"
+                android:layout_height="@dimen/date_height"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_span="4">
+                android:layout_span="3">
 
                 <TextView
                     android:id="@+id/date_heading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/history_table_date"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/dateheadingtextsize"
                     android:textColor="#ffff"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginEnd="0dp"
+                    android:layout_marginStart="50dp"
                     android:padding="5dp"/>
 
                 <ImageView
                     android:id="@+id/deleteButton"
-                    android:layout_width="70dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/del_btn_width"
+                    android:layout_height="@dimen/del_btn_height"
                     android:src="@drawable/ic_trash_can"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="@dimen/del_btn_marginStart"
+                    android:layout_marginEnd="@dimen/del_btn_marginEnd"
                     android:text="@string/delete"
                     android:textColor="#ffff"/>
 
 
             </LinearLayout>
-
 
 
 
@@ -70,7 +68,7 @@
 
             <TextView
                 android:id="@+id/Entry_col"
-                android:layout_width="50dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textviewborder_side"
                 android:padding="5dp"
@@ -83,7 +81,7 @@
 
             <TextView
                 android:id="@+id/Duration_col"
-                android:layout_width="80dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="@string/time"
@@ -94,7 +92,7 @@
 
             <TextView
                 android:id="@+id/Distance_col"
-                android:layout_width="80dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textviewborder_side"
                 android:padding="5dp"
@@ -105,16 +103,7 @@
                 android:textSize="12sp"/>
 
 
-            <TextView
-                android:id="@+id/AvegrageSpeedCol"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/avg_spd"
-                android:textAlignment="center"
-                android:textColor="#ffff"
-                android:fontFamily="@font/raleway_medium"
-                android:textSize="12sp"/>
+
 
 
         </TableRow>
@@ -162,15 +151,7 @@
                 android:textSize="14sp"/>
 
 
-            <TextView
-                android:id="@+id/avg_spd_column"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/_0_00"
-                android:textAlignment="center"
-                android:textColor="#ffff"
-                android:textSize="14sp"/>
+
 
 
         </TableRow>

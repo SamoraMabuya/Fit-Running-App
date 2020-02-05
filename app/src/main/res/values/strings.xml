@@ -4,4 +4,13 @@
     <string name="about">About</string>
     <string name="app_features">App Features</string>
     <string name="_1_change_metirc_units">1. Change metirc units.</string>
+    <string name="email_mrmabuyasamora_gmail_com_n_naddress_country_club_way_pierre_van_ryneveld_centurion_gauteng_0157">Email: mrmabuyasamora@gmail.com   Address: Country Club Way, Pierre Van Ryneveld, Centurion, Gauteng, 0157</string>
+    <string name="all_inquiries_can_be_sent_to_the_email_above_users_may_also_report_issues_to_the_same_email_n_n">All inquiries can be sent to the email above. Users may also report issues to the same email.</string>
+    <string name="contact_developer">Contact Developer</string>
+    <string name="_7_access_music_player_from_any_section">7. Access music player from any section.</string>
+    <string name="_6_save_activity_option_and_access_in_history_interface">6. Save activity option and access in history interface.</string>
+    <string name="_4_count_down_with_voice_countdown_must_be_turned_on_for_voice_countdown_to_work">4. Count down with voice: Countdown must be turned on for voice countdown to work.</string>
+    <string name="_3_change_activity_themes_2_themes_available">3. Change activity themes: 2 themes available.</string>
+    <string name="_2_10_second_countdown_timer_find_in_settings">2. 10 second countdown timer: Find in settings.</string>
+    <string name="_5_app_supports_english_and_german">5. App supports English and German.</string>
 </resources>

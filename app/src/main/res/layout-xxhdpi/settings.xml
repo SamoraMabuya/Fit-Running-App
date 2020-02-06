@@ -44,14 +44,14 @@
             android:fontFamily="@font/raleway_medium"
             android:paddingTop="@dimen/SettingsText_paddingTop"
             android:paddingStart="@dimen/SettingsText_paddingStart"
-            android:paddingEnd="@dimen/SettingsText_paddingEnd"
+            android:paddingEnd="0dp"
             android:text="@string/settings"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="@dimen/SettingsTextsize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
             android:id="@+id/go_back_btn"
@@ -60,7 +60,6 @@
             android:layout_marginEnd="@dimen/settings_returnbtn_layout_marginEnd"
             android:background="@drawable/returnbuttonresource"
             android:drawableTop="@drawable/ic_left_arrow"
-            android:layout_marginTop="@dimen/settings_returnbtn_layout_marginTop"
             android:paddingStart="@dimen/settings_returnbtn_paddingStart"
             android:paddingEnd="@dimen/settings_returnbtn_paddingEnd"
             android:paddingTop="@dimen/settings_returnbtn_paddingTop"
@@ -107,6 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/radioGroup_marginTop"
+                android:layout_marginEnd="@dimen/radioGroup_marginEnd"
                 android:gravity="end"
                 android:orientation="horizontal"
                 android:theme="@style/RadioCheck"
@@ -176,6 +176,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/radioGroup_marginTop"
+                android:layout_marginEnd="@dimen/radioGroup_marginEnd"
                 android:gravity="end"
                 android:orientation="horizontal"
                 android:theme="@style/RadioCheck"
@@ -287,6 +288,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/radioGroup_marginTop"
+                android:layout_marginEnd="@dimen/radioGroup_marginEnd"
                 android:gravity="end"
                 android:orientation="horizontal"
                 android:theme="@style/RadioCheck"
@@ -376,7 +378,7 @@
     <LinearLayout
         android:id="@+id/bottom_banner"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/bb_height"
+        android:layout_height="match_parent"
         android:layout_below="@+id/setting.section"
         android:layout_alignParentBottom="true"
         android:background="@drawable/bottom_banner"

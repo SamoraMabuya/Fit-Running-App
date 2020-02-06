@@ -5,7 +5,7 @@
     android:fontFamily="@font/raleway_medium"
     android:text="@string/marble_blue"
     android:textColor="#EC7A07"
-    android:textSize="14sp"
-    android:padding="5dp">
+    android:textSize="@dimen/spinnerdropdown_textsize"
+    android:padding="@dimen/dropdown_padding">
 
 </TextView>

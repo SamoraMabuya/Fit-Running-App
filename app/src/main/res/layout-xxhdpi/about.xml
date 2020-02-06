@@ -333,7 +333,7 @@
             android:id="@+id/music_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="@dimen/btnGroup_marginStart"
             android:orientation="vertical">
 
 

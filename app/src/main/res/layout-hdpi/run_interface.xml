@@ -50,7 +50,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/_00_00"
             android:textColor="#F1ECEC"
-            android:textSize="@dimen/run_interface_30sp"/>
+            android:textSize="@dimen/numeric_textsize"/>
 
         <TextView
             android:id="@+id/timer_label"
@@ -87,7 +87,7 @@
             android:layout_gravity="center"
             android:text="@string/_0_00"
             android:textColor="#F8F7F7"
-            android:textSize="@dimen/run_interface_30sp"/>
+            android:textSize="@dimen/numeric_textsize"/>
 
         <TextView
             android:id="@+id/distance_label"
@@ -122,7 +122,7 @@
             android:layout_gravity="center"
             android:text="@string/curr_0_00"
             android:textColor="#F8F7F7"
-            android:textSize="@dimen/run_interface_30sp"/>
+            android:textSize="@dimen/numeric_textsize"/>
 
 
         <TextView
@@ -157,7 +157,7 @@
             android:layout_gravity="center"
             android:text="@string/_0_00"
             android:textColor="#F8F7F7"
-            android:textSize="@dimen/run_interface_30sp"/>
+            android:textSize="@dimen/numeric_textsize"/>
 
 
         <TextView

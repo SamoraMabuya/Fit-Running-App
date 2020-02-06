@@ -5,7 +5,7 @@
     android:fontFamily="@font/raleway_medium"
     android:text="@string/marble_blue"
     android:textColor="#ffff"
-    android:textSize="14sp">
+    android:textSize="@dimen/selected_textsize">
 
 
 </CheckedTextView>

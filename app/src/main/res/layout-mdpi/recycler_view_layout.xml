@@ -65,7 +65,6 @@
             android:drawableTop="@drawable/ic_left_arrow"
             android:paddingStart="@dimen/returnbtn_paddingStart"
             android:paddingEnd="@dimen/returnbtn_paddingEnd"
-            android:paddingTop="@dimen/returnbtn_paddingTop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/History"
             app:layout_constraintStart_toStartOf="@+id/History"

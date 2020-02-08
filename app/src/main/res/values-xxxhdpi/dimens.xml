@@ -48,6 +48,7 @@
     <dimen name="CountDownTextView_paddingStart">90dp</dimen>
     <dimen name="CountDownTextView_paddingTop">150dp</dimen>
     <dimen name="CountDownTextView_paddingEnd">0dp</dimen>
+
     <!--    About -->
 
     <!--    AboutHeading-->
@@ -108,11 +109,11 @@
     <dimen name="contactTextsize">18sp</dimen>
 
     <!--    features-->
-    <dimen name="bottombannerheight">80dp</dimen>
+    <dimen name="bottombannerheight">90dp</dimen>
     <dimen name="buttonWidth">55dp</dimen>
     <dimen name="buttonHeight">55dp</dimen>
-    <dimen name="btnGroup_marginEnd">28dp</dimen>
-    <dimen name="btnGroup_marginStart">28dp</dimen>
+    <dimen name="btnGroup_marginEnd">25dp</dimen>
+    <dimen name="btnGroup_marginStart">25dp</dimen>
     <dimen name="btnGroup_paddingTop">13dp</dimen>
 
 
@@ -175,11 +176,10 @@
     <dimen name="LanguageSpinner_marginStart">130dp</dimen>
 
     <!--    Bottom banner-->
-    <dimen name="bb_height">50dp</dimen>
     <dimen name="btns_width">55dp</dimen>
     <dimen name="btns_height">55dp</dimen>
-    <dimen name="about_section_marginEnd">28dp</dimen>
-    <dimen name="about_section_marginStart">28dp</dimen>
+    <dimen name="about_section_marginEnd">25dp</dimen>
+    <dimen name="about_section_marginStart">25dp</dimen>
     <dimen name="buttonsPaddingTop">14dp</dimen>
 
 
@@ -213,11 +213,47 @@
     <dimen name="historybtn_height">55dp</dimen>
     <dimen name="historybtns_paddingTop">13dp</dimen>
     <dimen name="historybtnstextsize">16sp</dimen>
-    <dimen name="history_layout_marginStart">28dp</dimen>
-    <dimen name="history_layout_marginEnd">28dp</dimen>
+    <dimen name="history_layout_marginStart">25dp</dimen>
+    <dimen name="history_layout_marginEnd">25dp</dimen>
 
     <!--    History Activity-->
-    <dimen name="activity_textsize">18sp</dimen>
+    <!--    date heading-->
+    <dimen name="date_height">37dp</dimen>
+    <dimen name="dateheadingtextsize">16sp</dimen>
+    <dimen name="dateheading_marginStart">60dp</dimen>
+    <dimen name="dateheadingPadding">5dp</dimen>
+
+    <!--    Table-->
+    <dimen name="tablepadding">3dp</dimen>
+
+    <!--    delete button-->
+    <dimen name="del_btn_width">70dp</dimen>
+    <dimen name="del_btn_height">20dp</dimen>
+    <dimen name="del_btn_marginStart">10dp</dimen>
+    <dimen name="del_btn_marginEnd">30dp</dimen>
+
+    <!--    TableRow-->
+    <dimen name="tablerow_marginTop">-5dp</dimen>
+    <dimen name="lowertable_marginTop">-6dp</dimen>
+
+
+    <!--    Entry columns-->
+    <dimen name="entrycol_width">136dp</dimen>
+    <dimen name="entrycol_padding">5dp</dimen>
+    <dimen name="entrycol_textSize">12sp</dimen>
+    <dimen name="entrycol_textSize14">14sp</dimen>
+
+    <!--    Duration columns-->
+    <dimen name="durationcol_width">136dp</dimen>
+    <dimen name="durationcol_padding">5dp</dimen>
+    <dimen name="durationcol_textSize">12sp</dimen>
+    <dimen name="durationcol_textSize14">14sp</dimen>
+
+    <!--    Distance columns-->
+    <dimen name="distancecol_width">136dp</dimen>
+    <dimen name="distancecol_padding">5dp</dimen>
+    <dimen name="distancecol_textSize">12sp</dimen>
+    <dimen name="distancecol_textSize14">14sp</dimen>
 
 
     <!--    Spinner drop down-->

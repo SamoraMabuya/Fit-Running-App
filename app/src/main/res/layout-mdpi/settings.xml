@@ -68,12 +68,21 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ScrollView
+        android:id="@+id/SettingScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SettingsTab"
+        android:layout_above="@id/bottom_banner"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/setting.section"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/SettingsTab">
+        android:layout_height="wrap_content">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -368,12 +377,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </ScrollView>
+
+
 
     <LinearLayout
         android:id="@+id/bottom_banner"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/bb_height"
-        android:layout_below="@+id/setting.section"
+        android:layout_height="85dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/bottom_banner"
         android:gravity="center"

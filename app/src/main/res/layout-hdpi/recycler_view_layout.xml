@@ -89,7 +89,7 @@
             android:id="@+id/AboutBtnSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/abs_layout_marginEnd"
+            android:layout_marginEnd="@dimen/history_layout_marginEnd"
             android:orientation="vertical">
 
             <Button

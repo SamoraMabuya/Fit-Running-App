@@ -12,6 +12,9 @@
     <dimen name="kmh_group_layout_marginStart">180dp</dimen>
     <dimen name="kmh_group_layout_marginEnd">0dp</dimen>
 
+<!--    scrollview -->
+    <dimen name="scrollview_space">30dp</dimen>
+
     <!--    run interface left buttons-->
     <dimen name="runInterface_buttonWidth">110dp</dimen>
     <dimen name="runInterface_buttonHeight">50dp</dimen>
@@ -31,7 +34,7 @@
     <dimen name="music_button_layout_marginBottom">0dp</dimen>
     <dimen name="musictbn_paddingTop">8dp</dimen>
     <dimen name="stopbtn_layout_marginTop">375dp</dimen>
-    <dimen name="stopbtn_layout_marginBottom">23dp</dimen>
+    <dimen name="stopbtn_layout_marginBottom">0dp</dimen>
     <dimen name="stopbtn_paddingTop">10dp</dimen>
 
     <!--    distancegroup-->
@@ -51,31 +54,35 @@
     <dimen name="CountDownTextView_paddingTop">110dp</dimen>
     <dimen name="CountDownTextView_paddingEnd">0dp</dimen>
 
-
     <!--    home -->
-    <dimen name="layout_width_btnsize">70dp</dimen>
-    <dimen name="layout_height_btnsize">30dp</dimen>
+    <dimen name="layout_width_btnsize">85dp</dimen>
+    <dimen name="layout_height_btnsize">35dp</dimen>
     <dimen name="layout_marginTop_all_btns">5dp</dimen>
     <dimen name="textSize">12sp</dimen>
+
     <!--    General-->
     <dimen name="homebuttonswidth">90dp</dimen>
     <dimen name="homebuttonsheight">35dp</dimen>
     <dimen name="hometextsize">13sp</dimen>
     <dimen name="marginTop_5dp">5dp</dimen>
+
     <!--    Buttons marginTop-->
-    <dimen name="topbtns_layout_marginTop">130dp</dimen>
-    <dimen name="bottombtns_layout_marginTop">230dp</dimen>
+    <dimen name="topbtns_layout_marginTop">85dp</dimen>
+    <dimen name="bottombtns_layout_marginTop">185dp</dimen>
+
     <!--  HomePageDate  -->
     <dimen name="HomePageDate_layout_height">70dp</dimen>
     <dimen name="HPG_paddingTop">25dp</dimen>
     <dimen name="HomePageTextSize">20sp</dimen>
+
     <!--    Margins-->
-    <dimen name="home_R_layout_marginStart">60dp</dimen>
-    <dimen name="home_R_layout_marginEnd">60dp</dimen>
+    <dimen name="home_R_layout_marginStart">55dp</dimen>
+    <dimen name="home_R_layout_marginEnd">55dp</dimen>
+
     <!--    start button-->
     <dimen name="start_btn_width">120dp</dimen>
     <dimen name="start_btn_height">40dp</dimen>
-    <dimen name="start_btn_marginBottom">60dp</dimen>
+    <dimen name="start_btn_marginBottom">55dp</dimen>
     <dimen name="start_btn_textsize">14sp</dimen>
 
 

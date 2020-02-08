@@ -205,8 +205,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
                                         && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                                         && ContextCompat.checkSelfPermission(run_interface.this,
                                         Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-                                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, run_interface.this);
-                                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, run_interface.this);
+                                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
+                                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, run_interface.this);
                                     createLocationRequest();
                                     timer.setBase(SystemClock.elapsedRealtime() - update);
                                     timer.start();
@@ -338,8 +338,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void createLocationRequest() {
         locationRequest = LocationRequest.create();
-        locationRequest.setInterval(1000);
-        locationRequest.setFastestInterval(1000);
+        locationRequest.setInterval(3000);
+        locationRequest.setFastestInterval(3000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
@@ -603,6 +603,10 @@ public class run_interface extends AppCompatActivity implements LocationListener
         active = false;
         update = 0;
         play_button.setVisibility(View.VISIBLE);
+        SpdInmph.setText(new DecimalFormat("0.00").format(current_speed));
+        SpdInkmh.setText(new DecimalFormat("0.00").format(current_speed));
+
+
     }
 
     PhoneStateListener phoneStateListener = new PhoneStateListener() {

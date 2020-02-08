@@ -33,6 +33,7 @@ public class settings extends AppCompatActivity {
     public static String OFF = "off";
     public static String VoiceON = "voiceOn";
     public static String VoiceOff = "VoiceOff";
+    public static String Langkey = "VoiceOff";
     Button go_back_btn, music_btn, history_btn, AboutButton;
     RadioGroup distancebtn_group;
     RadioGroup CountDownBtnGroup;
@@ -398,15 +399,30 @@ public class settings extends AppCompatActivity {
         LanguageSpinner.setSelection(LastSelection);
 
         LanguageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            boolean one_restart = true;
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 editor.putInt("LastSelection", position);
                 editor.apply();
+                if (one_restart) {
+                    one_restart = false;
+                } else {
 
-                if (position == 0) {
-                    setLang("en");
-                } else if (position == 1) {
-                    setLang("de");
+                    if (position == 0) {
+                        setLang("en");
+                        Intent intent = new Intent(getApplicationContext(), settings.class);
+                        startActivity(intent);
+                        finish();
+                    } else if (position == 1) {
+                        setLang("de");
+                        Intent intent = new Intent(getApplicationContext(), settings.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+
+
                 }
 
             }
@@ -427,6 +443,5 @@ public class settings extends AppCompatActivity {
         Configuration configuration = resources.getConfiguration();
         configuration.locale = locale;
         resources.updateConfiguration(configuration, displayMetrics);
-
     }
 }

@@ -24,7 +24,7 @@
 <string name="off">aus</string>
 <string name="your_history_is_empty">Ihre Geschichte ist leer</string>
 <string name="settings_title">die Einstellungen</string>
-<string name="settings">die Einstellungen</string>
+<string name="settings">Werkzeuge</string>
 <string name="profile">Profil</string>
 <string name="distance">Entfernung</string>
 <string name="kilometers">Kilometer</string>
@@ -34,5 +34,15 @@
 <string name="title_activity_countdowntimer" translatable="false">Countdown-Zähler</string>
     <string name="delete">löschen</string>
     <string name="entry">Eintrag</string>
-    <string name="settings_home_pg"><font size="10"> Einstellungen</font> </string>
+    <string name="settings_home_pg">Einstellungen</string>
+    <string name="_1_change_metirc_units">1. Ändern Sie die metrischen Einheiten.</string>
+    <string name="_2_10_second_countdown_timer_find_in_settings">2. Countdown-Timer für 10 Sekunden: In den Einstellungen suchen.</string>
+    <string name="_3_change_activity_themes_2_themes_available">3. Aktivitätsthemen ändern: 2 Themen verfügbar.</string>
+    <string name="_4_count_down_with_voice_countdown_must_be_turned_on_for_voice_countdown_to_work">4. Countdown mit Sprache: Der Countdown muss aktiviert sein, damit der Sprachcountdown funktioniert.</string>
+    <string name="_5_app_supports_english_and_german">5. App unterstützt Englisch und Deutsch.</string>
+    <string name="_6_save_activity_option_and_access_in_history_interface">6. Speichern Sie die Aktivitätsoption und greifen Sie auf die Verlaufsoberfläche zu.</string>
+    <string name="_7_access_music_player_from_any_section">7. Greifen Sie von einem beliebigen Abschnitt auf den Musik-Player zu.</string>
+    <string name="all_inquiries_can_be_sent_to_the_email_above_users_may_also_report_issues_to_the_same_email_n_n">Alle Anfragen können an die oben angegebene E-Mail gesendet werden. Benutzer können Probleme auch an dieselbe E-Mail-Adresse melden.</string>
+    <string name="app_features">App-Funktionen</string>
+    <string name="contact_developer">Wenden Sie sich an den Entwickler</string>
 </resources>

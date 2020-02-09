@@ -125,7 +125,7 @@
                 android:layout_marginTop="@dimen/layout_marginTop_all_btns"
                 android:background="@drawable/circle_buttons"
                 android:fontFamily="@font/raleway_medium"
-                android:text="@string/settings_home_pg"
+                android:text="@string/settings"
                 android:textAllCaps="false"
                 android:textColor="#EBEBEB"
                 android:textSize="@dimen/textSize"

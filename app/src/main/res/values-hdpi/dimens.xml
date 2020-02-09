@@ -53,7 +53,7 @@
 
 
     <!--    home -->
-    <dimen name="layout_width_btnsize">70dp</dimen>
+    <dimen name="layout_width_btnsize">80dp</dimen>
     <dimen name="layout_height_btnsize">30dp</dimen>
     <dimen name="layout_marginTop_all_btns">5dp</dimen>
     <dimen name="textSize">12sp</dimen>

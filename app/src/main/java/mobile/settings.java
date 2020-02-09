@@ -48,6 +48,8 @@ public class settings extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences LastSelectedItem;
     SharedPreferences.Editor editor;
+    boolean onetime_restart = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -399,14 +401,12 @@ public class settings extends AppCompatActivity {
         LanguageSpinner.setSelection(LastSelection);
 
         LanguageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            boolean one_restart = true;
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 editor.putInt("LastSelection", position);
                 editor.apply();
-                if (one_restart) {
-                    one_restart = false;
+                if (onetime_restart) {
+                    onetime_restart = false;
                 } else {
 
                     if (position == 0) {

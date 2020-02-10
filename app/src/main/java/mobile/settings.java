@@ -1,5 +1,6 @@
 package mobile;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,7 +34,8 @@ public class settings extends AppCompatActivity {
     public static String OFF = "off";
     public static String VoiceON = "voiceOn";
     public static String VoiceOff = "VoiceOff";
-    public static String Langkey = "VoiceOff";
+    private static final String StoreLang = "StoreLang";
+    private static final String InsertLang = "InsertLang";
     Button go_back_btn, music_btn, history_btn, AboutButton;
     RadioGroup distancebtn_group;
     RadioGroup CountDownBtnGroup;
@@ -49,12 +51,14 @@ public class settings extends AppCompatActivity {
     SharedPreferences LastSelectedItem;
     SharedPreferences.Editor editor;
     boolean onetime_restart = true;
+    String MyLanguage;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         LastSelectedItem = getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
@@ -129,7 +133,6 @@ public class settings extends AppCompatActivity {
                     history_btn.post(new Runnable() {
                         @Override
                         public void run() {
-                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean(MILESBTN, miles_btn.isChecked());
                             editor.putBoolean(KMBTN, kilometer_btn.isChecked());
@@ -162,7 +165,6 @@ public class settings extends AppCompatActivity {
                     music_btn.post(new Runnable() {
                         @Override
                         public void run() {
-                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean(MILESBTN, miles_btn.isChecked());
                             editor.putBoolean(KMBTN, kilometer_btn.isChecked());
@@ -197,7 +199,6 @@ public class settings extends AppCompatActivity {
                     AboutButton.post(new Runnable() {
                         @Override
                         public void run() {
-                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean(MILESBTN, miles_btn.isChecked());
                             editor.putBoolean(KMBTN, kilometer_btn.isChecked());
@@ -231,7 +232,6 @@ public class settings extends AppCompatActivity {
                     kilometer_btn.post(new Runnable() {
                         @Override
                         public void run() {
-                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean(KMBTN, kilometer_btn.isChecked());
                             editor.apply();
@@ -253,7 +253,6 @@ public class settings extends AppCompatActivity {
                     miles_btn.post(new Runnable() {
                         @Override
                         public void run() {
-                            sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean(MILESBTN, miles_btn.isChecked());
                             editor.apply();
@@ -312,6 +311,7 @@ public class settings extends AppCompatActivity {
                 }
             }
         });
+
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         OnButton.setChecked(sharedPreferences.getBoolean(ON, false));
@@ -408,17 +408,16 @@ public class settings extends AppCompatActivity {
                 if (onetime_restart) {
                     onetime_restart = false;
                 } else {
-
                     if (position == 0) {
                         setLang("en");
                         Intent intent = new Intent(getApplicationContext(), settings.class);
-                        startActivity(intent);
                         finish();
+                        startActivity(intent);
                     } else if (position == 1) {
                         setLang("de");
                         Intent intent = new Intent(getApplicationContext(), settings.class);
-                        startActivity(intent);
                         finish();
+                        startActivity(intent);
 
                     }
 
@@ -436,8 +435,8 @@ public class settings extends AppCompatActivity {
         });
     }
 
-    private void setLang(String lang) {
-        Locale locale = new Locale(lang);
+    public void setLang(String language) {
+        Locale locale = new Locale(language);
         Resources resources = getResources();
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         Configuration configuration = resources.getConfiguration();

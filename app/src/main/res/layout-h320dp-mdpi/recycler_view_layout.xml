@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".RecyclerView">
+
+
+    <ImageView
+        android:id="@+id/mainbackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/HistoryTab"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="-203dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/road_run"
+        tools:ignore="contentDescription" />
+
+    <ImageView
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_banner"
+        android:layout_below="@id/HistoryTab"
+        android:background="@drawable/run_interface_background" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/HistoryTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/History"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/History_banner_layout_height"
+            android:background="@drawable/bottom_banner"
+            android:fontFamily="@font/raleway_medium"
+            android:paddingTop="@dimen/history_paddingTop"
+            android:text="@string/history"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/history_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/returnButton"
+            android:layout_width="@dimen/returnbtn_layout_width"
+            android:layout_height="@dimen/return_layout_height"
+            android:layout_marginEnd="@dimen/returnbtn_layout_marginEnd"
+            android:background="@drawable/returnbuttonresource"
+            android:drawableTop="@drawable/ic_left_arrow"
+            android:paddingStart="@dimen/returnbtn_paddingStart"
+            android:paddingEnd="@dimen/returnbtn_paddingEnd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/History"
+            app:layout_constraintStart_toStartOf="@+id/History"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_banner_layout_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/bottome_banner_layout_marginTop"
+        android:layout_marginBottom="@dimen/bottome_banner_marginBottom"
+        android:background="@drawable/bottom_banner"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/AboutBtnSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/history_layout_marginEnd"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/About_btn"
+                android:layout_width="@dimen/historybtn_width"
+                android:layout_height="@dimen/historybtn_height"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/invisible_button"
+                android:drawableTop="@drawable/ic_notepad2"
+                android:paddingTop="@dimen/historybtns_paddingTop"
+                android:paddingStart="@dimen/icon_paddingStart"
+                android:paddingEnd="@dimen/icon_paddingEnd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/aboutText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_medium"
+                android:text="@string/about"
+                android:textColor="#ffff"
+                android:textSize="@dimen/historybtnstextsize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/About_btn" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/SettingsGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/history_layout_marginStart"
+            android:layout_marginEnd="@dimen/history_layout_marginEnd"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/settings_btn"
+                android:layout_width="@dimen/historybtn_width"
+                android:layout_height="@dimen/historybtn_height"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/invisible_button"
+                android:drawableTop="@drawable/ic_preference2"
+                android:paddingTop="@dimen/historybtns_paddingTop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/settingsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="@dimen/historybtnstextsize"
+                android:text="@string/settings"
+                android:textColor="#ffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_btn" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/music_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/history_layout_marginStart"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/music_btn"
+                android:layout_width="@dimen/historybtn_width"
+                android:layout_height="@dimen/historybtn_height"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/invisible_button"
+                android:drawableTop="@drawable/ic_headphones2"
+                android:paddingTop="@dimen/historybtns_paddingTop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_medium"
+                android:textSize="@dimen/historybtnstextsize"
+                android:text="@string/music"
+                android:textColor="#ffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/music_btn" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/EmptyActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/raleway_medium"
+        android:gravity="center"
+        android:visibility="visible"
+        android:text="@string/your_history_is_empty"
+        android:textColor="#ffff"
+        android:textSize="@dimen/activity_textsize" />
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/Recycle_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_banner"
+        android:layout_below="@id/HistoryTab"
+        app:layoutManager="LinearLayoutManager"/>
+
+
+
+
+</RelativeLayout>

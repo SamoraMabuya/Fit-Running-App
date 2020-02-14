@@ -381,6 +381,8 @@ public class settings extends AppCompatActivity {
         themeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("LastSelection", position);
                 editor.apply();
 

@@ -43,9 +43,8 @@
         android:resizeable="true"
         android:smallScreens="true"
         android:normalScreens="true"
-        android:largeScreens="false"
-        android:xlargeScreens="false"
-        android:largestWidthLimitDp="600"/>
+        android:largeScreens="true"
+        android:xlargeScreens="true"/>
 
     <compatible-screens>
 
@@ -62,6 +61,15 @@
         <screen android:screenSize="normal" android:screenDensity="xxhdpi" />
         <screen android:screenSize="normal" android:screenDensity="xxxhdpi" />
 
+        <screen android:screenSize="large" android:screenDensity="ldpi" />
+        <screen android:screenSize="large" android:screenDensity="mdpi" />
+        <screen android:screenSize="large" android:screenDensity="hdpi" />
+        <screen android:screenSize="large" android:screenDensity="xhdpi" />
+        <screen android:screenSize="large" android:screenDensity="xxhdpi" />
+        <screen android:screenSize="large" android:screenDensity="xxxhdpi" />
+
+
+
 
 
     </compatible-screens>
@@ -69,13 +77,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/runapp_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        android:configChanges="locale">
-        <activity android:name=".DisplayHistory"
-            android:screenOrientation="portrait">
+        android:theme="@style/AppTheme">
+        <activity android:name=".DisplayHistory">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

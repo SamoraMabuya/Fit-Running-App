@@ -49,9 +49,9 @@ public class settings extends AppCompatActivity {
     Spinner themeSpinner, LanguageSpinner;
     SharedPreferences sharedPreferences;
     SharedPreferences LastSelectedItem;
+    SharedPreferences LastChosen;
     SharedPreferences.Editor editor;
     boolean onetime_restart = true;
-    String MyLanguage;
 
 
     @Override
@@ -62,6 +62,7 @@ public class settings extends AppCompatActivity {
 
         sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         LastSelectedItem = getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
+        LastChosen = getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
 
 
         go_back_btn = findViewById(R.id.go_back_btn);
@@ -81,11 +82,15 @@ public class settings extends AppCompatActivity {
         VoiceCountOff = findViewById(R.id.VoiceCountOff);
 
 
+
         final int Myposition = themeSpinner.getSelectedItemPosition();
         final int lingoPosition = LanguageSpinner.getSelectedItemPosition();
 
         final int LastSelection = LastSelectedItem.getInt("LastSelection", 0);
         editor = LastSelectedItem.edit();
+
+        final int DefaultItem = LastChosen.getInt("LastChosen", 0);
+        editor = LastChosen.edit();
 
 
         go_back_btn.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +114,7 @@ public class settings extends AppCompatActivity {
                             editor.putBoolean(VoiceON, VoiceCountOn.isChecked());
                             editor.putBoolean(VoiceOff, VoiceCountOff.isChecked());
                             editor.putInt("LastSelection", Myposition);
-                            editor.putInt("LastSelection", lingoPosition);
+                            editor.putInt("LastChosen", lingoPosition);
                             editor.apply();
                             Intent intent = new Intent(getApplicationContext(), home.class);
                             startActivity(intent);
@@ -141,7 +146,7 @@ public class settings extends AppCompatActivity {
                             editor.putBoolean(VoiceON, VoiceCountOn.isChecked());
                             editor.putBoolean(VoiceOff, VoiceCountOff.isChecked());
                             editor.putInt("LastSelection", Myposition);
-                            editor.putInt("LastSelection", lingoPosition);
+                            editor.putInt("LastChosen", lingoPosition);
                             editor.apply();
                             Intent intent = new Intent(getApplicationContext(), DisplayHistory.class);
                             startActivity(intent);
@@ -173,7 +178,7 @@ public class settings extends AppCompatActivity {
                             editor.putBoolean(VoiceON, VoiceCountOn.isChecked());
                             editor.putBoolean(VoiceOff, VoiceCountOff.isChecked());
                             editor.putInt("LastSelection", Myposition);
-                            editor.putInt("LastSelection", lingoPosition);
+                            editor.putInt("LastChosen", lingoPosition);
                             editor.apply();
                             Intent intent = new Intent(CATEGORY_APP_MUSIC);
                             startActivity(intent);
@@ -207,7 +212,7 @@ public class settings extends AppCompatActivity {
                             editor.putBoolean(VoiceON, VoiceCountOn.isChecked());
                             editor.putBoolean(VoiceOff, VoiceCountOff.isChecked());
                             editor.putInt("LastSelection", Myposition);
-                            editor.putInt("LastSelection", lingoPosition);
+                            editor.putInt("LastChosen", lingoPosition);
                             editor.apply();
                             Intent intent = new Intent(settings.this, About.class);
                             startActivity(intent);
@@ -381,8 +386,6 @@ public class settings extends AppCompatActivity {
         themeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("LastSelection", position);
                 editor.apply();
 
@@ -400,12 +403,12 @@ public class settings extends AppCompatActivity {
         lingoAdapter.setDropDownViewResource(R.layout.spinner_drop_down);
 
         LanguageSpinner.setAdapter(lingoAdapter);
-        LanguageSpinner.setSelection(LastSelection);
+        LanguageSpinner.setSelection(DefaultItem);
 
         LanguageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                editor.putInt("LastSelection", position);
+                editor.putInt("LastChosen", position);
                 editor.apply();
                 if (onetime_restart) {
                     onetime_restart = false;
@@ -431,6 +434,7 @@ public class settings extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
 
             }
 

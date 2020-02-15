@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="staus_bar">#B3B4640B</color>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#264AB6</color>
@@ -7,6 +9,8 @@
     <color name="bluegrey200">#B0BEC5</color>
     <color name="amber600">#FFB300</color>
     <color name="bluegrey900">#263238</color>
+
+
 
 
 </resources>

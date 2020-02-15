@@ -48,8 +48,6 @@
 
     <compatible-screens>
 
-        <screen android:screenSize="small" android:screenDensity="mdpi" />
-        <screen android:screenSize="small" android:screenDensity="hdpi" />
         <screen android:screenSize="small" android:screenDensity="xhdpi" />
         <screen android:screenSize="small" android:screenDensity="xxhdpi" />
         <screen android:screenSize="small" android:screenDensity="xxxhdpi" />
@@ -68,6 +66,13 @@
         <screen android:screenSize="large" android:screenDensity="xxhdpi" />
         <screen android:screenSize="large" android:screenDensity="xxxhdpi" />
 
+        <screen android:screenSize="xlarge" android:screenDensity="ldpi" />
+        <screen android:screenSize="xlarge" android:screenDensity="mdpi" />
+        <screen android:screenSize="xlarge" android:screenDensity="hdpi" />
+        <screen android:screenSize="xlarge" android:screenDensity="xhdpi" />
+        <screen android:screenSize="large" android:screenDensity="xxhdpi" />
+        <screen android:screenSize="large" android:screenDensity="xxxhdpi" />
+
 
 
 
@@ -77,11 +82,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/runapp_icon_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:hardwareAccelerated="false">
         <activity android:name=".DisplayHistory">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -101,8 +106,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="mobile.home"
@@ -120,7 +123,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
@@ -134,8 +136,6 @@
                 <category android:name="android.intent.category.APP_MUSIC" />
 
                 <action android:name="android.intent.action.ALL_APPS" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 

@@ -1,46 +1,46 @@
 <resources>
-    <dimen name="run_interface_textsize">22sp</dimen>
-    <dimen name="numeric_textsize">35sp</dimen>
+    <dimen name="run_interface_textsize">24sp</dimen>
+    <dimen name="numeric_textsize">38sp</dimen>
     <dimen name="chronometerTextSize">85sp</dimen>
     <dimen name="mph_group_layout_marginStart">0dp</dimen>
     <dimen name="speed_group_layout_marginTop">40dp</dimen>
-    <dimen name="mph_group_layout_marginEnd">180dp</dimen>
+    <dimen name="mph_group_layout_marginEnd">170dp</dimen>
     <dimen name="speed_group_layout_marginBottom">210dp</dimen>
-    <dimen name="kmh_group_layout_marginStart">180dp</dimen>
+    <dimen name="kmh_group_layout_marginStart">170dp</dimen>
     <dimen name="kmh_group_layout_marginEnd">0dp</dimen>
 
     <!--    run interface left buttons-->
     <dimen name="runInterface_buttonWidth">120dp</dimen>
     <dimen name="runInterface_buttonHeight">50dp</dimen>
-    <dimen name="left_buttons_layout_marginStart">45dp</dimen>
-    <dimen name="playnpausebtn_layout_marginTop">440dp</dimen>
+    <dimen name="left_buttons_layout_marginStart">50dp</dimen>
+    <dimen name="playnpausebtn_layout_marginTop">470dp</dimen>
     <dimen name="left_buttons_layout_marginEnd">0dp</dimen>
     <dimen name="playnpausebtn_layout_marginBottom">0dp</dimen>
     <dimen name="playnpausebtn_paddingTop">10dp</dimen>
-    <dimen name="housebtn_layout_marginTop">370dp</dimen>
+    <dimen name="housebtn_layout_marginTop">405dp</dimen>
     <dimen name="housebtn_layout_marginBottom">0dp</dimen>
     <dimen name="homebtn_paddingTop">7dp</dimen>
 
     <!--    run interface right buttons-->
     <dimen name="right_buttons_layout_marginStart">0dp</dimen>
-    <dimen name="right_buttons_layout_marginEnd">45dp</dimen>
-    <dimen name="music_button_layout_marginTop">370dp</dimen>
+    <dimen name="right_buttons_layout_marginEnd">50dp</dimen>
+    <dimen name="music_button_layout_marginTop">405dp</dimen>
     <dimen name="music_button_layout_marginBottom">0dp</dimen>
     <dimen name="musictbn_paddingTop">7dp</dimen>
-    <dimen name="stopbtn_layout_marginTop">440dp</dimen>
+    <dimen name="stopbtn_layout_marginTop">470dp</dimen>
     <dimen name="stopbtn_layout_marginBottom">0dp</dimen>
     <dimen name="stopbtn_paddingTop">10dp</dimen>
 
     <!--    distancegroup-->
     <dimen name="distanceGroup_marginStart">80dp</dimen>
     <dimen name="distanceGroup_marginEnd">80dp</dimen>
-    <dimen name="distanceGroup_marginTop">150dp</dimen>
+    <dimen name="distanceGroup_marginTop">160dp</dimen>
     <dimen name="distanceGroup_marginBottom">0dp</dimen>
 
     <!--    timeGroup-->
     <dimen name="timeGroup_marginStart">100dp</dimen>
     <dimen name="timeGroup_marginEnd">100dp</dimen>
-    <dimen name="timeGroup_marginTop">275dp</dimen>
+    <dimen name="timeGroup_marginTop">290dp</dimen>
     <dimen name="timeGroup_marginBottom">50dp</dimen>
 
     <!--    chronometer-->
@@ -52,8 +52,8 @@
 
     <!--    AboutHeading-->
     <dimen name="about_heading_height">80dp</dimen>
-    <dimen name="about_heading_paddingTop">22dp</dimen>
-    <dimen name="about_heading_textsize">24sp</dimen>
+    <dimen name="about_heading_paddingTop">24dp</dimen>
+    <dimen name="about_heading_textsize">22sp</dimen>
 
     <!--    return home button-->
     <dimen name="About_return_btn_width">60dp</dimen>
@@ -108,7 +108,7 @@
     <dimen name="contactTextsize">18sp</dimen>
 
     <!--    features-->
-    <dimen name="bottombannerheight">90dp</dimen>
+    <dimen name="bottombannerheight">111dp</dimen>
     <dimen name="buttonWidth">50dp</dimen>
     <dimen name="buttonHeight">50dp</dimen>
     <dimen name="btnGroup_marginEnd">25dp</dimen>
@@ -119,10 +119,10 @@
 
     <dimen name="SettingsText_height">75dp</dimen>
     <dimen name="Sections_height">80dp</dimen>
-    <dimen name="SettingsText_paddingTop">24dp</dimen>
+    <dimen name="SettingsText_paddingTop">20dp</dimen>
     <dimen name="SettingsText_paddingStart">25dp</dimen>
     <dimen name="SettingsText_paddingEnd">0dp</dimen>
-    <dimen name="SettingsTextsize">24sp</dimen>
+    <dimen name="SettingsTextsize">22sp</dimen>
 
     <!--    return button-->
 
@@ -137,7 +137,7 @@
 
     <!--    TextViews and textsizes-->
     <dimen name="textviews_paddingStart">20dp</dimen>
-    <dimen name="textviews_paddingTop">27dp</dimen>
+    <dimen name="textviews_paddingTop">29dp</dimen>
     <dimen name="textviews_paddingEnd">0dp</dimen>
     <dimen name="textviews_textSize18">20sp</dimen>
     <dimen name="textviews_textSize14">16sp</dimen>
@@ -167,13 +167,13 @@
     <dimen name="off_btn_paddingEnd">35dp</dimen>
 
     <!--    Spinner-->
-    <dimen name="themeSpinner_marginStart">150dp</dimen>
-    <dimen name="Spinners_marginTop">5dp</dimen>
+    <dimen name="themeSpinner_marginStart">190dp</dimen>
+    <dimen name="Spinners_marginTop">0dp</dimen>
     <dimen name="dropdown_offset">25dp</dimen>
     <dimen name="LanguageSpinner_marginStart">130dp</dimen>
 
     <!--    Bottom banner-->
-    <dimen name="bb_height">90dp</dimen>
+    <dimen name="bb_height">111dp</dimen>
     <dimen name="btns_width">55dp</dimen>
     <dimen name="btns_height">55dp</dimen>
     <dimen name="about_section_marginEnd">25dp</dimen>
@@ -215,11 +215,11 @@
 
     <!--    recycler_view_layout-->
     <dimen name="History_banner_layout_height">85dp</dimen>
-    <dimen name="history_paddingTop">23dp</dimen>
-    <dimen name="history_paddingStart">10dp</dimen>
+    <dimen name="history_paddingTop">24dp</dimen>
+    <dimen name="history_paddingStart">15dp</dimen>
     <dimen name="history_paddingEnd">0dp</dimen>
-    <dimen name="history_textsize">24sp</dimen>
-    <dimen name="empty_history">23sp</dimen>
+    <dimen name="history_textsize">22sp</dimen>
+    <dimen name="empty_history">22sp</dimen>
 
     <!--    return button-->
     <dimen name="returnbtn_layout_width">75dp</dimen>
@@ -230,7 +230,7 @@
     <dimen name="returnbtn_paddingTop">1dp</dimen>
 
     <!--    bottom banner-->
-    <dimen name="bottom_banner_layout_height">90dp</dimen>
+    <dimen name="bottom_banner_layout_height">111dp</dimen>
     <dimen name="bottome_banner_layout_marginTop">0dp</dimen>
     <dimen name="bottome_banner_marginBottom">0dp</dimen>
 
@@ -291,7 +291,7 @@
     <dimen name="dropdown_padding">5dp</dimen>
 
     <!--    Spinner selected text-->
-    <dimen name="selected_textsize">18sp</dimen>
+    <dimen name="selected_textsize">16sp</dimen>
 
 
 

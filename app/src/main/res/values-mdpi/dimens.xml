@@ -184,7 +184,7 @@
     <!--    Settings-->
 
     <dimen name="SettingsText_height">60dp</dimen>
-    <dimen name="Sections_height">60dp</dimen>
+    <dimen name="Sections_height">65dp</dimen>
     <dimen name="SettingsText_paddingTop">20dp</dimen>
     <dimen name="SettingsTextsize">20sp</dimen>
 
@@ -200,7 +200,7 @@
     <dimen name="textviews_paddingStart">20dp</dimen>
     <dimen name="textviews_paddingTop">20dp</dimen>
     <dimen name="textviews_paddingEnd">0dp</dimen>
-    <dimen name="textviews_textSize18">18sp</dimen>
+    <dimen name="textviews_textSize18">16sp</dimen>
     <dimen name="textviews_textSize14">14sp</dimen>
 
 <!--    button radio group-->

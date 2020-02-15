@@ -4,8 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import mobile.home;
 import mobile.settings;
@@ -15,6 +20,10 @@ public class About extends AppCompatActivity {
     Button return_home, settings_button, history_btn, music_btn;
 
     String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
+
+    ImageView runner_bc;
+
+    String image_link;
 
 
     @Override
@@ -26,6 +35,12 @@ public class About extends AppCompatActivity {
         settings_button = findViewById(R.id.settings_button);
         history_btn = findViewById(R.id.history_btn);
         music_btn = findViewById(R.id.music_btn);
+        runner_bc = new ImageView(this);
+        ImageView runnerBC = new ImageView(this);
+        runnerBC.setImageDrawable(getResources().getDrawable(R.drawable.runner_image_intro_page_compressed));
+
+
+
 
         return_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +125,7 @@ public class About extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
+
                 }
             }
         });

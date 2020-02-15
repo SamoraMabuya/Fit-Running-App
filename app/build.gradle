@@ -36,4 +36,5 @@ dependencies {
     implementation 'com.muddzdev:styleabletoast:2.2.3'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

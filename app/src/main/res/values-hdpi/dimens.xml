@@ -6,44 +6,44 @@
     <dimen name="numeric_textsize">30sp</dimen>
     <dimen name="chronometerTextSize">60sp</dimen>
     <dimen name="mph_group_layout_marginStart">0dp</dimen>
-    <dimen name="speed_group_layout_marginTop">20dp</dimen>
-    <dimen name="mph_group_layout_marginEnd">180dp</dimen>
+    <dimen name="speed_group_layout_marginTop">40dp</dimen>
+    <dimen name="mph_group_layout_marginEnd">150dp</dimen>
     <dimen name="speed_group_layout_marginBottom">210dp</dimen>
-    <dimen name="kmh_group_layout_marginStart">180dp</dimen>
+    <dimen name="kmh_group_layout_marginStart">150dp</dimen>
     <dimen name="kmh_group_layout_marginEnd">0dp</dimen>
 
     <!--    run interface left buttons-->
     <dimen name="runInterface_buttonWidth">110dp</dimen>
     <dimen name="runInterface_buttonHeight">50dp</dimen>
-    <dimen name="left_buttons_layout_marginStart">38dp</dimen>
-    <dimen name="playnpausebtn_layout_marginTop">375dp</dimen>
+    <dimen name="left_buttons_layout_marginStart">40dp</dimen>
+    <dimen name="playnpausebtn_layout_marginTop">415dp</dimen>
     <dimen name="left_buttons_layout_marginEnd">0dp</dimen>
     <dimen name="playnpausebtn_layout_marginBottom">0dp</dimen>
     <dimen name="playnpausebtn_paddingTop">10dp</dimen>
-    <dimen name="housebtn_layout_marginTop">310dp</dimen>
+    <dimen name="housebtn_layout_marginTop">350dp</dimen>
     <dimen name="housebtn_layout_marginBottom">0dp</dimen>
     <dimen name="homebtn_paddingTop">8dp</dimen>
 
     <!--    run interface right buttons-->
     <dimen name="right_buttons_layout_marginStart">0dp</dimen>
-    <dimen name="right_buttons_layout_marginEnd">38dp</dimen>
-    <dimen name="music_button_layout_marginTop">310dp</dimen>
+    <dimen name="right_buttons_layout_marginEnd">40dp</dimen>
+    <dimen name="music_button_layout_marginTop">350dp</dimen>
     <dimen name="music_button_layout_marginBottom">0dp</dimen>
     <dimen name="musictbn_paddingTop">8dp</dimen>
-    <dimen name="stopbtn_layout_marginTop">375dp</dimen>
+    <dimen name="stopbtn_layout_marginTop">415dp</dimen>
     <dimen name="stopbtn_layout_marginBottom">23dp</dimen>
     <dimen name="stopbtn_paddingTop">10dp</dimen>
 
     <!--    distancegroup-->
     <dimen name="distanceGroup_marginStart">80dp</dimen>
     <dimen name="distanceGroup_marginEnd">80dp</dimen>
-    <dimen name="distanceGroup_marginTop">110dp</dimen>
+    <dimen name="distanceGroup_marginTop">140dp</dimen>
     <dimen name="distanceGroup_marginBottom">0dp</dimen>
 
     <!--    timeGroup-->
     <dimen name="timeGroup_marginStart">100dp</dimen>
     <dimen name="timeGroup_marginEnd">100dp</dimen>
-    <dimen name="timeGroup_marginTop">210dp</dimen>
+    <dimen name="timeGroup_marginTop">240dp</dimen>
     <dimen name="timeGroup_marginBottom">50dp</dimen>
 
     <!--    chronometer-->
@@ -81,7 +81,7 @@
 
     <!--    recycler_view_layout-->
     <dimen name="History_banner_layout_height">60dp</dimen>
-    <dimen name="history_paddingTop">20dp</dimen>
+    <dimen name="history_paddingTop">15dp</dimen>
     <dimen name="history_textsize">20sp</dimen>
 
     <!--    return button-->
@@ -92,7 +92,7 @@
     <dimen name="returnbtn_paddingEnd">0dp</dimen>
 
     <!--    bottom banner-->
-    <dimen name="bottom_banner_layout_height">80dp</dimen>
+    <dimen name="bottom_banner_layout_height">98dp</dimen>
     <dimen name="bottome_banner_layout_marginTop">0dp</dimen>
     <dimen name="bottome_banner_marginBottom">0dp</dimen>
 
@@ -171,7 +171,7 @@
     <dimen name="contactTextsize">18sp</dimen>
 
     <!--    features-->
-    <dimen name="bottombannerheight">80dp</dimen>
+    <dimen name="bottombannerheight">98dp</dimen>
     <dimen name="buttonWidth">50dp</dimen>
     <dimen name="buttonHeight">50dp</dimen>
     <dimen name="btnGroup_marginEnd">20dp</dimen>
@@ -181,8 +181,9 @@
     <!--    Settings-->
 
     <dimen name="SettingsText_height">60dp</dimen>
-    <dimen name="Sections_height">60dp</dimen>
-    <dimen name="SettingsText_paddingTop">20dp</dimen>
+    <dimen name="Sections_height">70dp</dimen>
+    <dimen name="SettingsText_paddingTop">16dp</dimen>
+    <dimen name="SettingsText_paddingStart">10dp</dimen>
     <dimen name="SettingsTextsize">20sp</dimen>
 
     <!--    return button-->
@@ -230,7 +231,7 @@
     <dimen name="LanguageSpinner_marginStart">130dp</dimen>
 
 <!--    Bottom banner-->
-    <dimen name="bb_height">50dp</dimen>
+    <dimen name="bb_height">98dp</dimen>
     <dimen name="btns_width">50dp</dimen>
     <dimen name="btns_height">50dp</dimen>
     <dimen name="about_section_marginEnd">10dp</dimen>

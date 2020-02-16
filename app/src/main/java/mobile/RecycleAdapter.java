@@ -18,16 +18,11 @@ import mobile.apps.R;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecyclerViewHolder> {
 
-    public ArrayList<RetrieveRunnerActivity> arrayList;
-
-    private Context context;
-    private Cursor cursor;
+    private ArrayList<RetrieveRunnerActivity> arrayList;
 
 
-    public RecycleAdapter(ArrayList<RetrieveRunnerActivity> arrayList, Context context, Cursor cursor, OnItemClickListener deleteListener) {
+    public RecycleAdapter(ArrayList<RetrieveRunnerActivity> arrayList, OnItemClickListener deleteListener) {
         this.arrayList = arrayList;
-        this.context = context;
-        this.cursor = cursor;
         this.deleteListener = deleteListener;
     }
 

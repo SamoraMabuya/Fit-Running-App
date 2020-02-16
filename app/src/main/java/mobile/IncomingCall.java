@@ -1,27 +1,28 @@
 package mobile;
 
-import android.app.Service;
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.Toast;
 
-import mobile.apps.R;
+import java.util.Objects;
+
 
 public class IncomingCall extends BroadcastReceiver {
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
+        if (Objects.requireNonNull(intent.getStringExtra(TelephonyManager.EXTRA_STATE)).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
             showMessage(context, "Activity Paused");
 
-        } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+        } else if (Objects.equals(intent.getStringExtra(TelephonyManager.EXTRA_STATE), TelephonyManager.EXTRA_STATE_OFFHOOK)) {
             showMessage(context, "Active Call");
 
-        } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_IDLE)) {
+        } else if (Objects.equals(intent.getStringExtra(TelephonyManager.EXTRA_STATE), TelephonyManager.EXTRA_STATE_IDLE)) {
             showMessage(context, "Resume Activity");
 
         }

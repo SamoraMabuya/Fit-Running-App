@@ -205,7 +205,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
                                         && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                                         && ContextCompat.checkSelfPermission(run_interface.this,
                                         Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-                                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, run_interface.this);
                                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, run_interface.this);
                                     createLocationRequest();
                                     timer.setBase(SystemClock.elapsedRealtime() - update);
@@ -338,8 +337,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     private void createLocationRequest() {
         locationRequest = LocationRequest.create();
-        locationRequest.setInterval(3000);
-        locationRequest.setFastestInterval(3000);
+        locationRequest.setInterval(5000);
+        locationRequest.setFastestInterval(5000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
@@ -619,7 +618,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
                 play_button.setVisibility(View.VISIBLE);
                 update = SystemClock.elapsedRealtime() - timer.getBase();
                 locationManager.removeUpdates(run_interface.this);
-            } else if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
+            } else if (state == TelephonyManager.CALL_STATE_IDLE) {
                 timer.stop();
                 active = false;
                 play_button.setVisibility(View.VISIBLE);

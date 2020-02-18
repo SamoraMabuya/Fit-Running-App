@@ -1,19 +1,15 @@
-package mobile.apps;
+package runora.inc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import mobile.RecycleAdapter;
-import mobile.RetrieveRunnerActivity;
-import mobile.RunoraDatabaseHelper;
-
-import static mobile.RunoraDatabaseHelper.TABLE_NAME;
+import runora.RecycleAdapter;
+import runora.RetrieveRunnerActivity;
+import runora.RunoraDatabaseHelper;
 
 public class history extends AppCompatActivity {
 
@@ -40,7 +36,7 @@ public class history extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Runora_database.DeleteData(Duration_column.getText().toString());
-                Runora_database.DeleteData(TABLE_NAME);
+                Runora_database.DeleteData(RunoraDatabaseHelper.TABLE_NAME);
 
             }
         });

@@ -1,4 +1,4 @@
-package mobile.apps;
+package runora.inc;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +8,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
-
-import mobile.home;
-import mobile.settings;
+import runora.home;
+import runora.settings;
 
 public class About extends AppCompatActivity {
 

@@ -1,6 +1,5 @@
-package mobile;
+package runora;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,9 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 
-import mobile.apps.About;
-import mobile.apps.DisplayHistory;
-import mobile.apps.R;
+import runora.inc.About;
+import runora.inc.DisplayHistory;
+import runora.inc.R;
 
 public class settings extends AppCompatActivity {
 

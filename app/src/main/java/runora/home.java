@@ -1,4 +1,4 @@
-package mobile;
+package runora;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -26,9 +26,9 @@ import androidx.core.content.ContextCompat;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-import mobile.apps.About;
-import mobile.apps.DisplayHistory;
-import mobile.apps.R;
+import runora.inc.About;
+import runora.inc.DisplayHistory;
+import runora.inc.R;
 
 
 public class home extends AppCompatActivity implements LocationListener, com.google.android.gms.location.LocationListener {

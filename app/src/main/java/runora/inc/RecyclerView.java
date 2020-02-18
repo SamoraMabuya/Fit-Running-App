@@ -1,4 +1,4 @@
-package mobile.apps;
+package runora.inc;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -6,8 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import mobile.RecycleAdapter;
-import mobile.RunoraDatabaseHelper;
+import runora.RecycleAdapter;
 
 public class RecyclerView extends AppCompatActivity {
 

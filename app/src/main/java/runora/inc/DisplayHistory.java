@@ -1,13 +1,9 @@
-package mobile.apps;
+package runora.inc;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,11 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import mobile.RecycleAdapter;
-import mobile.RetrieveRunnerActivity;
-import mobile.RunoraDatabaseHelper;
-import mobile.home;
-import mobile.settings;
+import runora.RecycleAdapter;
+import runora.RetrieveRunnerActivity;
+import runora.RunoraDatabaseHelper;
+import runora.home;
+import runora.settings;
 
 public class DisplayHistory extends AppCompatActivity {
 

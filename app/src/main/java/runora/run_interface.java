@@ -1,4 +1,4 @@
-package mobile;
+package runora;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -47,9 +47,9 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import mobile.apps.R;
+import runora.inc.R;
 
-import static mobile.settings.GetInfo;
+import static runora.settings.GetInfo;
 
 
 public class run_interface extends AppCompatActivity implements LocationListener, android.location.LocationListener {

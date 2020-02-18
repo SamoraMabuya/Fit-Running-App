@@ -1,4 +1,4 @@
-package mobile;
+package runora;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("Mobile.apps", appContext.getPackageName());
+        assertEquals("runora.inc", appContext.getPackageName());
     }
 }

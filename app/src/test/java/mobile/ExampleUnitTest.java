@@ -1,4 +1,4 @@
-package mobile;
+package runora;
 
 import org.junit.Test;
 

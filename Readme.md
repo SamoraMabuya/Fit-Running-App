@@ -13,17 +13,5 @@ Since I use running apps, I decided to make my own, to know the process and exec
 
 ---
 ## Features
-1. Distance Tracking
-2. Current speed, time and distance
-3. Change distance metric to miles/km
-4. Support of English and German
-5. Access mp3 player
-6. 2 themes available
-7. Save activity to history
-8. 10 second countdown timer(Silent/Voice)
-
-
----
-## Technologies
-1. Android Studio
+* djcidj
 

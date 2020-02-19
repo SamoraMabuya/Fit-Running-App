@@ -13,5 +13,5 @@ Since I use running apps, I decided to make my own, to know the process and exec
 
 ---
 ## Features
-* djcidj
+
 

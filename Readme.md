@@ -1,5 +1,5 @@
 # Runora - Distance Running App
-https://github.com/SamoraMabuya/Runapp/blob/master/Screenshots/Screenshot_1581797724.png
+<img src= "https://github.com/SamoraMabuya/Runapp/blob/master/Screenshots/Screenshot_1581797724.png"
 
 Runora is a simple running application that tracks the active users distance, timer and speed wih the use of GPS tracking.
 

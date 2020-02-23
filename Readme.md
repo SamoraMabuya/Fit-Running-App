@@ -48,3 +48,4 @@ Download from play store: https://play.google.com/store/apps/details?id=runora.i
 * Android device
 * Minimum API Level: API 21. Android Version 5.0 (Lollipop)
 
+s

@@ -49,5 +49,3 @@ Download from play store: https://play.google.com/store/apps/details?id=runora.i
 ## Contributors ##
 
 Samora Mabuya
-jbibi
-mopl

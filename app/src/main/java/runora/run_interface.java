@@ -57,7 +57,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     RunoraDatabaseHelper Runora_database;
     TelephonyManager telephonyManager;
-    IncomingCall incomingCall = new IncomingCall();
 
 
     FusedLocationProviderClient fusionprovider;
@@ -129,7 +128,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
         CountDownSwitch();
         ToggleTheme();
 
-
+//SystemClock.elapsedRealtime returns elapsed count from 0,
+// By adding getBase, the timer returns a start time from the current pause/stop point
+// To ensure this timer doesn't exceed 24hrs, I've added 86400000 which is 24hrs in milliseconds
         timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -185,7 +186,12 @@ public class run_interface extends AppCompatActivity implements LocationListener
             }
         });
 
+//At first I used GPS and Network provide together. Seeing the huge inaccuracy of using both, I
+//opted to just GPS provider for more accurate readings.
 
+//Make sure to add permissions in manifest folder to use the following services.
+//Read phone state read the devices current state(incoming call, active call, no call) This helps
+//to specify actions when the phone rings during running activity.
         play_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ResumeRunnable resumeRunnable = new ResumeRunnable();
@@ -334,7 +340,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
         }
     }
 
-
+// to call this method, fuisonLocationprovider must be declared and assigned
+// This methods enhances gps accuracy
     private void createLocationRequest() {
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(5000);
@@ -342,7 +349,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
-
+//Specify Settings.Action_Location_Source_Settings allows intent to take us to location source
+//settings
     public void LocationCall() {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);

@@ -1,9 +1,6 @@
 # Runora - Distance Running App
 
-<img src= "https://github.com/SamoraMabuya/Runapp/blob/master/screenshots/Screenshot_1581797724.png" width= "200">    <img src= "https://github.com/SamoraMabuya/Runapp/blob/master/screenshots/Screenshot_1581797737.png" width= "200">    <img src= "https://github.com/SamoraMabuya/Runapp/blob/master/screenshots/Screenshot_1581798339.png" width= "200">    <img src= "https://github.com/SamoraMabuya/Runapp/blob/master/screenshots/Screenshot_1581799616.png" width= "200">
-
-
-Runora is a simple running application that tracks the active users distance, timer and speed wih the use of GPS tracking.
+Runora is a simple running application that tracks the active user's distance, timer and speed wih the use of GPS tracking.
 
 Version: **1.0**
 
@@ -15,9 +12,7 @@ I love using fitness apps. Being my first application, I wanted to create someth
 Since I use running apps, I decided to make my own, to know the process and execution that goes into making the running apps I love to use.
 
 ---
-
 ## Features
-
 1. Distance Tracking
 2. Current speed, time and distance
 3. Change distance metric to miles/km
@@ -29,13 +24,11 @@ Since I use running apps, I decided to make my own, to know the process and exec
 
 
 ---
-
 ## Technologies
 
 Android Studio
 
 ## License
-
 **MIT**
 
 Read here: https://github.com/SamoraMabuya/Runapp/blob/master/LICENSE
@@ -46,6 +39,12 @@ Read here: https://github.com/SamoraMabuya/Runapp/blob/master/LICENSE
 
 Download from play store: https://play.google.com/store/apps/details?id=runora.inc
 
-## Contributors ##
+## Installion ##
 
-Samora Mabuya
+Download from play store: https://play.google.com/store/apps/details?id=runora.inc
+
+## Requirements ##
+
+* Android device
+* Minimum API Level: API 21. Android Version 5.0 (Lollipop)
+

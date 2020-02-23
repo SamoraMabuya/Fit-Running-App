@@ -1,6 +1,6 @@
 # Runora - Distance Running App
 
-Runora is a simple running application that tracks the active users distance, timer and speed wih the use of GPS tracking.
+Runora is a simple running application that tracks the active user's distance, timer and speed wih the use of GPS tracking.
 
 Version: **1.0**
 
@@ -39,8 +39,12 @@ Read here: https://github.com/SamoraMabuya/Runapp/blob/master/LICENSE
 
 Download from play store: https://play.google.com/store/apps/details?id=runora.inc
 
-## Contributors ##
+## Installion ##
 
-Samora Mabuya
+Download from play store: https://play.google.com/store/apps/details?id=runora.inc
 
-chahnge test
+## Requirements ##
+
+* Android device
+* Minimum API Level: API 21. Android Version 5.0 (Lollipop)
+

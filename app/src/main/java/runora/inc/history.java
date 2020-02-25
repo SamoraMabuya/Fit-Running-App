@@ -16,9 +16,7 @@ public class history extends AppCompatActivity {
 
     ImageView deleteButton;
     TextView Duration_column, Distance_column, date_heading;
-    RecycleAdapter.RecyclerViewHolder RVH;
     RunoraDatabaseHelper Runora_database;
-    RetrieveRunnerActivity retrieveRunnerActivity;
 
 
     @Override

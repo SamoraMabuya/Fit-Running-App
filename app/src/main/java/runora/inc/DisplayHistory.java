@@ -189,5 +189,12 @@ public class DisplayHistory extends AppCompatActivity {
 
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), home.class);
+        startActivity(intent);
+        finish();
+    }
 }
 

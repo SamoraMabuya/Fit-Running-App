@@ -33,8 +33,6 @@ public class settings extends AppCompatActivity {
     public static String OFF = "off";
     public static String VoiceON = "voiceOn";
     public static String VoiceOff = "VoiceOff";
-    private static final String StoreLang = "StoreLang";
-    private static final String InsertLang = "InsertLang";
     Button go_back_btn, music_btn, history_btn, AboutButton;
     RadioGroup distancebtn_group;
     RadioGroup CountDownBtnGroup;
@@ -447,5 +445,20 @@ public class settings extends AppCompatActivity {
         Configuration configuration = resources.getConfiguration();
         configuration.locale = locale;
         resources.updateConfiguration(configuration, displayMetrics);
+    }
+
+    @Override
+    public void onBackPressed() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(MILESBTN, miles_btn.isChecked());
+        editor.putBoolean(KMBTN, kilometer_btn.isChecked());
+        editor.putBoolean(ON, OnButton.isChecked());
+        editor.putBoolean(OFF, OffButton.isChecked());
+        editor.putBoolean(VoiceON, VoiceCountOn.isChecked());
+        editor.putBoolean(VoiceOff, VoiceCountOff.isChecked());
+        editor.apply();
+        Intent intent = new Intent(getApplicationContext(), home.class);
+        startActivity(intent);
+        finish();
     }
 }

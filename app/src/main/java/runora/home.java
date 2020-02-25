@@ -389,6 +389,15 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
         Calendar calendar = Calendar.getInstance();
         HomePageDate.setText(DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime()));
     }
+
+    @Override
+    public void onBackPressed() {
+      Intent intent = new Intent(Intent.ACTION_MAIN);
+      intent.addCategory(Intent.CATEGORY_HOME);
+      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+      startActivity(intent);
+      finish();
+    }
 }
 
 

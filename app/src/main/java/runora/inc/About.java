@@ -19,8 +19,13 @@ public class About extends AppCompatActivity {
 
     ImageView runner_bc;
 
-    String image_link;
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), home.class);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +130,7 @@ public class About extends AppCompatActivity {
                 }
             }
         });
+
     }
 }
 

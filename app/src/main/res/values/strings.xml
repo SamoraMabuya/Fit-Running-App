@@ -13,4 +13,5 @@
     <string name="_3_change_activity_themes_2_themes_available">3. Change activity themes: 2 themes available.</string>
     <string name="_2_10_second_countdown_timer_find_in_settings">2. 10 second countdown timer: Find in settings.</string>
     <string name="_5_app_supports_english_and_german">5. App supports English and German.</string>
+    <string name="GPSRunTracker">App_Name</string>
 </resources>

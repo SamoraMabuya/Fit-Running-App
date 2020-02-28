@@ -2,6 +2,9 @@ package runora;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +14,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import java.text.DateFormat;
@@ -35,13 +40,10 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
 
     private static final int PermissionCode = 58;
 
-
     ImageView music_IV_btn, settings_IV_btn, history_IV_btn, about_image_view;
     LocationManager locationManager;
     TextView HomePageDate;
     Button history_btn, music_btn, settings_btn, start_btn, about_btn;
-
-
     String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
 
 
@@ -397,6 +399,13 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
       startActivity(intent);
       finish();
+    }
+
+    public void statusBarIcon() {
+
+
+
+
     }
 }
 

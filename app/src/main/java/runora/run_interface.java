@@ -58,14 +58,10 @@ public class run_interface extends AppCompatActivity implements LocationListener
     RunoraDatabaseHelper Runora_database;
     TelephonyManager telephonyManager;
 
-
     FusedLocationProviderClient fusionprovider;
     LocationManager locationManager;
     LocationRequest locationRequest;
     Location start_location, end_location, curr_location;
-
-
-
 
     TextView distance_counter, SpdInmph, SpdInkmh, CountDownTimerView;
     Button play_button, pause_button, stop_btn, homebutton, musicButton;
@@ -86,12 +82,9 @@ public class run_interface extends AppCompatActivity implements LocationListener
     RadioButton miles_btn;
     RadioButton kilometer_btn;
 
-
     private static final int AccessCode = 48;
 
-
     String CATEGORY_APP_MUSIC = "android.intent.action.MUSIC_PLAYER";
-
 
     String current_date;
 
@@ -131,9 +124,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
         CountDownSwitch();
         ToggleTheme();
 
-//  SystemClock.elapsedRealtime returns elapsed count from 0,
-//  By adding getBase, the timer returns a start time from the current pause/stop point
-//  To ensure this timer doesn't exceed 24hrs, I've added 86400000 which is 24hrs in milliseconds
+
         timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -189,12 +180,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
             }
         });
 
-//  At first I used GPS and Network provide together. Seeing the huge inaccuracy of using both, I
-//  opted to just GPS provider for more accurate readings.
 
-//  ake sure to add permissions in manifest folder to use the following services.
-//  Read phone state read the devices current state(incoming call, active call, no call) This helps
-//  to specify actions when the phone rings during running activity.
         play_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ResumeRunnable resumeRunnable = new ResumeRunnable();
@@ -343,8 +329,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         }
     }
 
-//  to call this method, fuisonLocationprovider must be declared and assigned
-//  his methods enhances gps accuracy
     private void createLocationRequest() {
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(5000);
@@ -352,8 +336,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
-//  Specify Settings.Action_Location_Source_Settings allows intent to take us to location source
-//  settings
     public void LocationCall() {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
@@ -415,14 +397,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     }
 
-//  Use RelativeSizeSpan to change the size of String "mi".
-//  proportion changes text size
-//  start implies which letter position to start the textsize change
-//  end is used to indicate the letter position I want to end the size change
 
-//  Builder.append makes it possiblr to postion "mi" in front of the decimal number 0.00
-//  Both spannablestring and (new DecimalFormat("0.00 ").format(distance) must be append to make
-//  this possible
     private void distanceInMiles() {
         String miles = "mi";
         SpannableStringBuilder builder = new SpannableStringBuilder();
@@ -436,13 +411,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
 
     }
-//  Use RelativeSizeSpan to change the size of String "km".
-//  proportion changes text size
-//  start implies which letter position to start the textsize change
-//  end is used to indicate the letter position I want to end the size change
 
-//  Builder.append makes it possiblr to postion "km" in front of the decimal number 0.00
-//  Both spannablestring and (
     private void distanceInkilometers() {
         String kilometers = "km";
         SpannableStringBuilder builder = new SpannableStringBuilder();
@@ -456,16 +425,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     }
 
-//    This method is used to retrieve key from another activity. The key is used to specify required
-//    action to be taken when a specific radio button is selected in settings activity.
-
-//    In this context I've specified that distance unit be returned in km if radio button(km) in
-//    settings activity is selected, or miles units be used if miles button is selected.
-
-//    The used here is KMBTN
-
-//    The variable used here is a final boolean. This allows the program to check if a condition
-//    is true or false, so we can specify what happens in either conditions.
     private void ChooseMetricUnits() {
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         final boolean MetricUnit = sharedPreferences.getBoolean(settings.KMBTN, true);
@@ -474,15 +433,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
         } else
             distanceInMiles();
     }
-//    This sharedpreference method slightly different to the above. This method is checking options
-//    selected in a list instead of radio buttons.
 
-//    Here I've used an int variable to check a list that consists of two option themes.
-//    Note that settings section provides the user with two themes to choose from
-
-//    Below I've assigned a theme to variable 1. Instead of continuing the method with else if, I've
-//    ended the method of at LightTheme(), since the default theme of this app is already assigned
-//    to 0 during the declaration of int LastSelection in line 487.
     private void ToggleTheme() {
         final SharedPreferences LastSelectedItem = getApplicationContext().getSharedPreferences("PriorSelected", Context.MODE_PRIVATE);
         int LastSelection = LastSelectedItem.getInt("LastSelection", 0);
@@ -501,8 +452,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
         musicButton.setBackgroundResource(R.drawable.light_theme_buttons);
     }
 
-//    Refer to ChooseMetricUnits method to understand this method.
-//    When using an audio file, you must copy it to the raw folder so you can use it.
     public void VoiceCountdown() {
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(GetInfo, MODE_PRIVATE);
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.count_down_voice);
@@ -518,7 +467,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 //    To give the appearance of a disabled button, I've created duplicates of the buttons and changed
 //    their colors to grey.
 
-//    setBackgroundResource will make these disabled_button_resources visible during
+    //    setBackgroundResource will make these disabled_button_resources visible during
 //    onTick
     private void StartCountDown() {
         countDownTimer = new CountDownTimer(TimeLeft, 1000) {
@@ -604,14 +553,7 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     }
 
-// NB: When user stops activity, they must confirm if they want to save their activity in the alert
-//    dialog box.
 
-//    Below I've assigned the Runora_database.insertData method and updateData method to boolean
-//    boolean variables. The specifics of these methods are found in the RunoraDatabaseHelper class.
-
-//    Below, when we confirm that we want to save our activity by pressing yes, the information is
-//    sent to the sqlite database.
     private void SaveData() {
         new AlertDialog.Builder(run_interface.this)
                 .setTitle("Save Activity To History")
@@ -640,7 +582,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
     }
 
-//    Use getInstance to return calendar date of locale time zone.
     public void CalenderDate() {
         Calendar calendar = Calendar.getInstance();
         current_date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
@@ -664,12 +605,8 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
 
     }
-// Read Phone State permissions must be added in Manifest to use the phone state listener
-// Here we specify the behaviour of the app according to each phone state
-//    If the mobile device receives and incoming call the user is on a present call, the app will
-//    cease the activity and location updates.
 
-//    Once the call has ended(Call_State_Idle) they can resume by pressing the play_button.
+
     PhoneStateListener phoneStateListener = new PhoneStateListener() {
         @Override
         public void onCallStateChanged(int state, String phoneNumber) {
@@ -691,16 +628,14 @@ public class run_interface extends AppCompatActivity implements LocationListener
         }
     };
 
-//    Because phone state listener is registered in the manifest folder, an action must be created
-//    to cancel IncomingCall.class when the application is not running.
-//    ActiveApp method is used to activate IncomingCall service.
+
     public void ActiveApp() {
         ComponentName componentName = new ComponentName(this, IncomingCall.class);
         getPackageManager().setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
 
     }
-// CloseApp is used to disable IncomingCall.class
+
     public void ClosedApp() {
         ComponentName componentName = new ComponentName(this, IncomingCall.class);
         getPackageManager().setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
@@ -708,14 +643,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
 
 
     }
-//    As mentioned before, because Read Phone State is registered, we need to call methods to cancel
-//    the service when the application is closed.
-
-//    By calling the action telephoneManger.listen(), the developer can use this to specify if the
-//    device should continue to listen to phone state or not.
-
-//    Under onPause and onStop call call PhoneStateListener.Listen_None to cease telephoneManager service
-//    and we call the CloseApp method as well to cancel the services of
 
     @Override
     protected void onPause() {

@@ -394,22 +394,13 @@ public class home extends AppCompatActivity implements LocationListener, com.goo
 
     @Override
     public void onBackPressed() {
-      Intent intent = new Intent(Intent.ACTION_MAIN);
-      intent.addCategory(Intent.CATEGORY_HOME);
-      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-      startActivity(intent);
-      finish();
-    }
-
-    public void statusBarIcon() {
-
-
-
-
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }
-
-
 
 
 

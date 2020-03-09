@@ -21,11 +21,6 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Recycler
     private ArrayList<RetrieveRunnerActivity> arrayList;
 
 
-    public RecycleAdapter(ArrayList<RetrieveRunnerActivity> arrayList, OnItemClickListener deleteListener) {
-        this.arrayList = arrayList;
-        this.deleteListener = deleteListener;
-    }
-
 
     private OnItemClickListener deleteListener;
 

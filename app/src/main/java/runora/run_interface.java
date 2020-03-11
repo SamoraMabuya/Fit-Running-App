@@ -460,15 +460,6 @@ public class run_interface extends AppCompatActivity implements LocationListener
             mediaPlayer.start();
         }
     }
-
-//    1000 represents 1 second. The countdowninterval counts in 1 second like any normal timer.
-
-//    During the onTick action, all buttons have been disabled using setEnabled(false).
-//    To give the appearance of a disabled button, I've created duplicates of the buttons and changed
-//    their colors to grey.
-
-    //    setBackgroundResource will make these disabled_button_resources visible during
-//    onTick
     private void StartCountDown() {
         countDownTimer = new CountDownTimer(TimeLeft, 1000) {
             @Override

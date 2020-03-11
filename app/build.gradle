@@ -7,8 +7,8 @@ android {
         applicationId "runora.inc"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 6
-        versionName "1.1"
+        versionCode 8
+        versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

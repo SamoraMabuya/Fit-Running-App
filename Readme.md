@@ -31,9 +31,6 @@ Android Studio
 
 ## License
 **MIT**
-
-Read here: https://github.com/SamoraMabuya/Runapp/blob/master/LICENSE
-
 ---
 
 ## Installion ##

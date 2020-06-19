@@ -33,11 +33,7 @@ Android Studio
 **MIT**
 ---
 
-## Installion ##
-
-Download from play store: https://play.google.com/store/apps/details?id=runora.inc
-
-## Installion ##
+## Installation ##
 
 Download from play store: https://play.google.com/store/apps/details?id=runora.inc
 
